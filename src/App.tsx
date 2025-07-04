@@ -3,10 +3,13 @@
  import React, { useState } from 'react';
  
 -const App: React.FC = () => {
+}
 -  const [message, setMessage] = useState<string>("Përshëndetje nga aplikacioni React!");
 +// Create a basic app structure that will be hydrated with the existing HTML
 +const App: React.FC = () => {
    return (
+   )
+}
 -    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-sky-500 to-indigo-600 text-white p-4">
 -      <header className="mb-8 text-center">
 -        <h1 className="text-5xl font-bold tracking-tight">
