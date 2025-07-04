@@ -1,0 +1,384 @@
+
+/* App Header */
+.app-header {
+    background-color: #343a40; 
+    color: #f8f9fa; 
+    padding: 0.9rem 1.8rem; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    min-height: 75px; 
+    flex-shrink: 0; 
+    transition: min-height 0.3s ease, padding 0.3s ease; 
+    position: relative; 
+    z-index: 1000; 
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.8rem; 
+    font-weight: 600;
+    white-space: nowrap;
+    transition: font-size 0.3s ease, margin 0.3s ease; 
+}
+
+/* Compact styles for Seller POS header */
+.app-header--seller-pos-active {
+    min-height: 55px; 
+    padding: 0.5rem 1.5rem; 
+}
+.app-header--seller-pos-active h1 {
+    font-size: 1.4rem; 
+    margin: 0;
+}
+
+.header-right-group {
+    display: flex;
+    align-items: center; 
+    gap: 1.5rem; 
+}
+
+#user-session-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    white-space: nowrap;
+}
+
+#user-greeting {
+    font-size: 1rem; 
+    font-weight: 500; 
+}
+/* Compact user greeting for seller POS */
+.app-header--seller-pos-active #user-greeting {
+    font-size: 0.9rem;
+}
+
+
+.app-main {
+    flex: 1;
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden; 
+    box-sizing: border-box;
+    position: relative; 
+}
+
+/* Seller POS View General Layout (Part of general layout as it's a primary view mode) */
+#seller-pos-view {
+    display: flex; 
+    flex-direction: column; 
+    gap: 0; 
+    width: 100%;
+    flex-grow: 1; 
+    overflow: hidden; 
+    box-sizing: border-box;
+    padding: 1.5rem; 
+}
+
+#seller-workspace {
+    display: grid;
+    grid-template-columns: 4fr 5fr; /* product catalog vs current sale */
+    grid-template-rows: minmax(0, 1fr); /* Allow content to scroll within this single row */
+    gap: 1.5rem;
+    width: 100%;
+    flex-grow: 1;
+    overflow: hidden; /* Children sections will scroll */
+    box-sizing: border-box;
+}
+
+.pos-section.workspace-section { /* Style for the two main sections in seller view */
+    background-color: #ffffff;
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 0; /* Important for flex children to scroll correctly */
+}
+
+/* Manager Dashboard Layout with Sidebar */
+#manager-dashboard-view {
+    display: flex; 
+    flex-direction: row; 
+    width: 100%;
+    height: 100%; 
+    flex-grow: 1; 
+    overflow: hidden; 
+}
+
+#manager-sidebar {
+    width: 280px; 
+    background-color: #2c3e50; 
+    color: #ecf0f1; 
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; 
+    box-shadow: 3px 0 10px rgba(0,0,0,0.1); 
+    transition: width 0.3s ease-in-out; 
+    height: 100%; 
+    z-index: 100; 
+    position: relative; 
+}
+
+.manager-sidebar-header {
+    padding: 1.5rem; 
+    text-align: center;
+    border-bottom: 1px solid #37475a; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    position: relative; 
+}
+
+#manager-sidebar-title {
+    margin: 0;
+    font-size: 1.6rem; 
+    font-weight: 600;
+    color: #ffffff; 
+    transition: opacity 0.2s ease-out; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manager-sidebar-search-container {
+    padding: 1.25rem 1.5rem; 
+    transition: opacity 0.2s ease-out, padding 0.3s ease-in-out; 
+}
+
+#manager-sidebar-search {
+    width: 100%;
+    padding: 0.75rem 1rem; 
+    border-radius: 8px; 
+    border: 1px solid #4a6078; 
+    background-color: #34495e; 
+    color: #ecf0f1; 
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+#manager-sidebar-search::placeholder {
+    color: #95a5a6; 
+}
+#manager-sidebar-search:focus {
+    background-color: #4a6078; 
+    border-color: #1abc9c; 
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.25); 
+}
+
+#manager-sidebar-user-greeting {
+    padding: 1rem 1.5rem; 
+    text-align: center; 
+    border-bottom: 1px solid #37475a; 
+    font-size: 1.05rem; 
+    font-weight: 500; 
+    color: #ecf0f1; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.2s ease-out;
+}
+
+#manager-sidebar-logout-container {
+    padding: 1.25rem 1.5rem; 
+    margin-top: auto; 
+    border-top: 1px solid #37475a; 
+}
+
+#manager-sidebar-logout-container #logout-btn { 
+    width: 100%; 
+    padding: 0.75rem 1rem; 
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: opacity 0.2s ease-out;
+}
+#manager-sidebar-logout-container #logout-btn .icon {
+    transition: margin 0.2s ease-out;
+    margin-right: 0.5rem; 
+}
+
+#manager-main-content {
+    flex-grow: 1; 
+    background-color: #f4f7f9; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    transition: margin-left 0.3s ease-in-out; 
+}
+
+/* --- Collapsible Sidebar Styles --- */
+#manager-sidebar.collapsed {
+    width: 70px; 
+}
+#manager-sidebar.collapsed .manager-sidebar-header #manager-sidebar-title,
+#manager-sidebar.collapsed .manager-sidebar-search-container,
+#manager-sidebar.collapsed #manager-sidebar-user-greeting span:not(.icon), 
+#manager-sidebar.collapsed .accordion-title > span:not(.icon), 
+#manager-sidebar.collapsed .accordion-indicator,
+#manager-sidebar.collapsed .accordion-content li a > span:not(.icon), 
+#manager-sidebar.collapsed #manager-sidebar-logout-container .btn .logout-btn-text { 
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#manager-sidebar.collapsed .accordion-title .icon,
+#manager-sidebar.collapsed .accordion-content li a .icon,
+#manager-sidebar.collapsed #manager-sidebar-logout-container .btn .icon { 
+    margin-right: 0; 
+    font-size: 1.4em; 
+}
+
+#manager-sidebar.collapsed .accordion-header,
+#manager-sidebar.collapsed .accordion-content li a {
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center; 
+}
+#manager-sidebar.collapsed .accordion-content li a {
+    padding: 0.9rem 0; 
+}
+
+#manager-sidebar.collapsed #manager-sidebar-user-greeting,
+#manager-sidebar.collapsed #manager-sidebar-logout-container {
+    padding: 1rem 0.5rem; 
+    text-align: center;
+}
+#manager-sidebar.collapsed #manager-sidebar-logout-container #logout-btn {
+    padding: 0.6rem; 
+    min-width: auto;
+}
+#manager-sidebar.collapsed #manager-sidebar-logout-container #logout-btn .icon {
+    margin: 0; 
+}
+
+#manager-main-content.sidebar-collapsed {
+    /* No explicit margin-left here if #manager-dashboard-view controls layout with flex-grow. */
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle-btn {
+    position: absolute;
+    top: 1.25rem; 
+    right: -15px; 
+    z-index: 101; 
+    background-color: #34495e; 
+    color: #ecf0f1;
+    border: 2px solid #2c3e50; 
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 1.2rem;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-out, background-color 0.2s ease;
+}
+.sidebar-toggle-btn:hover {
+    background-color: #4a6078;
+    transform: scale(1.1);
+}
+#manager-sidebar.collapsed .sidebar-toggle-btn {
+    transform: rotate(180deg); 
+}
+
+/* Page Blur Overlay */
+#page-blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(3px); 
+    -webkit-backdrop-filter: blur(3px); 
+    z-index: 999; 
+    display: none; 
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+#page-blur-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.app-footer {
+    display: none; 
+}
+
+/* Super Admin Panel Layout */
+#super-admin-panel-view {
+    display: flex;
+    width: 100%;
+    flex-grow: 1; 
+    gap: 0; 
+    overflow: hidden; 
+}
+
+#super-admin-sidebar {
+    width: 260px;
+    background-color: #343a40; 
+    color: #f8f9fa;
+    padding: 1.5rem;
+    border-right: 1px solid #454d55; 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: auto; 
+}
+.sidebar-header { /* Used by SA sidebar */
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+#super-admin-sidebar-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+#super-admin-content-area {
+    flex-grow: 1;
+    background-color: #f4f7f9; 
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+#manager-tab-content-area > .manager-content-section,
+#manager-tab-content-area > .report-view-main-area {
+    display: none; 
+    height: 100%; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+}
+
+#manager-tab-content-area > .manager-content-section.active-tab-pane,
+#manager-tab-content-area > .report-view-main-area.active-tab-pane {
+    display: block; 
+}
+
+.manager-content-section { /* General styling for a content 'card' inside a tab */
+    background-color: #fff; 
+    padding: 1.5rem; 
+    border-radius: 12px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    margin: 1.5rem; 
+    box-sizing: border-box;
+}
+.report-view-main-area { /* For reports loaded in a tab, similar to manager-content-section */
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin: 1.5rem;
+}
+    

@@ -1,0 +1,139 @@
+/* Manager Tab Navigation */
+#manager-tab-navigation {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    overflow-y: hidden;
+    background-color: #e9ecef; 
+    border-bottom: 1px solid #ced4da; 
+    padding: 0.25rem 0.5rem 0 0.5rem; 
+    flex-shrink: 0; 
+    scrollbar-width: thin; 
+    scrollbar-color: #adb5bd #e9ecef; 
+}
+#manager-tab-navigation::-webkit-scrollbar {
+    height: 6px;
+}
+#manager-tab-navigation::-webkit-scrollbar-track {
+    background: #e9ecef;
+}
+#manager-tab-navigation::-webkit-scrollbar-thumb {
+    background-color: #adb5bd;
+    border-radius: 3px;
+}
+
+.manager-tab-button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-bottom: none; 
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #495057;
+    border-radius: 6px 6px 0 0; 
+    margin-right: 3px;
+    display: flex; 
+    align-items: center;
+    max-width: 220px; 
+    min-width: 80px; 
+    overflow: hidden; 
+    position: relative; 
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.manager-tab-button:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+.manager-tab-button.active {
+    background-color: #ffffff; 
+    color: #00ff6a; 
+    border-color: #ced4da #ced4da #ffffff; 
+    font-weight: 600;
+}
+.manager-tab-button.active::after { 
+    content: '';
+    position: absolute;
+    bottom: -1px; 
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #007bff; 
+}
+
+.manager-tab-title-text {
+    flex-grow: 1; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    margin-right: 0.5rem; 
+}
+
+.manager-tab-close-btn {
+    background: none;
+    border: none;
+    color: #dc3545; 
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    padding: 0 0 0 0.3rem; 
+    margin-left: auto; 
+    cursor: pointer;
+    line-height: 1;
+    opacity: 1; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.15s ease; 
+    flex-shrink: 0; 
+}
+.manager-tab-close-btn:hover,
+.manager-tab-close-btn:focus-visible {
+    color: #a71d2a; 
+    transform: scale(1.1); 
+    outline: none;
+}
+
+/* Tab Navigation for Initial Balances */
+.tab-navigation-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.tab-button { /* General tab button, can be reused */
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #495057;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    margin-right: 0.5rem; 
+}
+
+.tab-button:hover {
+    color: #0056b3;
+}
+
+.tab-button.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+    font-weight: 600;
+}
+
+.tab-content {
+    display: none; 
+    padding-top: 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

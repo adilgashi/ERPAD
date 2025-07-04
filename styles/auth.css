@@ -1,0 +1,251 @@
+
+/* Authentication View Styles */
+#auth-view {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem; 
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+    overflow-y: auto; 
+}
+
+.login-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1000px; 
+    min-height: 600px; 
+    background-color: #ffffff;
+    border-radius: 20px; 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.login-showcase {
+    flex-basis: 45%; 
+    background: linear-gradient(45deg, #1D2B64, #4E65FF); 
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    position: relative; 
+    transition: background 0.5s ease;
+}
+
+#login-logo-container {
+    margin-bottom: 2rem;
+    max-width: 280px; 
+}
+
+#login-logo-image {
+    max-width: 100%;
+    max-height: 120px; 
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.showcase-overlay {
+    /* Removed absolute positioning for overlay, content is directly in showcase */
+}
+
+.showcase-title {
+    font-size: 2.5rem; 
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+.showcase-title #showcase-app-name {
+    display: block; 
+    margin-top: 0.25em;
+}
+
+.showcase-subtitle {
+    font-size: 1.2rem; 
+    font-weight: 300;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.login-content {
+    flex-basis: 55%; 
+    padding: 2.5rem 3rem 0.5rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    box-sizing: border-box; 
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem; 
+}
+
+.login-header h3 {
+    font-size: 2rem; 
+    color: #2c3e50; 
+    font-weight: 600;
+}
+
+#login-form-container {
+    width: 100%;
+}
+
+/* Open Shifts Info Container on Auth View - ENHANCED STYLES */
+#open-shifts-info-container {
+    width: 100%; 
+    background-color: #f8f9fa; 
+    padding: 0.75rem 1rem; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
+    margin-top: 1rem; 
+    overflow-y: auto; 
+    max-height: 220px; 
+    color: #495057; 
+    border: 1px solid #e9ecef; 
+    box-sizing: border-box; 
+    flex-shrink: 0; 
+}
+
+.open-shifts-title {
+    text-align: left; 
+    font-size: 1.1rem; 
+    color: #343a40; 
+    margin-top: 0;
+    margin-bottom: 0.75rem; 
+    font-weight: 600; 
+    border-bottom: 1px solid #dee2e6; 
+    padding-bottom: 0.5rem; 
+}
+
+.open-shifts-list {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.open-shift-item {
+    background-color: transparent; 
+    border: none; 
+    border-bottom: 1px dashed #e0e6ed; 
+    padding: 0.75rem 0.25rem; 
+    margin-bottom: 0; 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 0.75rem; 
+}
+.open-shift-item:last-child {
+    border-bottom: none; 
+}
+
+.open-shift-icon {
+    font-size: 1.1rem; 
+    color: #28a745; 
+    margin-top: 2px; 
+}
+
+.open-shift-details {
+    font-size: 0.875rem; 
+    line-height: 1.4; 
+}
+
+.open-shift-details span {
+    display: block; 
+    margin-bottom: 2px; 
+}
+.open-shift-details .open-shift-business strong, 
+.open-shift-details strong { 
+    color: #2c3e50; 
+}
+.open-shift-details small {
+    color: #6c757d; 
+    font-size: 0.9em; 
+}
+
+.open-shifts-more-info,
+.open-shifts-none-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 0.75rem; 
+    font-size: 0.9rem;
+    padding: 0.5rem; 
+}
+
+
+/* Responsive adjustments for login form */
+@media (max-width: 992px) { /* Tablet and below */
+    .login-wrapper {
+        flex-direction: column;
+        max-width: 500px; 
+        min-height: auto; 
+        margin: 2rem auto; 
+    }
+    .login-showcase {
+        padding: 2rem;
+    }
+    #login-logo-container { 
+        max-width: 180px;
+        margin-bottom: 1rem;
+    }
+    #login-logo-image {
+        max-height: 80px; 
+    }
+    .showcase-title {
+        font-size: 1.8rem;
+    }
+    .showcase-subtitle {
+        font-size: 1rem;
+    }
+    .login-content {
+        flex-basis: auto; 
+        padding: 2rem 2rem 1.5rem; 
+    }
+    .login-header h3 {
+        font-size: 1.6rem;
+    }
+    #auth-view {
+        padding: 1rem; 
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets / Large mobiles - hide showcase */
+    .login-showcase {
+        display: none; 
+    }
+    .login-content {
+        padding: 2.5rem; 
+    }
+}
+
+
+@media (max-width: 576px) { /* Mobile phones */
+    .login-wrapper {
+        margin: 1rem auto; 
+        border-radius: 15px; 
+    }
+    .login-content {
+        padding: 1.5rem 1.5rem 1rem; 
+    }
+    .login-header h3 {
+        font-size: 1.4rem;
+    }
+    #open-shifts-info-container {
+        padding: 0.5rem 0.75rem; 
+        margin-top: 0.75rem; 
+    }
+    .open-shifts-title {
+        font-size: 1rem;
+    }
+    .open-shift-details {
+        font-size: 0.825rem;
+    }
+}
+    

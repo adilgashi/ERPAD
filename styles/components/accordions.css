@@ -1,0 +1,231 @@
+/* Accordion Menu Styles */
+.manager-sidebar-nav.accordion-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+/* Custom scrollbar for Webkit browsers */
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar {
+    width: 6px;
+}
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar-track {
+    background: #212b36; 
+}
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar-thumb {
+    background: #4a6078; 
+    border-radius: 3px;
+}
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar-thumb:hover {
+    background: #5c758d; 
+}
+
+
+.accordion-item {
+    border-bottom: 1px solid #37475a; 
+}
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.5rem; 
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, padding 0.3s ease-in-out;
+    background-color: transparent; 
+    color: #bdc3c7; 
+    font-weight: 500; 
+    font-size: 1.05rem; 
+    user-select: none; 
+    white-space: nowrap;
+    overflow: hidden;
+}
+.accordion-header:hover,
+.accordion-header.active-header, 
+.accordion-header:focus-visible { 
+    background-color: #34495e; 
+    color: #ffffff; 
+}
+.accordion-header:focus-visible {
+    outline: 2px solid #1abc9c; 
+    outline-offset: -2px; 
+}
+
+.accordion-title { 
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.accordion-title .icon {
+    font-size: 1.25em; 
+    min-width: 24px; 
+    text-align: center;
+    color: #7f8c8d; 
+    transition: color 0.25s ease;
+    flex-shrink: 0; 
+}
+.accordion-header:hover .accordion-title .icon,
+.accordion-header.active-header .accordion-title .icon,
+.accordion-header:focus-visible .accordion-title .icon {
+    color: #ffffff; 
+}
+.accordion-title > span:not(.icon) { 
+    transition: opacity 0.2s ease-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.accordion-indicator {
+    font-size: 0.9em;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease-out; 
+    color: #7f8c8d; 
+    flex-shrink: 0; 
+}
+.accordion-header:hover .accordion-indicator,
+.accordion-header.active-header .accordion-indicator,
+.accordion-header:focus-visible .accordion-indicator {
+    color: #ffffff; 
+}
+
+/* Rotate indicator when content is shown */
+.accordion-header[aria-expanded="true"] .accordion-indicator {
+    transform: rotate(90deg);
+}
+
+.accordion-content {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+    background-color: #212b36; 
+    max-height: 0; 
+    overflow: hidden;
+    transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out, opacity 0.3s ease-in-out; 
+}
+.accordion-content.open {
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem;
+    opacity: 1;
+    /* max-height is set by JS to scrollHeight */
+}
+
+.accordion-content li a {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1.5rem 0.9rem 2.8rem; 
+    color: #95a5a6; 
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.2s ease, border-left-color 0.25s ease, opacity 0.2s ease-out;
+    border-left: 4px solid transparent; 
+    font-size: 0.95rem; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.accordion-content li a .icon {
+    margin-right: 0.9rem; 
+    font-size: 1em; 
+    min-width: 20px; 
+    text-align: center;
+    color: #7f8c8d; 
+    transition: color 0.25s ease, margin 0.3s ease-in-out;
+    flex-shrink: 0;
+}
+.accordion-content li a > span:not(.icon) { 
+    transition: opacity 0.2s ease-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.accordion-content li:hover a,
+.accordion-content li a:focus-visible {
+    background-color: #2c3e50; 
+    color: #ffffff; 
+    padding-left: 3rem; 
+}
+#manager-sidebar.collapsed .accordion-content li:hover a,
+#manager-sidebar.collapsed .accordion-content li a:focus-visible {
+    padding-left: 0; 
+}
+
+.accordion-content li:hover a .icon,
+.accordion-content li a:focus-visible .icon {
+    color: #ffffff; 
+}
+.accordion-content li a:focus-visible {
+    outline: 1px dashed #1abc9c; 
+    outline-offset: -1px;
+}
+
+/* Active menu item */
+.accordion-content li.active a {
+    background-color: #1abc9c; 
+    color: #ffffff; 
+    font-weight: 500; 
+    border-left-color: #16a085; 
+}
+#manager-sidebar.collapsed .accordion-content li.active a {
+    border-left-color: transparent; 
+     background-color: #1abc9c; 
+}
+.accordion-content li.active a .icon {
+    color: #ffffff; 
+}
+/* Styles for Locked/Disabled Menu Items due to Package Restrictions */
+.accordion-content li.menu-item-locked a,
+.accordion-header.menu-group-locked .accordion-title {
+    color: #7f8c8d !important; 
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    pointer-events: none; 
+}
+.accordion-header.menu-group-locked { 
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.accordion-content li.menu-item-locked a:hover,
+.accordion-header.menu-group-locked:hover .accordion-title {
+    background-color: transparent !important; 
+    padding-left: 2.8rem !important; 
+}
+#manager-sidebar.collapsed .accordion-content li.menu-item-locked a:hover,
+#manager-sidebar.collapsed .accordion-header.menu-group-locked:hover .accordion-title {
+     padding-left: 0 !important;
+}
+.accordion-header.menu-group-locked:hover {
+    background-color: transparent !important;
+}
+
+
+.accordion-content li.menu-item-locked a .icon,
+.accordion-header.menu-group-locked .accordion-title .icon {
+    color: #667273 !important; 
+}
+.accordion-header.menu-group-locked .accordion-indicator {
+    color: #667273 !important;
+}
+
+.accordion-content li.menu-item-locked a::after,
+.accordion-header.menu-group-locked .accordion-title::after {
+    content: '🔒'; 
+    margin-left: auto;
+    padding-left: 10px;
+    font-size: 0.8em; 
+    color: #b0bec5; 
+    font-weight: normal; 
+}
+#manager-sidebar.collapsed .accordion-content li.menu-item-locked a::after,
+#manager-sidebar.collapsed .accordion-header.menu-group-locked .accordion-title::after {
+    display: none; /* Hide lock icon text when collapsed */
+}

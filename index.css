@@ -1,0 +1,4465 @@
+
+
+/* Global Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent body/html from scrolling */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Modern font stack */
+    background-color: #eef2f7; /* Global background for a cleaner look */
+    color: #333; /* Default text color */
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+#app-root {
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* New Authentication View Styles */
+#auth-view {
+    display: flex;
+    align-items: center; /* Vertically center login-wrapper */
+    justify-content: center; /* Horizontally center login-wrapper */
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem; /* Padding for smaller screens */
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Subtle overall background */
+    overflow-y: auto; /* Allow scrolling on auth view if content overflows on small screens */
+}
+
+.login-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1000px; /* Max width of the login card */
+    min-height: 600px; /* Min height of the login card */
+    background-color: #ffffff;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.1); /* Softer, more modern shadow */
+    overflow: hidden; /* To contain the showcase gradient */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+.login-wrapper:hover {
+    /* box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3), 0 12px 20px -8px rgba(0, 0, 0, 0.15); */
+    /* transform: translateY(-5px); */
+}
+
+
+.login-showcase {
+    flex-basis: 45%; /* Showcase takes up 45% of the width */
+    background: linear-gradient(45deg, #1D2B64, #4E65FF); /* Dark blue to brighter blue gradient */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    position: relative; /* For overlay positioning */
+    transition: background 0.5s ease;
+}
+
+#login-logo-container {
+    margin-bottom: 2rem;
+    max-width: 400px; 
+}
+
+#login-logo-image {
+    max-width: 100%;
+    max-height: 1000px; /* Adjusted for better proportion */
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.showcase-overlay {
+    /* Removed absolute positioning for overlay, content is directly in showcase */
+}
+
+.showcase-title {
+    font-size: 2.5rem; /* Larger title */
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+.showcase-title #showcase-app-name {
+    display: block; /* Makes the app name appear on a new line if needed or just stand out */
+    margin-top: 0.25em;
+}
+
+.showcase-subtitle {
+    font-size: 1.2rem; /* Slightly larger subtitle */
+    font-weight: 300;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.login-content {
+    flex-basis: 55%; /* Login form area takes up 55% */
+    padding: 2.5rem 3rem 0.5rem; /* Reduced bottom padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    box-sizing: border-box; /* Ensure padding is included */
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem; /* More space below header */
+}
+
+.login-header h3 {
+    font-size: 2rem; /* Larger form title */
+    color: #2c3e50; /* Darker, professional color */
+    font-weight: 600;
+}
+
+#login-form-container {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.5rem; /* Slightly reduced margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem; /* Spacing between label and input */
+    color: #555e68; /* Softer label color */
+    font-weight: 500; /* Slightly bolder labels */
+    font-size: 0.95rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group-icon {
+    position: absolute;
+    left: 18px; /* Adjusted for new padding */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd; /* Icon color */
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 3; /* Ensure icon is above input background */
+}
+.input-group-icon.select-icon { /* Specific for select dropdown */
+    right: 35px; /* Position for select arrow area */
+    left: auto;
+    pointer-events: none; /* Important so it doesn't block select click */
+}
+
+
+/* General input styling (text, password, select) */
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="month"],
+.form-group input[type="file"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea,
+.form-group input[type="search"],
+.filter-container input[type="search"].form-control {
+    width: 100%;
+    padding: 0.9rem 1.2rem; /* Increased padding */
+    height: 54px; /* Increased height */
+    border: 1px solid #dbe0f3; /* Lighter border */
+    border-radius: 10px; /* More rounded */
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #344054; /* Darker input text */
+    background-color: #fdfdff; /* Slightly off-white background */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.filter-container input[type="search"].form-control { /* Specific style for new filter input */
+    padding-left: 45px; /* Space for icon */
+    margin-bottom: 1rem; /* Space below filter */
+}
+
+.form-group select {
+    appearance: none; /* Remove default select arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23adb5bd' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    padding-right: 3rem; /* Space for custom arrow */
+}
+.input-group select {
+    padding-left: 50px; /* Space for left icon if select is in input-group */
+}
+
+.form-group textarea.form-control { /* Ensure textarea gets form-control styles */
+    height: auto;
+    min-height: 90px; /* Increased min-height */
+}
+
+.form-control-file {
+    padding: 0.6rem 1rem;
+    height: auto;
+}
+
+/* Input fields within an input-group (with left icon) */
+.input-group input[type="text"],
+.input-group input[type="password"] {
+    padding-left: 50px; /* Space for icon */
+}
+
+/* Focus state for inputs */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input[type="search"]:focus,
+.filter-container input[type="search"].form-control:focus {
+    border-color: #007bff; /* Primary color border */
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.15); /* Softer focus shadow */
+    background-color: #fff;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* Grid layouts for forms */
+.form-grid-2-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem 1.5rem;
+}
+.form-grid-2-cols .form-group {
+    margin-bottom: 0; /* Rely on grid gap */
+}
+
+.form-grid-3-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /* Slightly smaller min for 3 cols */
+    gap: 1rem 1.5rem; /* row-gap column-gap */
+}
+.form-grid-3-cols .form-group {
+    margin-bottom: 0; /* Rely on grid gap */
+}
+
+.form-group-span-2 {
+    grid-column: span 2;
+}
+.form-group-span-3 {
+    grid-column: span 3;
+}
+
+.checkbox-label-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500; 
+    color: #555e68; 
+    font-size: 0.95rem; /* Match other labels */
+    margin-bottom: 0; /* Override form-group label margin if needed here */
+}
+.checkbox-label-inline input[type="checkbox"] {
+    width: 18px; 
+    height: 18px;
+    accent-color: #007bff; 
+    margin-right: 0; /* Gap is handled by flex */
+}
+
+
+/* Buttons */
+.btn {
+    padding: 0.9rem 1.5rem; /* Consistent padding for buttons */
+    border: 1px solid transparent;
+    border-radius: 10px; /* More rounded */
+    cursor: pointer;
+    font-size: 1rem; /* Standardized font size */
+    font-weight: 600; /* Bolder buttons */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    text-align: center;
+    line-height: 1.5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.btn:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0,123,255,.25);
+}
+
+
+#login-form .btn-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3); /* Gradient for primary button */
+    color: white;
+    border: none; /* Remove border for gradient buttons */
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+#login-form .btn-primary:hover {
+    background: linear-gradient(45deg, #0069d9, #004085);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+#admin-login-shortcut-btn {
+    margin-top: 1rem;
+    background-color: #f0f3f5; /* Light grey for secondary */
+    color: #34495e; /* Dark text */
+    border: 1px solid #d1d9e0; /* Subtle border */
+}
+#admin-login-shortcut-btn:hover {
+    background-color: #e2e8ed;
+    border-color: #c8d0d8;
+}
+
+/* Error Message */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    min-height: 1.25em;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(231, 76, 60, 0.05);
+    border-left: 3px solid #e74c3c;
+    border-radius: 4px;
+}
+
+
+/* Open Shifts Info Container on Auth View - ENHANCED STYLES */
+#open-shifts-info-container {
+    width: 100%; /* Ensure it takes available width */
+    background-color: #f8f9fa; /* Slightly off-white, clean background */
+    padding: 0.75rem 1rem; /* Adjusted padding */
+    border-radius: 10px; /* Consistent rounded corners */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); /* Subtle shadow for depth */
+    margin-top: 1rem; /* Space above this container */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    max-height: 220px; /* Max height before scrolling */
+    color: #495057; /* Default text color for content */
+    border: 1px solid #e9ecef; /* Light border for definition */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    flex-shrink: 0; /* Prevent shrinking if in a flex container */
+}
+
+.open-shifts-title {
+    text-align: left; /* Align title to the left */
+    font-size: 1.1rem; /* Prominent title */
+    color: #343a40; /* Darker title color */
+    margin-top: 0;
+    margin-bottom: 0.75rem; /* Space below title */
+    font-weight: 600; /* Bolder title */
+    border-bottom: 1px solid #dee2e6; /* Separator line */
+    padding-bottom: 0.5rem; /* Space between text and border */
+}
+
+.open-shifts-list {
+    list-style-type: none; /* Remove default list bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.open-shift-item {
+    background-color: transparent; /* Ensure no individual item background unless intended */
+    border: none; /* Remove individual borders unless a separator is added below */
+    border-bottom: 1px dashed #e0e6ed; /* Separator line between items */
+    padding: 0.75rem 0.25rem; /* Padding within each item */
+    margin-bottom: 0; /* No margin between items, border handles separation */
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: flex-start; /* Align icon to the top of the text block */
+    gap: 0.75rem; /* Space between icon and details */
+}
+.open-shift-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.open-shift-icon {
+    font-size: 1.1rem; /* Icon size */
+    color: #28a745; /* Green color for active status */
+    margin-top: 2px; /* Fine-tune vertical alignment with text */
+}
+
+.open-shift-details {
+    font-size: 0.875rem; /* Standard text size for details */
+    line-height: 1.4; /* Spacing between lines of text */
+}
+
+.open-shift-details span {
+    display: block; /* Each piece of info on a new line */
+    margin-bottom: 2px; /* Small space between info lines */
+}
+.open-shift-details .open-shift-business strong, /* Target business name specifically if needed */
+.open-shift-details strong { /* General strong tag styling within details */
+    color: #2c3e50; /* Darker, prominent color for labels */
+    /* font-weight already handled by strong tag */
+}
+.open-shift-details small {
+    color: #6c757d; /* Muted color for less important info (e.g., "opened by") */
+    font-size: 0.9em; /* Slightly smaller */
+}
+
+.open-shifts-more-info,
+.open-shifts-none-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 0.75rem; /* Space if this message appears */
+    font-size: 0.9rem;
+    padding: 0.5rem; /* Padding for the message itself */
+}
+
+
+/* Responsive adjustments for login form */
+@media (max-width: 992px) { /* Tablet and below */
+    .login-wrapper {
+        flex-direction: column;
+        max-width: 500px; /* Max width for stacked form */
+        min-height: auto; /* Allow height to adjust */
+        margin: 2rem auto; /* Centering for stacked form */
+    }
+    .login-showcase {
+        /* Consider showing a compact version of the showcase or specific elements */
+        /* For now, let's keep it as it affects the split layout */
+        padding: 2rem;
+    }
+    #login-logo-container { 
+        max-width: 180px;
+        margin-bottom: 1rem;
+    }
+    #login-logo-image {
+        max-height: 80px; 
+    }
+    .showcase-title {
+        font-size: 1.8rem;
+    }
+    .showcase-subtitle {
+        font-size: 1rem;
+    }
+    .login-content {
+        flex-basis: auto; /* Content takes full width when stacked */
+        padding: 2rem 2rem 1.5rem; 
+    }
+    .login-header h3 {
+        font-size: 1.6rem;
+    }
+    #auth-view {
+        padding: 1rem; 
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets / Large mobiles - hide showcase */
+    .login-showcase {
+        display: none; 
+    }
+    .login-content {
+        padding: 2.5rem; /* More padding when showcase is hidden */
+    }
+}
+
+
+@media (max-width: 576px) { /* Mobile phones */
+    .login-wrapper {
+        margin: 1rem auto; 
+        border-radius: 15px; 
+    }
+    .login-content {
+        padding: 1.5rem 1.5rem 1rem; 
+    }
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="month"],
+    .form-group select {
+        padding: 0.8rem 1rem;
+        height: 50px;
+        font-size: 0.95rem;
+    }
+    .input-group input[type="text"],
+    .input-group input[type="password"],
+    .input-group select {
+        padding-left: 45px; 
+    }
+    .input-group-icon {
+        left: 15px;
+    }
+    .input-group-icon.select-icon {
+        right: 30px;
+    }
+    .form-group select {
+        background-position: right 1rem center;
+    }
+    .btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    .login-header h3 {
+        font-size: 1.4rem;
+    }
+    #open-shifts-info-container {
+        padding: 0.5rem 0.75rem; 
+        margin-top: 0.75rem; 
+    }
+    .open-shifts-title {
+        font-size: 1rem;
+    }
+    .open-shift-details {
+        font-size: 0.825rem;
+    }
+}
+
+
+/* General App Styles (Keeping existing ones below the auth changes) */
+/* App Header */
+.app-header {
+    background-color: #343a40; 
+    color: #f8f9fa; 
+    padding: 0.9rem 1.8rem; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    min-height: 75px; 
+    flex-shrink: 0; 
+    transition: min-height 0.3s ease, padding 0.3s ease; /* Smooth transition for compactness */
+    position: relative; 
+    z-index: 1000; /* Increased z-index for header */
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.8rem; 
+    font-weight: 600;
+    white-space: nowrap;
+    transition: font-size 0.3s ease, margin 0.3s ease; /* Smooth transition for title text */
+}
+
+/* Compact styles for Seller POS header */
+.app-header--seller-pos-active {
+    min-height: 55px; /* Reduced header height */
+    padding: 0.5rem 1.5rem; /* Reduced header padding */
+}
+.app-header--seller-pos-active h1 {
+    font-size: 1.4rem; /* Reduced title font size */
+    margin: 0;
+}
+
+.header-right-group {
+    display: flex;
+    align-items: center; 
+    gap: 1.5rem; 
+}
+
+
+#user-session-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    white-space: nowrap;
+}
+
+#user-greeting {
+    font-size: 1rem; 
+    font-weight: 500; 
+}
+/* Compact user greeting for seller POS */
+.app-header--seller-pos-active #user-greeting {
+    font-size: 0.9rem;
+}
+
+#logout-btn {
+    padding: 0.5rem 0.9rem; 
+}
+/* Compact logout button for seller POS */
+.app-header--seller-pos-active #logout-btn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+}
+
+
+.app-main {
+    flex: 1;
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden; 
+    box-sizing: border-box;
+    position: relative; 
+}
+
+/* Seller POS View Specific Styles */
+#seller-pos-view {
+    display: flex; 
+    flex-direction: column; 
+    gap: 0; 
+    width: 100%;
+    flex-grow: 1; 
+    overflow: hidden; 
+    box-sizing: border-box;
+    padding: 1.5rem; 
+}
+
+/* Seller Cash Status in Header */
+#seller-cash-status-container.seller-cash-status-header {
+    display: flex;
+    flex-direction: row; /* MODIFIED: Changed from column to row */
+    align-items: center; /* MODIFIED: Vertically align items in the row */
+    justify-content: flex-end; /* MODIFIED: Keep the group to the right */
+    gap: 1.5rem; /* MODIFIED: Space between the cash details block and the status message */
+    text-align: right; /* Default text align for children if not overridden */
+    transition: all 0.3s ease; 
+}
+
+.cash-status-grid-header {
+    display: flex;
+    flex-wrap: wrap; /* MODIFIED: Allow cash items to wrap if not enough space */
+    gap: 0.5rem 1.2rem; /* MODIFIED: Gap between cash items */
+    transition: gap 0.3s ease;
+}
+
+#seller-cash-status-container.seller-cash-status-header p { /* For P tags inside .cash-status-grid-header */
+    margin: 0;
+    font-size: 1rem; 
+    color: #e0e0e0;
+    white-space: nowrap;
+    transition: font-size 0.3s ease;
+}
+#seller-cash-status-container.seller-cash-status-header p span {
+    font-weight: 700; 
+    color: #ffffff;
+    font-size: 1.05rem; 
+    transition: font-size 0.3s ease;
+}
+
+.header-status-message { /* #seller-day-status-message */
+    padding: 0.3rem 0.6rem; 
+    border-radius: 4px;
+    margin-top: 0; /* MODIFIED: Removed margin-top */
+    font-weight: 500;
+    font-size: 0.9rem; 
+    text-align: left; /* MODIFIED: Changed to left, as it's now side-by-side */
+    width: auto;
+    line-height: 1.4; 
+    transition: font-size 0.3s ease, padding 0.3s ease; 
+    flex-shrink: 0; /* MODIFIED: Prevent it from shrinking excessively */
+}
+
+/* Compact styles for Seller Cash Status in POS view */
+.app-header--seller-pos-active #seller-cash-status-container.seller-cash-status-header {
+    gap: 1rem; /* MODIFIED: Adjust gap for compact header */
+}
+.app-header--seller-pos-active .cash-status-grid-header {
+    gap: 0.3rem 0.8rem; /* Reduced gap */
+}
+.app-header--seller-pos-active #seller-cash-status-container.seller-cash-status-header p {
+    font-size: 0.85rem; /* Reduced font size */
+}
+.app-header--seller-pos-active #seller-cash-status-container.seller-cash-status-header p span {
+    font-size: 0.9rem; /* Reduced font size for span */
+}
+.app-header--seller-pos-active .header-status-message {
+    font-size: 0.8rem; /* Reduced font size for status message */
+    padding: 0.2rem 0.4rem;
+    margin-top: 0; /* MODIFIED: Ensure margin-top is 0 for compact as well */
+    text-align: left; /* MODIFIED: Ensure compact also aligns left */
+}
+
+
+#seller-cash-status-container .header-status-message.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+#seller-cash-status-container .header-status-message.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+.header-status-message.info {
+     background-color: #cff4fc; color: #055160; border: 1px solid #b6effb;
+}
+
+.info-message {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center;
+}
+.info-message.success:not(.header-status-message) {
+    background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc;
+}
+
+.info-message.error:not(.header-status-message) {
+    background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7;
+}
+.info-message.info:not(.header-status-message) {
+     background-color: #cff4fc; color: #055160; border: 1px solid #b6effb;
+}
+
+
+#seller-workspace {
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+    grid-template-rows: minmax(0, 1fr); 
+    gap: 1.5rem;
+    width: 100%;
+    flex-grow: 1;
+    overflow: hidden; 
+    box-sizing: border-box;
+}
+
+.pos-section.workspace-section {
+    background-color: #ffffff;
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 0; 
+}
+
+.pos-section-title {
+    font-size: 1.3rem;
+    color: #343a40;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* Style to visually hide accessible headings */
+#current-sale-heading,
+#product-catalog-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* Product Search Styles */
+.product-search-container {
+    position: relative;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+.product-search-container.modal-search { /* Stil për kërkimin brenda modalit */
+    margin-bottom: 0.75rem;
+}
+.product-search-container.modal-search input[type="search"] {
+    font-size: 0.95rem;
+    height: 44px;
+}
+
+
+.product-search-container .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+#product-search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 40px; 
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    height: 48px;
+    box-sizing: border-box;
+}
+#product-search-input:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+
+.current-sale-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+/* Custom Customer Select Styles */
+#seller-customer-selection-group.custom-select-wrapper {
+    position: relative; 
+    flex-grow: 1; 
+    margin-bottom: 0 !important; 
+    min-width: 220px;
+}
+
+#customer-search-input.form-control { 
+    height: 42px;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    background-color: #fff;
+}
+#customer-search-input.form-control::placeholder {
+    color: #6c757d; 
+    opacity: 1;
+}
+
+#customer-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 4px); 
+    left: 0;
+    right: 0;
+    background-color: #ffffff; /* Main background of panel */
+    border: 1px solid #ced4da; /* Optional: outer border for the panel */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    max-height: 280px; 
+    overflow-y: auto;
+    z-index: 1050; /* Higher than header but below modals */
+    opacity: 0;
+    transform: translateY(-10px) scaleY(0.95);
+    visibility: hidden;
+    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out, visibility 0.15s;
+    transform-origin: top center;
+}
+
+#customer-dropdown-panel.active {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    visibility: visible;
+}
+
+#customer-dropdown-panel .customer-dropdown-item {
+    padding: 10px 15px; /* Padding around text */
+    cursor: pointer;
+    font-size: 1.1rem; /* Increased font size for customer names */
+    color: #2c3e50; /* Darker text for better readability */
+    background-color: transparent; /* No individual item background */
+    border: none; /* No individual item border */
+    border-bottom: 1px dashed #eef2f7; /* Subtle separator, optional */
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+#customer-dropdown-panel .customer-dropdown-item:last-child {
+    border-bottom: none;
+}
+#customer-dropdown-panel .customer-dropdown-item:hover,
+#customer-dropdown-panel .customer-dropdown-item.highlighted { 
+    background-color: #e9f5ff; /* Light blue hover for text */
+    color: #0056b3; /* Darker blue text on hover */
+}
+#customer-dropdown-panel .customer-dropdown-item .customer-code {
+    font-size: 0.8em; /* Smaller font for code */
+    color: #555e68; /* Softer color for code */
+    margin-left: 8px;
+    font-weight: normal; /* Ensure code is not bold from parent */
+}
+#customer-dropdown-panel .customer-dropdown-item:hover .customer-code,
+#customer-dropdown-panel .customer-dropdown-item.highlighted .customer-code {
+    color: #0056b3; /* Match text color on hover */
+}
+
+#customer-dropdown-panel .no-results-message {
+    padding: 12px 15px;
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    font-size: 1rem; /* Consistent with other items */
+}
+
+
+.current-sale-header-controls .sale-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-left: auto; 
+    flex-shrink: 0;
+}
+
+
+.current-sale-header-controls .sale-actions .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+
+.table-responsive {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 0; 
+}
+/* Specific for local purchase form item table */
+.purchase-form-section .table-responsive {
+    overflow-x: auto;
+}
+
+
+.pos-table, .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.pos-table th, .pos-table td,
+.admin-table th, .admin-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.pos-table th, .admin-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+/* Enhanced table styles for reports */
+.report-table-container .pos-table th { /* More specific selector */
+    background-color: #e0e6ed; 
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 0.9rem 1rem;
+}
+.report-table-container .pos-table td { /* More specific selector */
+    padding: 0.8rem 1rem; 
+    vertical-align: top; 
+}
+.report-table-container .pos-table tbody tr:nth-child(even) { /* More specific selector */
+    background-color: #f8f9fa;
+}
+.report-table-container .pos-table tbody tr:hover { /* More specific selector */
+    background-color: #eef1f3; 
+}
+.admin-table tbody tr.production-order-row {
+    background-color: #f8f9fa;
+    border-top: 2px solid #e0e6ed;
+}
+
+.admin-table tbody tr.production-order-row:nth-child(even) {
+    background-color: #f8f9fa; /* Override default striping for this specific row type */
+}
+
+.admin-table tbody tr.production-order-row:hover {
+    background-color: #eef2f7;
+}
+
+
+.pos-table tbody tr:hover, .admin-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+.pos-table tbody tr.deal-row { /* Stili për rreshtat e ofertave */
+    background-color: #e6f7ff; /* Ngjyrë e lehtë blu */
+}
+.pos-table tbody tr.deal-row:hover {
+    background-color: #d0efff;
+}
+.deal-badge {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #17a2b8; /* Ngjyrë Info */
+    border-radius: 0.25rem;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+
+#product-table td:nth-child(2),
+#product-table td:nth-child(3) {
+    text-align: right;
+    white-space: nowrap;
+}
+#product-table th:nth-child(2),
+#product-table th:nth-child(3) {
+    text-align: right;
+}
+
+#product-table td:nth-child(4) {
+    text-align: center;
+}
+#product-table th:nth-child(4) {
+    text-align: center;
+}
+
+#product-list-manager-table th:nth-child(1), /* Kodi */
+#product-list-manager-table td:nth-child(1) {
+    width: 10%;
+}
+#product-list-manager-table th:nth-child(2), /* Emri */
+#product-list-manager-table td:nth-child(2) {
+    width: 30%;
+}
+#product-list-manager-table th:nth-child(3), /* Kategoria */
+#product-list-manager-table td:nth-child(3) {
+    width: 20%;
+}
+#product-list-manager-table th:nth-child(4), /* Çmimi */
+#product-list-manager-table td:nth-child(4) {
+    width: 15%;
+    text-align: right;
+}
+#product-list-manager-table th:nth-child(5), /* Stoku */
+#product-list-manager-table td:nth-child(5) {
+    width: 10%;
+    text-align: right;
+}
+#product-list-manager-table th:nth-child(6), /* Veprime */
+#product-list-manager-table td:nth-child(6) {
+    width: 15%;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+
+.sale-items-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+    min-height: 0;
+}
+.sale-items-list .empty-sale-message {
+    display: block;
+    text-align: center;
+    color: #6c757d;
+    padding: 2rem;
+    font-style: italic;
+}
+
+
+.sale-item-row {
+    display: grid;
+    grid-template-columns: 1.5fr auto 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+.sale-item-row:last-child {
+    border-bottom: none;
+}
+
+.sale-item-name {
+    font-weight: 500;
+    color: #343a40;
+    word-break: break-word;
+    justify-self: start;
+}
+
+.sale-item-unit-price {
+    font-size: 0.85em;
+    color: #6c757d;
+    white-space: nowrap;
+    justify-self: end;
+    align-self: center;
+    padding-right: 5px;
+}
+
+.sale-item-quantity-controls {
+    display: inline-flex;
+    align-items: stretch;
+    justify-self: center;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    overflow: hidden;
+    gap: 0;
+}
+
+.sale-item-quantity-controls .btn-quantity-adjust {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    border-radius: 0;
+    cursor: pointer;
+}
+.sale-item-quantity-controls .btn-quantity-adjust:hover {
+    background-color: #e9ecef;
+}
+
+
+.sale-item-quantity-controls .quantity-display {
+    background-color: #ffffff;
+    color: #212529;
+    padding: 0.4rem 0.2rem;
+    border-left: 1px solid #ced4da;
+    border-right: 1px solid #ced4da;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+.sale-item-price {
+    text-align: right;
+    justify-self: end;
+    font-weight: 500;
+    white-space: nowrap;
+    color: #495057;
+}
+
+.sale-item-row .btn-item-remove {
+    justify-self: end;
+}
+
+.sale-summary {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 2px solid #e9ecef;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.summary-row {
+    display: flex;
+    align-items: baseline; 
+    margin-bottom: 0.6rem;
+    font-size: 1.1rem;
+    color: #495057;
+}
+.summary-row:last-child {
+    margin-bottom: 0;
+}
+
+.summary-row span:first-child { 
+    font-weight: 500;
+    margin-right: 0.5rem; 
+}
+.summary-row span:last-child { 
+    font-weight: 600;
+    margin-left: auto; 
+}
+
+.total-row {
+    font-size: 1.3rem;
+    color: #212529;
+}
+.total-row span strong { 
+    font-weight: 700 !important;
+}
+
+
+.complete-sale-action-row {
+    margin-top: 1rem; 
+}
+
+
+.btn-block {
+    width: 100%;
+}
+/* Base Button Styles - moved from login specific */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+.btn-primary:disabled, .btn-primary.disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border-color: #6c757d;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+.btn-success:disabled, .btn-success.disabled {
+    background-color: #a3d9b3;
+    border-color: #a3d9b3;
+    color: #5c7f67;
+    cursor: not-allowed;
+}
+
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    border-color: #ffc107;
+}
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+
+.btn-sm {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+.btn-add-to-sale-table {
+    background-color: #17a2b8;
+    color: white;
+    border-color: #39676e;
+}
+.btn-add-to-sale-table:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+.btn-add-to-sale-table:disabled, .btn-add-to-sale-table.disabled {
+    background-color: #a7d9e1;
+    border-color: #a7d9e1;
+    color: #6c757d;
+}
+
+.btn-quantity-adjust, .btn-item-remove {
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.btn-quantity-adjust:hover:not(.sale-item-quantity-controls .btn-quantity-adjust),
+.btn-item-remove:hover {
+    background-color: #dee2e6;
+    border-color: #adb5bd;
+}
+
+
+.btn-item-remove {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+.btn-item-remove:hover {
+    background-color: #f1b0b7;
+    border-color: #ee9ca7;
+}
+
+.app-footer {
+    display: none;
+}
+
+/* Page Blur Overlay */
+#page-blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+    backdrop-filter: blur(3px); /* Blur effect */
+    -webkit-backdrop-filter: blur(3px); /* Safari support */
+    z-index: 999; /* Below modals, above main content */
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+#page-blur-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Default z-index for modals */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent; /* Updated: No background here, handled by blur overlay */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 580px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1001; /* Ensure modal content is above blur overlay */
+}
+.modal-content.large-modal-content {
+    max-width: 850px;
+}
+.modal-content.medium-modal-content { /* For customer modal */
+    max-width: 700px; 
+}
+.modal-content.small-modal-content { /* For category modal */
+    max-width: 480px;
+}
+
+
+.close-button {
+    color: #6c757d;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #343a40;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 { /* General modal title */
+    margin-top: 0;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 1.6rem; /* Adjusted for consistency */
+}
+.modal-content h3.modal-section-title { /* General modal subtitle, made more specific */
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    color: #495057;
+    font-size: 1.25rem;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.6rem;
+}
+
+/* == Refinements for Purchase Forms (Local Purchase & Return Purchase) == */
+.purchase-form-section .manager-section-title { 
+    font-size: 1.6rem; /* Compact title */
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+}
+
+.purchase-form-section > form > .modal-section:first-of-type {
+    margin-bottom: 0.8rem; 
+    padding-bottom: 0.3rem; 
+    border-bottom: 1px dashed #e9ecef; /* Lighter dashed border */
+}
+
+.purchase-form-section > form > .modal-section:first-of-type .form-group {
+    margin-bottom: 0.6rem; 
+}
+
+.purchase-form-section > form > .modal-section:first-of-type .form-group label {
+    font-size: 0.875rem; 
+    font-weight: 500; 
+    margin-bottom: 0.25rem; 
+}
+
+.purchase-form-section > form > .modal-section:first-of-type input,
+.purchase-form-section > form > .modal-section:first-of-type select {
+    height: 40px; 
+    padding: 0.6rem 0.9rem; 
+    font-size: 0.9rem; 
+}
+
+.purchase-form-section > form > .modal-section:first-of-type .form-grid-3-cols,
+#product-form > .form-grid-3-cols /* Ensure general product form uses this too */
+ {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /* Adjusted for better column width */
+    row-gap: 1rem;  /* Standardized row gap */
+    column-gap: 1.5rem; /* Standardized column gap */
+}
+.purchase-form-section > form > .modal-section:first-of-type .form-grid-3-cols .form-group,
+#product-form > .form-grid-3-cols .form-group { /* Remove margin for items in this grid */
+    margin-bottom: 0;
+}
+
+.purchase-form-section > form > .modal-section:first-of-type .form-grid-2-cols { /* Fallback if form-grid-3-cols is not used */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjusted for better column width */
+    row-gap: 0.6rem; 
+    column-gap: 1rem; 
+}
+
+
+.purchase-form-section > form > hr.modal-divider {
+    margin-top: 0.8rem; 
+    margin-bottom: 1rem; /* Keep a bit more space before item entry */
+    border-top: 1px solid #e0e0e0; /* Lighter and thinner */
+    height: 0;
+}
+
+
+/* --- Item Entry Section (Add item to invoice) --- */
+.purchase-form-section > form > .modal-section:nth-of-type(3) { /* This is the Shto Artikuj section */
+    margin-bottom: 1rem;
+    padding-bottom: 0rem; 
+    border-bottom: none; 
+}
+.purchase-form-section > form > .modal-section:nth-of-type(3) .modal-section-title {
+    font-size: 1.3rem; /* Smaller subtitle */
+    margin-bottom: 1rem; 
+    border-bottom: 1px dashed #e0e6ed;
+}
+
+.purchase-form-section .item-entry-grid {
+    display: grid;
+    grid-template-columns: 3fr auto; /* Product select and Add button */
+    gap: 1rem; /* Gap between product select and button */
+    align-items: flex-end; /* Align items to the bottom of the grid row */
+    margin-bottom: 1.2rem;
+}
+
+.purchase-form-section .item-entry-grid .form-group {
+    margin-bottom: 0; /* Remove bottom margin from form-group inside grid */
+}
+
+
+.purchase-form-section .item-entry-grid label {
+    font-size: 0.85rem; /* Consistent small label */
+    font-weight: 500;
+    margin-bottom: 0.3rem; /* Consistent margin */
+}
+
+.purchase-form-section .item-entry-grid select, /* For product select */
+.purchase-form-section .item-entry-grid button { /* For Add button */
+    height: 40px; /* Standardized height */
+    padding: 0.5rem 0.75rem; 
+    font-size: 0.9rem; 
+}
+.purchase-form-section .item-entry-grid .lp-item-actions button { /* More specific for button if needed */
+    font-weight: 500; /* Standard button weight */
+    width: auto; /* Allow button to size to content */
+}
+
+
+/* Make the table section scrollable and adjust its spacing in Purchase Forms */
+.purchase-form-section > form .modal-section.table-section {
+    padding-top: 0; 
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid #e0e6ed; 
+}
+.purchase-form-section > form .modal-section.table-section .table-responsive {
+    max-height: 30vh; /* Adjust as needed, e.g., 30% of viewport height */
+    overflow-y: auto;
+    border: 1px solid #dee2e6; 
+    border-radius: 6px;
+    background-color: #fdfdff; 
+}
+
+/* Ensure the table headers within this scrollable area are sticky */
+.purchase-form-section > form .modal-section.table-section .table-responsive .admin-table.items-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    background-color: #e9ecef; /* Ensure background for sticky header */
+}
+
+
+.purchase-form-section .modal-section:last-of-type { 
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.purchase-form-section .form-group label { /* General label in this form */
+    font-weight: 500;
+    color: #333;
+}
+.purchase-form-section .form-control,
+.purchase-form-section input[type="text"],
+.purchase-form-section input[type="date"],
+.purchase-form-section input[type="number"],
+.purchase-form-section select {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    /* padding and height handled by more specific rules now */
+}
+.purchase-form-section input[type="number"] {
+    text-align: right;
+}
+.purchase-form-section .readonly-field {
+    background-color: #f0f2f5; /* Slightly different readonly background */
+    border-color: #e0e4e8;
+    color: #505a64;
+}
+
+
+.purchase-form-section .input-with-unit {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+.purchase-form-section .input-with-unit input[type="number"] {
+    flex-grow: 1; 
+    min-width: 70px; 
+}
+.purchase-form-section .input-unit-display {
+    font-size: 0.9em;
+    color: #555;
+    white-space: nowrap;
+}
+.purchase-form-section #lp-item-unit-details.form-text { /* Adjust selector if needed for return form */
+    font-size: 0.8em;
+    margin-top: 0.3rem;
+    color: #6c757d;
+    display: block; 
+}
+.purchase-form-section .lp-item-actions { /* Adjust selector if needed for return form */
+    align-self: flex-end; 
+}
+
+
+/* Table specific to purchase items on page */
+.purchase-form-section .admin-table.items-table {
+    font-size: 0.9rem;
+}
+.purchase-form-section .admin-table.items-table th {
+    background-color: #e9ecef; 
+    color: #343a40;
+    padding: 0.75rem;
+}
+.purchase-form-section .admin-table.items-table td {
+    padding: 0.6rem 0.75rem;
+    vertical-align: middle;
+}
+.purchase-form-section .admin-table.items-table .btn-danger.btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+/* Style for inputs inside the table */
+.purchase-form-section .admin-table.items-table td input[type="number"] {
+    width: 80px; /* Adjust as needed */
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9em;
+    text-align: right;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 30px; /* Adjust height */
+}
+.purchase-form-section .admin-table.items-table td input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.15rem rgba(0,123,255,.2);
+}
+
+
+/* Summary section in purchase form page */
+.purchase-form-section .summary-section .sale-summary {
+    border-top: 2px solid #007bff; 
+    padding-top: 1.2rem;
+    margin-top: 0.5rem; 
+    background-color: #f8f9fa; 
+    border-radius: 6px;
+    padding: 1.2rem;
+}
+.purchase-form-section .summary-row span:first-child {
+    color: #333;
+}
+.purchase-form-section .summary-row span:last-child {
+    font-weight: 600;
+    color: #0056b3; 
+}
+.purchase-form-section .total-row span:last-child strong {
+    font-size: 1.1em; 
+    color: #004085; 
+}
+
+/* Error message in purchase form page */
+.purchase-form-section .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    text-align: center;
+}
+.form-actions-group { /* General style for form action buttons container */
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end; /* Default to right align buttons */
+}
+
+/* Info fields in local purchase details modal */
+#local-purchase-details-modal .info-field {
+    margin-bottom: 0.5rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed #eee;
+}
+#local-purchase-details-modal .info-field:last-child {
+    border-bottom: none;
+}
+#local-purchase-details-modal .info-field label {
+    font-weight: 500;
+    color: #555;
+    margin-right: 0.5rem;
+}
+#local-purchase-details-modal .info-field span {
+    color: #333;
+}
+#local-purchase-details-modal .admin-table.items-table {
+    margin-top: 0.5rem; /* Reduced margin before items table */
+}
+/* Styling for the new local purchase details modal */
+#local-purchase-details-modal .modal-content.large-modal-content {
+    max-width: 900px;
+}
+
+/* Styling for Return Purchase Details Modal - similar to local purchase */
+#return-purchase-details-modal .info-field {
+    margin-bottom: 0.5rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed #eee;
+}
+#return-purchase-details-modal .info-field:last-child {
+    border-bottom: none;
+}
+#return-purchase-details-modal .info-field label {
+    font-weight: 500;
+    color: #555;
+    margin-right: 0.5rem;
+}
+#return-purchase-details-modal .info-field span {
+    color: #333;
+}
+#return-purchase-details-modal .admin-table.items-table {
+    margin-top: 0.5rem;
+}
+#return-purchase-details-modal .modal-content.large-modal-content {
+    max-width: 900px;
+}
+
+/* Outgoing Payments Section - Compact Styling */
+#manager-content-outgoing_payments .manager-section-title {
+    margin-bottom: 1rem; /* Reduced from 1.5rem or 2rem */
+}
+#manager-content-outgoing_payments .modal-section-title { /* More specific selector */
+    font-size: 1.1rem; /* Reduced from 1.25rem or 1.3rem */
+    margin-top: 0.8rem;  /* Reduced from 1.5rem or 1.8rem */
+    margin-bottom: 0.6rem; /* Reduced from 1rem */
+    padding-bottom: 0.4rem; /* Reduced from 0.6rem */
+}
+#manager-content-outgoing_payments #outgoing-payment-form .form-group {
+    margin-bottom: 0.6rem; /* Reduced from 1.25rem */
+}
+#manager-content-outgoing_payments #outgoing-payment-form label {
+    font-size: 0.85rem; /* Reduced from 0.95rem */
+    margin-bottom: 0.25rem; /* Reduced from 0.6rem */
+}
+#manager-content-outgoing_payments #outgoing-payment-form input[type="text"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="number"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="date"],
+#manager-content-outgoing_payments #outgoing-payment-form select,
+#manager-content-outgoing_payments #outgoing-payment-form textarea {
+    height: 40px; /* Reduced from 54px or similar */
+    padding: 0.5rem 0.8rem; /* Reduced from 0.9rem 1.2rem */
+    font-size: 0.9rem; /* Reduced from 1rem */
+}
+#manager-content-outgoing_payments #outgoing-payment-form textarea {
+    height: auto; /* Allow textarea to grow based on rows */
+    min-height: 60px; /* Adjust as needed */
+}
+#manager-content-outgoing_payments #op-invoice-allocation-section {
+     margin-top: 0.8rem; /* Reduced from 1.5rem */
+}
+#manager-content-outgoing_payments #op-invoice-allocation-section .table-responsive {
+    max-height: 200px; /* Further reduced for compactness */
+}
+
+
+.modal-product-list {
+    max-height: 280px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 1.8rem;
+    background-color: #f8f9fa;
+}
+
+.modal-product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+.modal-product-item:last-child {
+    border-bottom: none;
+}
+.modal-product-item label {
+    flex-basis: 60%;
+    margin-bottom: 0;
+    color: #495057;
+}
+.modal-product-item input[type="number"] {
+    flex-basis: 35%;
+    padding: 0.6rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 25px;
+}
+* Deal Form Modal Specific Styles */
+.form-row-flex {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.form-group-flex-item {
+    flex: 1;
+    margin-bottom: 0 !important; /* Override default form-group margin */
+}
+
+.modal-product-selection-list {
+    max-height: 250px; /* Adjust height as needed */
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    margin-top: 0.5rem;
+}
+.deal-product-item-selection { /* Updated class name */
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.2rem;
+    border-bottom: 1px dashed #e0e0e0;
+}
+.deal-product-item-selection:last-child { /* Updated class name */
+    border-bottom: none;
+}
+.deal-product-item-selection input[type="checkbox"] { /* Updated class name */
+    margin-right: 0.8rem;
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+}
+.deal-product-item-selection label { /* Updated class name */
+    font-weight: normal;
+    color: #333;
+    cursor: pointer;
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+.deal-product-item-selection .product-price-ref { /* Updated class name */
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-left: auto;
+    padding-left: 1rem;
+}
+
+
+.logo-preview-container {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.logo-preview-image {
+    max-width: 150px;
+    max-height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    display: none; 
+}
+
+/* === New Manager Dashboard Layout with Sidebar === */
+#manager-dashboard-view {
+    display: flex; /* Use flexbox for sidebar and main content layout */
+    flex-direction: row; /* Sidebar on left, content on right */
+    width: 100%;
+    height: 100%; /* Let app-main's flex properties handle height */
+    flex-grow: 1; /* Allow this view to take up remaining space in app-main */
+    overflow: hidden; /* Prevent the entire view from scrolling, individual parts will scroll */
+}
+
+#manager-sidebar {
+    width: 280px; /* Professional sidebar width */
+    background-color: #2c3e50; /* Dark, professional blue-slate */
+    color: #ecf0f1; /* Light text for contrast */
+    padding: 0; /* Remove default padding, will add specific padding to elements */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    box-shadow: 3px 0 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: width 0.3s ease-in-out; /* For potential collapse later */
+    height: 100%; /* Take full height of the parent */
+    z-index: 100; /* Ensure sidebar is above main content if overlapping during transitions */
+    position: relative; /* For positioning toggle button */
+}
+
+/* --- Collapsible Sidebar Styles --- */
+#manager-sidebar.collapsed {
+    width: 70px; /* Collapsed width */
+}
+#manager-sidebar.collapsed .manager-sidebar-header #manager-sidebar-title,
+#manager-sidebar.collapsed .manager-sidebar-search-container,
+#manager-sidebar.collapsed #manager-sidebar-user-greeting span:not(.icon), 
+#manager-sidebar.collapsed .accordion-title > span:not(.icon), 
+#manager-sidebar.collapsed .accordion-indicator,
+#manager-sidebar.collapsed .accordion-content li a > span:not(.icon), 
+#manager-sidebar.collapsed #manager-sidebar-logout-container .btn .logout-btn-text { 
+    display: none !important; /* Use !important to ensure override if needed */
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+#manager-sidebar.collapsed .accordion-title .icon,
+#manager-sidebar.collapsed .accordion-content li a .icon,
+#manager-sidebar.collapsed #manager-sidebar-logout-container .btn .icon {
+    display: none !important; /* Explicitly hide icons in collapsed state */
+}
+
+#manager-sidebar.collapsed .accordion-header,
+#manager-sidebar.collapsed .accordion-content li a {
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center; 
+}
+#manager-sidebar.collapsed .accordion-content li a {
+    padding: 0.9rem 0; 
+}
+
+#manager-sidebar.collapsed #manager-sidebar-user-greeting,
+#manager-sidebar.collapsed #manager-sidebar-logout-container {
+    padding: 1rem 0.5rem; 
+    text-align: center;
+}
+#manager-sidebar.collapsed #manager-sidebar-logout-container #logout-btn {
+    padding: 0.6rem; 
+    min-width: auto;
+}
+
+
+#manager-main-content.sidebar-collapsed {
+    /* This class is added to manager-main-content when sidebar is collapsed */
+    /* If sidebar width changes, this margin needs to adapt if using fixed margin. */
+    /* No explicit margin-left here if #manager-dashboard-view controls layout with flex-grow. */
+}
+#manager-main-content {
+    transition: margin-left 0.3s ease-in-out; /* For smooth expansion if using margins */
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle-btn {
+    position: absolute;
+    top: 1.25rem; /* Align with header content */
+    right: -15px; /* Position it slightly outside the sidebar */
+    z-index: 101; /* Above sidebar shadow */
+    background-color: #34495e; /* Darker than sidebar accent */
+    color: #ecf0f1;
+    border: 2px solid #2c3e50; /* Match sidebar background */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 1.2rem;
+    display: flex; /* For centering icon */
+    align-items: center; /* Center icon vertically */
+    justify-content: center; /* Center icon horizontally */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-out, background-color 0.2s ease;
+}
+.sidebar-toggle-btn:hover {
+    background-color: #4a6078;
+    transform: scale(1.1);
+}
+#manager-sidebar.collapsed .sidebar-toggle-btn {
+    transform: rotate(180deg); /* Rotate arrow when collapsed */
+}
+/* --- End of Collapsible Sidebar Styles --- */
+
+/* Styles for Manager Sidebar User Greeting and Logout */
+#manager-sidebar-user-greeting {
+    padding: 1rem 1.5rem; 
+    text-align: center; 
+    border-bottom: 1px solid #37475a; 
+    font-size: 1.05rem; 
+    font-weight: 500; 
+    color: #ecf0f1; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.2s ease-out;
+}
+
+#manager-sidebar-logout-container {
+    padding: 1.25rem 1.5rem; 
+    margin-top: auto; 
+    border-top: 1px solid #37475a; 
+}
+
+#manager-sidebar-logout-container #logout-btn { 
+    width: 100%; 
+    padding: 0.75rem 1rem; 
+    font-size: 0.9rem; /* Reduced font size for logout button text */
+    font-weight: 500; /* Slightly less bold */
+    transition: opacity 0.2s ease-out;
+}
+#manager-sidebar-logout-container #logout-btn .icon {
+    display: none; /* Hide logout icon */
+}
+
+
+.manager-sidebar-header {
+    padding: 1.5rem; /* Ample padding */
+    text-align: center;
+    border-bottom: 1px solid #37475a; /* Slightly lighter separator */
+    display: flex; /* For title and toggle button */
+    align-items: center;
+    justify-content: center; /* Center title by default */
+    position: relative; /* For toggle button positioning if moved inside */
+}
+
+#manager-sidebar-title {
+    margin: 0;
+    font-size: 1.6rem; /* Prominent title */
+    font-weight: 600;
+    color: #ffffff; /* Bright white title */
+    transition: opacity 0.2s ease-out; /* Smooth hide/show */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manager-sidebar-search-container {
+    padding: 1.25rem 1.5rem; /* Generous padding around search */
+    transition: opacity 0.2s ease-out, padding 0.3s ease-in-out; /* Smooth hide/show and padding adjustment */
+}
+
+#manager-sidebar-search {
+    width: 100%;
+    padding: 0.75rem 1rem; /* Comfortable padding */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #4a6078; /* Border matching sidebar accents */
+    background-color: #34495e; /* Darker input background */
+    color: #ecf0f1; /* Light text color */
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+#manager-sidebar-search::placeholder {
+    color: #95a5a6; /* Softer placeholder text */
+}
+#manager-sidebar-search:focus {
+    background-color: #4a6078; /* Slightly lighter on focus */
+    border-color: #1abc9c; /* Accent color for focus */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.25); /* Focus ring */
+}
+
+
+/* Accordion Menu Styles */
+.manager-sidebar-nav.accordion-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allow menu to take remaining space */
+    overflow-y: auto; /* Enable scrolling for long menus */
+    overflow-x: hidden;
+}
+/* Custom scrollbar for Webkit browsers */
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar {
+    width: 6px;
+}
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar-track {
+    background: #212b36; /* Darker track */
+}
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar-thumb {
+    background: #4a6078; /* Thumb color */
+    border-radius: 3px;
+}
+.manager-sidebar-nav.accordion-menu::-webkit-scrollbar-thumb:hover {
+    background: #5c758d; /* Lighter thumb on hover */
+}
+
+
+.accordion-item {
+    border-bottom: 1px solid #37475a; /* Separator for categories */
+}
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem; /* Adjusted padding for header */
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, padding 0.3s ease-in-out;
+    background-color: transparent; 
+    color: #bdc3c7; 
+    font-weight: 500; 
+    font-size: 0.95rem; 
+    user-select: none; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left; /* Ensure header text is left-aligned */
+}
+.accordion-header:hover,
+.accordion-header.active-header, 
+.accordion-header:focus-visible { 
+    background-color: #34495e; 
+    color: #ffffff; 
+}
+.accordion-header:focus-visible {
+    outline: 2px solid #1abc9c; 
+    outline-offset: -2px; 
+}
+
+.accordion-title { 
+    display: flex;
+    align-items: center;
+    gap: 0; /* Removed gap as icon is hidden */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1; /* Allow title to take available space */
+}
+.accordion-title .icon {
+    display: none; /* Hide icon */
+}
+
+.accordion-title > span:not(.icon) { 
+    transition: opacity 0.2s ease-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem; 
+}
+
+.accordion-indicator {
+    font-size: 0.9em;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease-out; 
+    color: #7f8c8d; 
+    flex-shrink: 0; 
+}
+.accordion-header:hover .accordion-indicator,
+.accordion-header.active-header .accordion-indicator,
+.accordion-header:focus-visible .accordion-indicator {
+    color: #ffffff; 
+}
+
+.accordion-header[aria-expanded="true"] .accordion-indicator {
+    transform: rotate(90deg);
+}
+
+.accordion-content {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+    background-color: #212b36; 
+    max-height: 0; 
+    overflow: hidden;
+    transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out, opacity 0.3s ease-in-out; 
+}
+.accordion-content.open {
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem;
+    opacity: 1;
+}
+
+.accordion-content li a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem 0.75rem 2rem; /* Indent sub-items more */
+    color: #95a5a6; 
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.2s ease, border-left-color 0.25s ease, opacity 0.2s ease-out;
+    border-left: 4px solid transparent; 
+    font-size: 0.85rem; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left; /* Ensure sub-item text is left-aligned */
+}
+.accordion-content li a .icon {
+    display: none; /* Hide icon */
+}
+.accordion-content li a > span:not(.icon) { 
+    transition: opacity 0.2s ease-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.85rem; 
+}
+
+
+.accordion-content li:hover a,
+.accordion-content li a:focus-visible {
+    background-color: #2c3e50; 
+    color: #ffffff; 
+    padding-left: 2.3rem; /* Adjust hover indent if needed */
+}
+#manager-sidebar.collapsed .accordion-content li:hover a,
+#manager-sidebar.collapsed .accordion-content li a:focus-visible {
+    padding-left: 0; 
+}
+
+.accordion-content li a:focus-visible {
+    outline: 1px dashed #1abc9c; 
+    outline-offset: -1px;
+}
+
+.accordion-content li.active a {
+    background-color: #1abc9c; 
+    color: #ffffff; 
+    font-weight: 500; 
+    border-left-color: #16a085; 
+}
+#manager-sidebar.collapsed .accordion-content li.active a {
+    border-left-color: transparent; 
+     background-color: #1abc9c; 
+}
+
+/* Styles for Locked/Disabled Menu Items due to Package Restrictions */
+.accordion-content li.menu-item-locked a,
+.accordion-header.menu-group-locked .accordion-title {
+    color: #7f8c8d !important; 
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    pointer-events: none; 
+}
+.accordion-header.menu-group-locked { 
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.accordion-content li.menu-item-locked a:hover,
+.accordion-header.menu-group-locked:hover .accordion-title {
+    background-color: transparent !important; 
+    padding-left: 2rem !important;  /* Match normal padding for locked items */
+}
+#manager-sidebar.collapsed .accordion-content li.menu-item-locked a:hover,
+#manager-sidebar.collapsed .accordion-header.menu-group-locked:hover .accordion-title {
+     padding-left: 0 !important;
+}
+.accordion-header.menu-group-locked:hover {
+    background-color: transparent !important;
+}
+
+
+.accordion-header.menu-group-locked .accordion-indicator {
+    color: #667273 !important;
+}
+
+.accordion-content li.menu-item-locked a::after,
+.accordion-header.menu-group-locked .accordion-title::after {
+    content: '🔒'; 
+    margin-left: auto;
+    padding-left: 10px;
+    font-size: 0.8em; 
+    color: #b0bec5; 
+    font-weight: normal; 
+}
+#manager-sidebar.collapsed .accordion-content li.menu-item-locked a::after,
+#manager-sidebar.collapsed .accordion-header.menu-group-locked .accordion-title::after {
+    display: none; /* Hide lock icon text when collapsed */
+}
+
+
+/* End Accordion Menu Styles */
+
+
+#manager-main-content {
+    flex-grow: 1; /* Takes remaining width */
+    background-color: #f4f7f9; /* Very light gray background */
+    display: flex; /* Added for tab structure */
+    flex-direction: column; /* Tabs on top, content below */
+    overflow: hidden; /* Prevent this main area from scrolling, tabs or content will scroll */
+    transition: margin-left 0.3s ease-in-out; /* Smooth transition for when sidebar collapses/expands */
+}
+
+#manager-tab-navigation {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent tabs from wrapping to new line */
+    overflow-x: auto; /* Allow horizontal scrolling for tabs if too many */
+    overflow-y: hidden;
+    background-color: #e9ecef; /* Light background for tab bar */
+    border-bottom: 1px solid #ced4da; /* Separator line */
+    padding: 0.25rem 0.5rem 0 0.5rem; /* Top/bottom padding 0, left/right for spacing */
+    flex-shrink: 0; /* Prevent tab bar from shrinking */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #adb5bd #e9ecef; /* For Firefox */
+}
+#manager-tab-navigation::-webkit-scrollbar {
+    height: 6px;
+}
+#manager-tab-navigation::-webkit-scrollbar-track {
+    background: #e9ecef;
+}
+#manager-tab-navigation::-webkit-scrollbar-thumb {
+    background-color: #adb5bd;
+    border-radius: 3px;
+}
+
+.manager-tab-button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-bottom: none; /* Remove bottom border, active tab will have one */
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #495057;
+    border-radius: 6px 6px 0 0; /* Rounded top corners */
+    margin-right: 3px;
+    display: flex; /* For icon, text, and close button alignment */
+    align-items: center;
+    /* gap: 0.5rem; Gap is handled by margin-left: auto on close button and padding */
+    max-width: 220px; /* Max width for a tab */
+    min-width: 80px; /* Minimum width to ensure close button is visible */
+    overflow: hidden; /* Important for managing overflow of the title span */
+    position: relative; /* For ::after pseudo-element */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.manager-tab-button:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+.manager-tab-button.active {
+    background-color: #ffffff; /* Active tab matches content background */
+    color: #007bff; /* Primary color for active tab text */
+    border-color: #ced4da #ced4da #ffffff; /* Match borders, bottom transparent for seamless look */
+    font-weight: 600;
+    /* z-index: 1; Removed, ::after handles visual separation better */
+}
+.manager-tab-button.active::after { /* Creates the bottom border effect for active tab */
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Position it over the tab navigation's border */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #007bff; /* Active tab indicator color */
+}
+
+.manager-tab-title-text {
+    flex-grow: 1; /* Allow title to take available space */
+    overflow: hidden; /* Hide overflow for this span */
+    text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+    white-space: nowrap; /* Prevent text wrapping */
+    margin-right: 0.5rem; /* Space between title and close button if both are present */
+}
+
+.manager-tab-close-btn {
+    background: none;
+    border: none;
+    color: #dc3545; /* Default red color for the close button */
+    font-size: 1.2rem; /* Slightly larger for better visibility */
+    font-weight: bold; /* Make it bolder */
+    padding: 0 0 0 0.3rem; /* Reduced left padding */
+    margin-left: auto; /* Push to the right within the flex container */
+    cursor: pointer;
+    line-height: 1;
+    opacity: 1; /* Ensure it's always visible */
+    display: inline-flex; /* Ensure it's displayed */
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.15s ease; /* Smooth transitions */
+    flex-shrink: 0; /* Prevent the close button from shrinking */
+}
+.manager-tab-close-btn:hover,
+.manager-tab-close-btn:focus-visible {
+    color: #a71d2a; /* Darker red on hover/focus */
+    transform: scale(1.1); /* Slight zoom effect */
+    outline: none;
+}
+
+
+#manager-tab-content-area {
+    flex-grow: 1; /* Takes remaining vertical space */
+    overflow-y: hidden; /* Allow content of active tab to scroll */
+    padding: 0; /* Padding will be on individual .manager-content-section */
+    background-color: #f4f7f9; /* Match the main content background */
+    position: relative; /* For positioning content sections */
+}
+
+/* Manager content sections are styled below. These are for tab panes. */
+#manager-tab-content-area > .manager-content-section,
+#manager-tab-content-area > .report-view-main-area {
+    display: none; /* Hidden by default, JS will show active one */
+    height: 100%; /* Take full height of the content area */
+    overflow-y: auto; /* Allow scrolling within the pane itself */
+    box-sizing: border-box;
+}
+
+/* Styling for specifically active tab panes, if a section already has .manager-content-section styling, it will apply. */
+#manager-tab-content-area > .manager-content-section.active-tab-pane,
+#manager-tab-content-area > .report-view-main-area.active-tab-pane {
+    display: block; /* Show active tab content */
+    /* Padding is now applied to the content itself rather than the area. */
+    /* The .manager-content-section and .report-view-main-area should have their own padding. */
+}
+
+
+.manager-content-section {
+    background-color: #fff; /* White background for content cards/sections */
+    padding: 1.5rem; /* Padding inside each section */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Soft shadow */
+    margin: 1.5rem; /* Add margin around the content section for spacing from tab bar and edges */
+    /* height: calc(100% - 3rem); Remove if not needed or causes issues with scrolling */
+    box-sizing: border-box;
+}
+.manager-content-section:last-child { /* If it's the only section and directly in tab content area, no margin */
+    /* margin-bottom: 0; This might be better handled by padding on manager-tab-content-area if sections don't always have margins */
+}
+
+/* Report View specific styling if it's a tab */
+.report-view-main-area {
+    padding: 1.5rem;
+    box-sizing: border-box;
+    /* Background might differ or be same as manager-content-section */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin: 1.5rem;
+}
+
+
+/* Specific title styling for manager sections */
+.manager-section-title {
+    font-size: 1.75rem; /* Large, clear title */
+    color: #2c3e50; /* Dark blue-slate, matching sidebar */
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* Space below title */
+    padding-bottom: 0.75rem; /* Space for border */
+    border-bottom: 2px solid #e9ecef; /* Light border */
+    font-weight: 600; /* Semibold */
+}
+
+/* Section Subtitle (e.g., in Initial Balances) */
+.section-subtitle {
+    font-size: 1.25rem;
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #ced4da;
+    font-weight: 500;
+}
+
+
+/* === Enhanced Dashboard Widget Cards === */
+.dashboard-widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly adjusted min-width */
+    gap: 1.5rem; /* Adjusted gap */
+}
+
+.widget-card {
+    background-color: #ffffff;
+    padding: 1.25rem; /* Adjusted padding */
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); /* Softer shadow */
+    border: 1px solid #e9ecef; /* Lighter, more subtle border */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    display: flex;
+    flex-direction: column; /* Ensure items stack vertically */
+}
+.widget-card:hover {
+    transform: translateY(-4px); /* Slightly less lift */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07); /* Slightly enhanced shadow */
+}
+
+.widget-card-header {
+    display: flex;
+    align-items: center; /* Vertically align icon and title */
+    gap: 0.6rem; /* Space between icon and title */
+    margin-bottom: 0.75rem; /* Space below header */
+    padding-bottom: 0.5rem; /* Padding for the border */
+    border-bottom: 1px solid #f0f3f5; /* Lighter border for header */
+}
+
+.widget-icon { /* Compact icon style */
+    font-size: 1.2rem; 
+    color: #5f6368; /* Muted gray for icons */
+    background-color: transparent; 
+    padding: 0.2rem;
+    border-radius: 6px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    min-width: 28px; 
+    min-height: 28px;
+}
+/* Remove specific widget icon background/colors */
+#widget-today-sales .widget-icon,
+#widget-top-product .widget-icon,
+#widget-top-customer .widget-icon,
+#widget-top-seller .widget-icon,
+#widget-subscription-status .widget-icon,
+#widget-open-shifts .widget-icon,
+#widget-overall-sales .widget-icon,
+#widget-overall-purchases .widget-icon { 
+    /* These properties are now handled by the general .widget-icon style */
+    background-color: transparent !important; /* Ensure override */
+    color: #5f6368 !important; /* Ensure override */
+}
+
+.widget-card-header h4 {
+    font-size: 1.05rem; /* Slightly smaller title */
+    color: #34495e; /* Darker blue-gray */
+    font-weight: 600;
+    margin: 0; 
+    flex-grow: 1;
+}
+
+.widget-card .large-stat {
+    font-size: 2rem; /* Reduced font size for main stat */
+    font-weight: 700;
+    color: #2c3e50; /* Dark blue-gray */
+    margin: 0.25rem 0 0.1rem 0; /* Adjusted margins */
+    line-height: 1.2;
+    text-align: left; 
+}
+
+/* New class for labels of large stats when they are on separate lines */
+.widget-card .widget-label {
+    font-size: 0.875rem;
+    color: #5a6268;
+    line-height: 1.4;
+    margin-bottom: 0.1rem; /* Small margin before the large stat */
+    font-weight: 500;
+}
+
+
+.widget-card p {
+    font-size: 0.875rem; /* Standardized paragraph text size */
+    color: #6c757d; /* Softer text color */
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+}
+.widget-card p:last-of-type {
+    margin-bottom: 0;
+}
+.widget-card p strong { 
+    color: #343a40;
+    font-weight: 500; 
+}
+
+.widget-card #dashboard-today-sales-count,
+.widget-card #dashboard-overall-sales-count,
+.widget-card #dashboard-overall-purchases-count {
+    font-size: 0.8rem; /* Smaller secondary count */
+    color: #78909c; /* Muted color */
+    margin-top: 0.05rem; /* Very small top margin */
+}
+
+#widget-subscription-status #dashboard-subscription-status {
+    margin-top: 0.3rem; 
+}
+#widget-subscription-status #dashboard-subscription-status p {
+    margin-bottom: 0.4rem; 
+    font-size: 0.875rem;
+}
+#widget-subscription-status #dash-sub-status.status-badge {
+    font-size: 0.75rem;
+    padding: 0.3em 0.7em; 
+    border-radius: 14px; 
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+#widget-open-shifts #dash-open-shifts-count {
+    font-weight: 600; 
+}
+#dashboard-open-shifts-summary {
+    margin-top: 0.5rem;
+    font-size: 0.825rem; /* Slightly smaller shift summary text */
+    max-height: 120px; /* Control height for scrollable content */
+    overflow-y: auto;
+    padding-right: 0.5rem; /* Space for scrollbar */
+}
+#dashboard-open-shifts-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#dashboard-open-shifts-summary li {
+    padding: 0.4rem 0.1rem; 
+    border-bottom: 1px solid #f0f3f5; 
+    line-height: 1.3;
+}
+#dashboard-open-shifts-summary li:last-child {
+    border-bottom: none;
+}
+#dashboard-open-shifts-summary li strong {
+    font-weight: 500;
+    color: #34495e;
+}
+#dashboard-open-shifts-summary p { 
+    padding: 0.8rem 0;
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+}
+
+
+.widget-card .chart-container {
+    margin-top: 1rem; 
+    padding: 0; 
+    border: none; 
+    background-color: transparent;
+}
+.widget-card .chart-container.small-chart-container {
+    margin-top: 0.75rem; 
+    min-height: 100px; /* Reduced min-height for charts */
+}
+
+.widget-card .chart-placeholder {
+    font-size: 0.85rem;
+    color: #78909c;
+    background-color: #f8f9fa;
+    border: 1px dashed #ced4da;
+    min-height: 80px; /* Reduced placeholder height */
+    padding: 0.8rem;
+    text-align: center;
+    border-radius: 8px;
+}
+/* === End of Enhanced Dashboard Widget Cards === */
+
+
+/* Actions Grid Styling */
+.actions-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+}
+.action-grid-button { /* This already uses .btn, so we enhance it further */
+    padding: 1.25rem 1rem; /* More padding for a card-like feel */
+    font-size: 1.05rem;
+    font-weight: 500; /* Slightly less bold than main buttons */
+    flex-direction: column; /* Stack icon and text */
+    gap: 0.75rem; /* Space between icon and text */
+    text-align: center;
+    border-radius: 10px; /* Consistent rounding */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05); /* Subtle shadow */
+    border: 1px solid #e0e6ed; /* Light border */
+    background-color: #fdfdff; /* Slightly off-white */
+    color: #34495e; /* Darker text */
+}
+.action-grid-button:hover {
+    border-color: #007bff; /* Professional blue border on hover */
+    color: #0056b3; /* Darker blue text on hover */
+    background-color: #f8f9fa;
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); /* Enhanced shadow */
+}
+.action-grid-button .icon {
+    font-size: 1.8em; /* Larger icons */
+    margin-bottom: 0.25rem; /* Space below icon */
+    color: #007bff; /* Icon color */
+}
+.action-grid-button:hover .icon {
+    color: #0056b3; /* Darker icon color on hover */
+}
+
+/* Report Category Tiles - Refined style */
+.report-category-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjust minmax for desired tile size */
+    gap: 1.75rem; /* Increased gap */
+}
+.report-action-button { /* These act like navigation cards now */
+    background-color: #ffffff;
+    border: 1px solid #d1d9e0; /* Softer border */
+    color: #2c3e50; /* Dark, professional text */
+    padding: 1.5rem 1rem; /* More padding */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    text-align: center;
+    font-size: 1.1rem; /* Clear, readable font size */
+    font-weight: 600; /* Semibold */
+    cursor: pointer;
+    transition: all 0.25s ease-out; /* Smooth transition for all properties */
+    display: flex; /* Using flex for centering, can be column if icons are added above text */
+    flex-direction: column; /* Stack icon and text */
+    align-items: center;
+    justify-content: center;
+    min-height: 120px; /* Ensure tiles have a good height */
+    line-height: 1.3;
+    word-break: break-word; /* Prevent long text from breaking layout */
+}
+.report-action-button .report-tile-icon { /* Assuming an icon span might be added later */
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: #007bff; /* Professional blue for icons */
+}
+.report-action-button:hover,
+.report-action-button:focus-visible {
+    background-color: #f0f4f8; /* Light blueish gray on hover */
+    border-color: #007bff; /* Primary color border */
+    color: #0056b3; /* Darker primary color text */
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09); /* More pronounced shadow */
+    outline: none; /* Remove default outline, use box-shadow for focus */
+}
+.report-action-button:focus-visible { /* Specific focus style */
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25), 0 7px 18px rgba(0, 0, 0, 0.09);
+}
+.report-action-button:active {
+    transform: translateY(-1px); /* Slight press effect */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07); /* Reduced shadow on active */
+}
+
+
+/* Table styling within manager view */
+.manager-content-section .admin-table th {
+    background-color: #e9ecef; /* Lighter gray for table headers */
+    color: #212529; /* Darker text for readability */
+    font-weight: 600;
+    padding: 0.9rem 1rem;
+}
+.manager-content-section .admin-table td {
+    padding: 0.8rem 1rem;
+}
+.manager-content-section .admin-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Subtle striping */
+}
+.manager-content-section .admin-table tbody tr:hover {
+    background-color: #eef2f7; /* Hover effect for rows */
+}
+
+/* Filter container common styling */
+.manager-content-section .filter-container.product-search-container {
+    margin-bottom: 1.25rem; /* Consistent spacing */
+}
+.manager-content-section .filter-container.product-search-container .search-icon {
+    left: 18px; /* Adjust icon position for better padding */
+    font-size: 1.2rem; /* Slightly larger icon */
+}
+.manager-content-section .filter-container.product-search-container input[type="search"].form-control {
+    height: 50px; /* Taller input */
+    padding-left: 50px; /* More space for icon */
+    border-radius: 8px; /* Rounded corners */
+    border-color: #ced4da;
+    font-size: 1rem;
+}
+.manager-content-section .filter-container.product-search-container input[type="search"].form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.2);
+}
+
+/* Purchase Form specific section, ensure it fits the new theme */
+.purchase-form-section {
+    /* Background is already white from .manager-content-section */
+    /* Padding is already applied by .manager-content-section */
+}
+
+/* Modal-like sections within purchase forms */
+.purchase-form-section .modal-section {
+    /* These are not actual modals but logical sections. */
+    /* We can add borders or subtle background changes if needed. */
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #e0e6ed; /* Light dashed separator for sections */
+}
+.purchase-form-section .modal-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.purchase-form-section .modal-section-title {
+    font-size: 1.3rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+}
+
+.purchase-form-section .table-responsive {
+    border: 1px solid #dee2e6;
+    border-radius: 8px; /* Match card rounding */
+}
+
+.purchase-form-section .summary-section .sale-summary {
+    background-color: #f8f9fa; /* Light background for summary */
+    padding: 1.25rem;
+    border-radius: 8px;
+    border-top: 2px solid #007bff; /* Primary color top border */
+}
+
+/* Report View styling in manager area */
+.manager-main-content .report-view-main-area {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+.manager-main-content .report-view-header {
+    border-bottom-color: #e0e6ed; /* Lighter border */
+}
+.manager-main-content .report-view-header .section-title {
+    color: #2c3e50; /* Match other titles */
+}
+.manager-main-content .report-actions-bar .btn {
+    border-radius: 8px; /* Consistent button rounding */
+}
+
+/* === Enhanced Report Filters Area Styling (.report-filters-dynamic) === */
+.report-filters-dynamic { /* This is the #dynamic-report-filters-area */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end; 
+    gap: 1rem 1.5rem; 
+    background-color: #f8f9fc; 
+    padding: 1.5rem;
+    border-radius: 12px; 
+    border: 1px solid #e0e7ff; 
+    box-shadow: 0 6px 18px rgba(100, 116, 139, 0.08), 0 1px 3px rgba(0,0,0,0.03);
+    margin-bottom: 2rem; 
+}
+
+.report-filters-dynamic .form-group, /* Target .form-group inside this specific filter area */
+.report-filters-dynamic .filter-group { /* Target generated .filter-group as well */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; 
+    flex: 1 1 230px; 
+    min-width: 200px;
+    margin-bottom: 0; 
+}
+
+.report-filters-dynamic label {
+    font-weight: 500;
+    color: #4A5568; 
+    font-size: 0.9rem;
+    margin-bottom: 0; 
+}
+
+.report-filters-dynamic input[type="date"],
+.report-filters-dynamic input[type="month"],
+.report-filters-dynamic input[type="number"],
+.report-filters-dynamic select {
+    width: 100%; /* Ensure inputs take full width of their flex item */
+    height: 48px; 
+    padding: 0.75rem 1rem;
+    border-radius: 8px; 
+    font-size: 0.95rem;
+    border: 1px solid #dbe0f3; /* MODIFIED: Aligned with general input border */
+    background-color: #FFFFFF;
+    color: #2D3748; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* Ensure calendar picker indicator is visible and has a contrasting color for WebKit browsers */
+.report-filters-dynamic input[type="date"]::-webkit-calendar-picker-indicator,
+.report-filters-dynamic input[type="month"]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    cursor: pointer;
+    color: #4A5568; /* Default color for the icon, matching label color */
+}
+
+
+.report-filters-dynamic input[type="date"]:focus,
+.report-filters-dynamic input[type="month"]:focus,
+.report-filters-dynamic input[type="number"]:focus,
+.report-filters-dynamic select:focus {
+    border-color: #007bff; /* MODIFIED: Aligned with general input focus border */
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.15); /* MODIFIED: Aligned with general input focus shadow */
+    outline: none;
+}
+
+.report-filters-dynamic select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em 1.25em;
+    padding-right: 2.5rem; 
+}
+
+.report-filters-dynamic button[id*="generate-dynamic-report-btn"],
+.report-filters-dynamic button[id*="generate-item-ledger-btn"],
+.report-filters-dynamic button[id*="generate-supplier-ledger-btn"],
+.report-filters-dynamic button[id*="generate-customer-ledger-btn"],
+.report-filters-dynamic button#dynamic-report-generate-btn-active { /* Targeting the cloned button */
+    padding: 0 1.75rem;
+    height: 48px; 
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: #3182CE; /* Tailwind blue-600 */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0; 
+    align-self: flex-end; /* Explicitly align button itself to the bottom of its line */
+}
+
+.report-filters-dynamic button[id*="generate-dynamic-report-btn"]:hover,
+.report-filters-dynamic button[id*="generate-item-ledger-btn"]:hover,
+.report-filters-dynamic button[id*="generate-supplier-ledger-btn"]:hover,
+.report-filters-dynamic button[id*="generate-customer-ledger-btn"]:hover,
+.report-filters-dynamic button#dynamic-report-generate-btn-active:hover {
+    background-color: #2B6CB0; /* Tailwind blue-700 */
+    transform: translateY(-1px);
+}
+/* --- End of Enhanced Report Filters Area Styling --- */
+
+
+.manager-main-content .report-content {
+    /* Style for the area where the actual report table/data is shown */
+}
+.manager-main-content .report-table-container {
+    border-radius: 8px;
+    border-color: #e0e6ed;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04); /* Subtle shadow for table container */
+}
+.manager-main-content .report-summary {
+    background-color: #f0f4f8; /* Distinct background for summary */
+    border-radius: 8px;
+    border-top-color: #007bff; /* Primary color for top border */
+}
+/* Subscription info styling */
+#manager-content-subscription .card-like-content {
+    padding: 2rem; /* More padding for subscription card */
+}
+#manager-content-subscription .status-badge {
+    padding: 0.4em 0.8em; /* Slightly larger badge */
+    font-size: 0.9em;
+}
+#manager-content-subscription #upgrade-options-list { /* This uses .report-category-tiles-grid */
+    gap: 1.5rem; /* Ensure good spacing for upgrade tiles */
+}
+#manager-content-subscription .subscription-upgrade-tile {
+    /* Styles for these are already defined with .report-action-button like structure */
+    /* We can add more specific overrides if needed */
+    border-color: #c8d0d8; /* Slightly more prominent border */
+}
+#manager-content-subscription .subscription-upgrade-tile:hover {
+    border-color: #17a2b8; /* Info color for hover on upgrade tiles */
+}
+
+
+/* Super Admin Panel - Keep existing, no changes here for this request */
+#super-admin-panel-view {
+    display: flex;
+    width: 100%;
+    flex-grow: 1; 
+    gap: 0; 
+    overflow: hidden; 
+}
+
+#super-admin-sidebar {
+    width: 260px;
+    background-color: #343a40; 
+    color: #f8f9fa;
+    padding: 1.5rem;
+    border-right: 1px solid #454d55; 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: auto; 
+}
+.sidebar-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+#super-admin-sidebar-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+}
+.sidebar-main-actions .btn {
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    background-color: #495057; 
+    border-color: #495057;
+    border-radius: 8px; /* Consistent rounding */
+}
+.sidebar-main-actions .btn:hover, .sidebar-main-actions .btn.active {
+    background-color: #007bff; 
+    border-color: #007bff;
+}
+#super-admin-sidebar-logout-btn {
+    margin-top: auto; 
+}
+
+
+#super-admin-content-area {
+    flex-grow: 1;
+    background-color: #f4f7f9; 
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+#super-admin-content-area .dashboard-section { 
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e0e6ed;
+    border-radius: 12px; /* Consistent rounding */
+    background-color: #ffffff;
+}
+#super-admin-content-area .dashboard-section .section-title { /* More specific for SA section titles */
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid #eee;
+}
+#super-admin-content-area .form-actions-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+#sa-business-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.sa-business-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px; /* Consistent rounding */
+    background-color: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.sa-business-list-item:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+.sa-business-list-item.inactive-business-row {
+    background-color: #f8f9fa; 
+    opacity: 0.7;
+}
+.business-info {
+    cursor: pointer;
+    flex-grow: 1;
+}
+.business-info:hover .business-name {
+    color: #007bff;
+}
+
+.business-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #343a40;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+.business-id {
+    font-size: 0.8rem;
+    color: #6c757d;
+    display: block;
+}
+.business-subscription-info {
+    font-size: 0.85rem;
+    color: #28a745; 
+    display: block; 
+    margin-top: 4px;
+}
+.business-subscription-info.future {
+    color: #17a2b8; 
+}
+.warning-text { color: #dc3545; font-weight: bold;}
+
+
+.business-status-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.business-status-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.status-active { color: #28a745; }
+.status-inactive { color: #dc3545; }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px; 
+  height: 26px; 
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 26px; 
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px; 
+  width: 20px; 
+  left: 3px; 
+  bottom: 3px; 
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #28a745; 
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #28a745;
+}
+input:checked + .slider:before {
+  transform: translateX(24px); 
+}
+.slider.round {
+  border-radius: 26px; 
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.subscription-package-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.subscription-package-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px; /* Consistent rounding */
+    padding: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s, transform 0.2s;
+}
+.subscription-package-card:hover {
+    border-color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,123,255,0.1);
+}
+.subscription-package-card.selected {
+    border-color: #28a745; 
+    background-color: #e6ffed; 
+}
+.subscription-package-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    color: #333;
+}
+.subscription-package-card .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+.subscription-package-card .price .duration {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #6c757d;
+}
+.subscription-package-card .features {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: left;
+}
+.subscription-package-card .features li {
+    margin-bottom: 0.4rem;
+    padding-left: 1.2em;
+    position: relative;
+}
+.subscription-package-card .features li::before {
+    content: '✓';
+    color: #28a745;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.modal-content.reconciliation-modal-content-enhanced {
+    max-width: 950px; 
+    padding: 1.5rem 2rem; 
+    background-color: #fdfdfd; 
+}
+
+.reconciliation-main-title {
+    font-size: 1.7rem; 
+    font-weight: 600;
+    color: #2c3e50; 
+    margin-bottom: 1.2rem; 
+    padding-bottom: 0.8rem; 
+    border-bottom: 2px solid #e0e6ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.reconciliation-title-icon {
+    font-size: 1.5em; 
+}
+
+.reconciliation-main-content-wrapper {
+    display: flex;
+    gap: 1.5rem; 
+    align-items: flex-start; 
+}
+
+.reconciliation-section {
+    background-color: #fff;
+    padding: 1.25rem; 
+    border: 1px solid #e9ecef;
+    border-radius: 12px; /* Consistent rounding */
+    margin-bottom: 1rem; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex: 1; 
+    min-width: 0; 
+}
+.reconciliation-main-content-wrapper + .reconciliation-section { 
+    margin-top: 0.5rem; 
+}
+
+.reconciliation-section:last-of-type {
+    margin-bottom: 0.8rem; 
+}
+
+.reconciliation-section-title {
+    font-size: 1.2rem; 
+    font-weight: 500;
+    color: #34495e; 
+    margin-top: 0;
+    margin-bottom: 0.8rem; 
+    padding-bottom: 0.5rem; 
+    border-bottom: 1px dashed #ced4da;
+}
+
+#select-seller-for-reconciliation {
+    font-weight: 500;
+}
+
+#reconciliation-details-view .reconciliation-info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 0.8rem 1.5rem; 
+    padding: 1rem; 
+    background-color: #f8f9fa; 
+    border-radius: 8px; /* Consistent rounding */
+}
+#reconciliation-details-view .reconciliation-info-grid p {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.95rem; 
+    margin: 0.3rem 0;
+}
+#reconciliation-details-view .reconciliation-info-grid .label {
+    color: #555;
+    font-weight: 400;
+    margin-right: 0.5rem;
+}
+#reconciliation-details-view .reconciliation-info-grid strong.cash-value {
+    font-weight: 600;
+    color: #333;
+}
+#reconciliation-details-view .reconciliation-info-grid strong.emphasis {
+    font-size: 1.2em; 
+    font-weight: 700;
+    color: #0056b3; 
+}
+.expected-cash-label { 
+    grid-column: 1 / -1; 
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+    border-top: 1px dashed #d0d0d0;
+}
+
+.zero-sales-notice { /* Renamed for consistency with ID */
+    background-color: #fff3cd; /* Light yellow warning background */
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Increased gap slightly */
+}
+.zero-sales-notice label {
+    font-size: 0.9rem;
+    color: #856404; /* Darker yellow for text */
+    font-weight: 500;
+    margin-bottom: 0;
+    flex-grow: 1; /* Allow label to take space */
+}
+.zero-sales-notice input[type="checkbox"] {
+    width: 18px; /* Standard checkbox size */
+    height: 18px;
+    accent-color: #856404; /* Match text color for better theming */
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+    margin-top: 2px; /* Minor alignment adjustment */
+}
+
+#reconciliation-physical-count-section .form-group label {
+    font-weight: 500;
+    font-size: 1.05rem; 
+}
+.input-with-symbol {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+#reconciliation-actual-cash-counted {
+    flex-grow: 1;
+    padding: 0.8rem 4rem 0.8rem 1rem; /* Increased padding-right */
+    font-size: 1.6rem; 
+    text-align: right;
+    border: 2px solid #adb5bd;
+    border-radius: 8px; /* Consistent rounding */
+    font-weight: 600;
+    color: #f8f9fa; /* Changed text color to light */
+    background-color: #343a40; /* Assuming a dark background for input based on issue */
+    height: 56px; 
+    box-sizing: border-box;
+    -moz-appearance: textfield; 
+}
+#reconciliation-actual-cash-counted::-webkit-outer-spin-button,
+#reconciliation-actual-cash-counted::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#reconciliation-actual-cash-counted:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.2);
+    outline: none;
+}
+.input-with-symbol .input-symbol {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #adb5bd; /* Lighter symbol color on dark input */
+    padding: 0 0.75rem;
+    pointer-events: none;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.quick-cash-buttons-reconciliation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 0.8rem; 
+    justify-content: center;
+}
+.quick-cash-buttons-reconciliation .quick-cash-button {
+    background-color: #f0f3f5;
+    color: #34495e;
+    border: 1px solid #c8d0d8;
+    padding: 0.5rem 1rem; 
+    font-size: 0.85rem; 
+    border-radius: 25px; 
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.quick-cash-buttons-reconciliation .quick-cash-button:hover {
+    background-color: #dfe6eb;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+.quick-cash-buttons-reconciliation .quick-cash-button.copy-expected-btn {
+    background-color: #d1e7dd; 
+    border-color: #badbcc;
+    color: #0f5132;
+}
+.quick-cash-buttons-reconciliation .quick-cash-button.copy-expected-btn:hover {
+    background-color: #b8dfcb;
+}
+
+.difference-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem; 
+    padding: 0.8rem; 
+    border-radius: 8px; /* Consistent rounding */
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+.difference-display .label {
+    font-weight: 500;
+    color: #495057;
+    margin-right: 0.75rem;
+}
+.difference-display .cash-value.difference-value {
+    font-size: 2rem; 
+    font-weight: 700;
+    padding: 0 0.5rem;
+    transition: color 0.3s;
+}
+.difference-display .cash-value.difference-value.positive { color: #20c997; } 
+.difference-display .cash-value.difference-value.negative { color: #e74c3c; } 
+.difference-display .cash-value.difference-value.zero { color: #343a40; } 
+
+.difference-display .difference-icon {
+    font-size: 1.8em; 
+    margin-left: 0.5rem;
+}
+.difference-display .difference-icon.positive::before { content: '👍'; color: #20c997;}
+.difference-display .difference-icon.negative::before { content: '👎'; color: #e74c3c;}
+.difference-display .difference-icon.zero::before { content: '👌'; color: #343a40;}
+
+.reconciliation-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: 1.2rem; 
+}
+.btn-reconciliation-action {
+    flex-grow: 1;
+    padding: 0.8rem 1.3rem; 
+    font-size: 1rem; 
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border-radius: 8px; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+#confirm-reconciliation-btn.btn-primary {
+    background-color: #0062cc; 
+    border-color: #0056b3;
+}
+#confirm-reconciliation-btn.btn-primary:hover:not(:disabled) {
+    background-color: #004a8c;
+}
+#confirm-reconciliation-btn.btn-primary:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    opacity: 0.5; /* More pronounced disabled state */
+    cursor: not-allowed;
+}
+
+#cancel-reconciliation-btn.btn-secondary {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #adb5bd;
+}
+#cancel-reconciliation-btn.btn-secondary:hover {
+    background-color: #e9ecef;
+    border-color: #6c757d;
+}
+
+.reconciliation-info-grid {
+    display: grid;
+    gap: 0.8rem 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+.reconciliation-info-grid p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
+.reconciliation-info-grid strong {
+    color: #333;
+}
+.expected-cash strong {
+    color: #007bff; 
+    font-size: 1.1em;
+}
+.difference strong {
+    font-size: 1.1em;
+}
+.difference.positive {
+    color: #28a745; 
+}
+.difference.negative {
+    color: #dc3545; 
+}
+.status-badge {
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    font-size: 0.85em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.35rem;
+    margin-left: 0.5rem;
+}
+.status-badge.active {
+    color: #fff;
+    background-color: #28a745;
+}
+.status-badge.inactive {
+    color: #fff;
+    background-color: #dc3545;
+}
+.status-badge.default { /* Style for default customer badge */
+    color: #fff;
+    background-color: #007bff; /* Primary blue or similar */
+    font-size: 0.75em;
+    padding: 0.2em 0.5em;
+}
+
+/* === Payment Modal - Modern Redesign === */
+#payment-modal .modal-content.payment-modal-content {
+    max-width: 480px; /* More compact and modern */
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.07);
+    background-color: #f9fafb; /* Slightly off-white */
+}
+
+#payment-modal-title.payment-modal-header-title {
+    font-size: 1.75rem; /* Larger, clearer title */
+    margin-bottom: 1.5rem;
+    color: #1f2937; /* Darker, more professional color */
+    font-weight: 700;
+    text-align: center;
+}
+
+#payment-modal .payment-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #e5e7eb; /* Light separator */
+}
+#payment-modal .payment-section:last-of-type {
+    border-bottom: none; /* No border for the last section */
+    padding-bottom: 0;
+}
+
+#payment-modal .payment-section label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #4b5563; /* Softer gray text */
+}
+
+#payment-modal #payment-modal-total-amount-display,
+#payment-modal #payment-modal-change-amount-display {
+    font-size: 2rem; /* Larger, more prominent numbers */
+    font-weight: 700;
+    color: #111827; /* Very dark text for high contrast */
+}
+
+#payment-modal #payment-modal-change-amount-display {
+    color: #10b981; /* Green for positive change */
+}
+
+#payment-modal .amount-received-section > div { /* Wrapper for the input */
+    flex-basis: 55%; /* Give it more space */
+}
+
+#payment-modal #payment-amount-received {
+    width: 100%;
+    text-align: right;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #d1d5db; /* Clearer border */
+    background-color: #fff;
+    color: #111827;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield; /* Removes number spinners */
+}
+#payment-modal #payment-amount-received::-webkit-outer-spin-button,
+#payment-modal #payment-amount-received::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#payment-modal #payment-amount-received:focus {
+    outline: none;
+    border-color: #3b82f6; /* Blue focus color */
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+#payment-modal .quick-pay-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 1.25rem 0;
+}
+
+#payment-modal .quick-pay-button {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #374151;
+    background-color: #e5e7eb;
+    border: 1px solid transparent;
+    border-radius: 20px; /* Pill shape */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+#payment-modal .quick-pay-button:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+#payment-modal .quick-pay-button.exact-amount-btn {
+    background-color: #dbeafe; /* Light blue */
+    color: #1e40af;
+}
+#payment-modal .quick-pay-button.exact-amount-btn:hover {
+    background-color: #bfdbfe;
+}
+
+
+#payment-modal #payment-modal-error.error-message {
+    text-align: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: -0.5rem; /* Pull actions up a bit */
+    color: #ef4444; /* Brighter red */
+}
+
+#payment-modal .modal-actions.payment-modal-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+#payment-modal .btn-payment-action {
+    flex-grow: 1;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+#payment-modal #confirm-payment-btn {
+    background: linear-gradient(to right, #10b981, #14b8a6); /* Green gradient */
+    color: white;
+}
+#payment-modal #confirm-payment-btn:hover {
+    background: linear-gradient(to right, #059669, #0d9488);
+}
+#payment-modal #cancel-payment-btn {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+#payment-modal #cancel-payment-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.cash-value { /* General class for monetary values */
+    font-weight: 600;
+}
+.cash-value.positive { color: #16a34a; } /* Green for positive balances/profits */
+.cash-value.negative { color: #dc2626; } /* Red for negative balances/losses */
+.cash-value.zero { color: #343a40; } /* Default/neutral color for zero balance */
+
+/* === Super Admin - Manager Menu Editor Styling === */
+#manager-menu-editor-container {
+    padding: 1rem 0; /* Padding for the overall container */
+}
+
+.menu-editor-category {
+    background-color: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 10px; /* Enhanced rounding */
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06); /* Softer shadow */
+    transition: box-shadow 0.2s ease;
+}
+.menu-editor-category:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.menu-editor-category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Consistent gap */
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef; /* Lighter separator */
+}
+
+/* General styling for inputs in the menu editor to match .form-control */
+.menu-editor-input {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px; /* Consistent rounding */
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    background-color: #fdfdff;
+    color: #344054;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 40px; /* Match other compact inputs */
+}
+.menu-editor-input:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.15);
+}
+/* Drag Handle Styling */
+.drag-handle {
+    cursor: grab;
+    font-size: 1.2em; /* Make it more prominent */
+    color: #78909c;
+    padding: 0.5rem 0.6rem;
+    background-color: #f0f3f5;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: 1px solid #d1d9e0;
+    transition: background-color 0.2s;
+}
+.drag-handle:hover {
+    background-color: #e2e8ed;
+    color: #546e7a;
+}
+.drag-handle:active {
+    cursor: grabbing;
+    background-color: #007bff;
+    color: white;
+}
+
+.menu-editor-category-header .category-name-input {
+    flex-grow: 1;
+}
+.menu-editor-category-header .category-icon-input {
+    width: 55px; /* Slightly wider for icon */
+    text-align: center;
+}
+.menu-editor-category-header .category-default-open-checkbox {
+    margin-left: 0.5rem;
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+}
+.menu-editor-category-header .small-label {
+    font-size: 0.875rem;
+    margin-left: 0.25rem;
+    color: #495057;
+}
+
+.menu-editor-item-list {
+    list-style: none;
+    padding-left: 1rem; /* Indent items slightly less */
+    margin-bottom: 1rem;
+    margin-top: 0; /* Remove top margin if header has bottom margin */
+}
+.menu-editor-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem; /* Consistent gap */
+    padding: 0.75rem; /* Padding around item row */
+    border-bottom: 1px solid #f0f3f5; /* Lighter separator */
+    background-color: #fdfdff;
+    border-radius: 6px; /* Rounded corners for items */
+    margin-bottom: 0.6rem; /* Space between items */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+.menu-editor-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.menu-editor-item .item-name-input {
+    flex-grow: 1;
+}
+.menu-editor-item .item-icon-input {
+    width: 55px;
+    text-align: center;
+}
+.menu-editor-item .item-dataview-input {
+    width: 200px; /* Slightly wider */
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.875rem;
+    color: #2c3e50;
+}
+
+/* Button Styling in Menu Editor */
+.remove-category-btn, .remove-menu-item-btn {
+    padding: 0.4rem 0.7rem; /* Consistent with .btn-sm */
+    font-size: 0.875rem;
+    line-height: 1; /* Ensure icon fits well */
+    background-color: #f8d7da; /* Light red */
+    border-color: #f5c6cb;
+    color: #721c24;
+    border-radius: 6px;
+}
+.remove-category-btn:hover, .remove-menu-item-btn:hover {
+    background-color: #f1b0b7;
+    border-color: #ee9ca7;
+    color: #58151c;
+}
+.remove-category-btn .icon-trash, .remove-menu-item-btn .icon-trash {
+    margin-right: 0; /* If only icon is used */
+}
+
+.add-menu-item-btn, .add-category-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+}
+.add-menu-item-btn {
+    margin-top: 1rem;
+    /* display: block;  If you want it full width or specific alignment */
+    /* margin-left: auto; */
+}
+.add-category-btn {
+    margin-top: 1.5rem;
+    width: 100%; /* Make "Add Category" full width */
+    font-weight: 500;
+}
+.permissions-group {
+    border: 1px solid #e0e0e0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    background-color: #fdfdff;
+}
+.permissions-group legend {
+    font-weight: 600;
+    color: #333;
+    padding: 0 0.5rem;
+}
+.permission-group-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #e0e0e0;
+}
+.permission-group-header input[type="checkbox"] {
+    margin-right: 0.5rem;
+    width: 17px;
+    height: 17px;
+}
+.permission-group-header label {
+    font-weight: 500;
+    color: #444;
+}
+.permissions-group div:not(.permission-group-header) { /* Individual permission items */
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem; /* Indent individual permissions */
+}
+.permissions-group div:not(.permission-group-header) input[type="checkbox"] {
+    margin-right: 0.6rem;
+    width: 16px;
+    height: 16px;
+}
+.permissions-group div:not(.permission-group-header) label {
+    font-weight: normal;
+    color: #555;
+}
+
+.package-permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.readonly-field {
+    background-color: #e9ecef;
+    opacity: 1; /* Ensure it's fully opaque */
+    cursor: not-allowed; /* Indicate it's not editable */
+    border-color: #ced4da;
+}
+.readonly-field:focus {
+    box-shadow: none; /* Remove focus shadow for readonly */
+    border-color: #ced4da; /* Keep border same on focus */
+}
+.info-message.secondary { /* New style for less prominent info messages */
+    background-color: #f8f9fa; /* Lighter background */
+    color: #5a6268; /* Softer text color */
+    border: 1px solid #e9ecef; /* Lighter border */
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+}
+.balance-interpretation-note {
+    text-align: left;
+    font-style: normal;
+}
+
+/* Additional styles for Local Sale Form to match Purchase Form styling */
+#manager-content-add_local_sale .manager-section-title {
+    font-size: 1.6rem; margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+}
+#manager-content-add_local_sale > form > .modal-section:first-of-type {
+    margin-bottom: 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px dashed #e9ecef;
+}
+#manager-content-add_local_sale > form > .modal-section:first-of-type .form-group {
+    margin-bottom: 0.6rem;
+}
+#manager-content-add_local_sale > form > .modal-section:first-of-type .form-group label {
+    font-size: 0.875rem; font-weight: 500; margin-bottom: 0.25rem;
+}
+#manager-content-add_local_sale > form > .modal-section:first-of-type input,
+#manager-content-add_local_sale > form > .modal-section:first-of-type select {
+    height: 40px; padding: 0.6rem 0.9rem; font-size: 0.9rem;
+}
+#manager-content-add_local_sale > form > .modal-section:first-of-type .form-grid-3-cols {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); row-gap: 0.6rem; column-gap: 1rem;
+}
+#manager-content-add_local_sale > form > hr.modal-divider {
+    margin-top: 0.8rem; margin-bottom: 1rem; border-top: 1px solid #e0e0e0; height: 0;
+}
+#manager-content-add_local_sale > form > .modal-section:nth-of-type(3) {
+    margin-bottom: 1rem; padding-bottom: 0rem; border-bottom: none;
+}
+#manager-content-add_local_sale > form > .modal-section:nth-of-type(3) .modal-section-title {
+    font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 1px dashed #e0e6ed;
+}
+#manager-content-add_local_sale .item-entry-grid {
+    display: grid; grid-template-columns: 3fr auto; gap: 1rem; align-items: flex-end; margin-bottom: 1.2rem;
+}
+#manager-content-add_local_sale .item-entry-grid .form-group { margin-bottom: 0; }
+#manager-content-add_local_sale .item-entry-grid label {
+    font-size: 0.85rem; font-weight: 500; margin-bottom: 0.3rem;
+}
+#manager-content-add_local_sale .item-entry-grid select,
+#manager-content-add_local_sale .item-entry-grid button {
+    height: 40px; padding: 0.5rem 0.75rem; font-size: 0.9rem;
+}
+#manager-content-add_local_sale .item-entry-grid .lp-item-actions button { font-weight: 500; width: auto; }
+
+#manager-content-add_local_sale > form .modal-section.table-section {
+    padding-top: 0; padding-bottom: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid #e0e6ed;
+}
+#manager-content-add_local_sale > form .modal-section.table-section .table-responsive {
+    max-height: 30vh; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 6px; background-color: #fdfdff;
+}
+#manager-content-add_local_sale > form .modal-section.table-section .table-responsive .admin-table.items-table th {
+    position: sticky; top: 0; z-index: 1; background-color: #e9ecef;
+}
+#manager-content-add_local_sale .modal-section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+#manager-content-add_local_sale .admin-table.items-table { font-size: 0.9rem; }
+#manager-content-add_local_sale .admin-table.items-table th { background-color: #e9ecef; color: #343a40; padding: 0.75rem; }
+#manager-content-add_local_sale .admin-table.items-table td { padding: 0.6rem 0.75rem; vertical-align: middle; }
+#manager-content-add_local_sale .admin-table.items-table .btn-danger.btn-sm { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+#manager-content-add_local_sale .admin-table.items-table td input[type="number"] {
+    width: 80px; padding: 0.3rem 0.5rem; font-size: 0.9em; text-align: right;
+    border: 1px solid #ced4da; border-radius: 4px; height: 30px;
+}
+#manager-content-add_local_sale .admin-table.items-table td input[type="number"]:focus {
+    border-color: #007bff; box-shadow: 0 0 0 0.15rem rgba(0,123,255,.2);
+}
+#manager-content-add_local_sale .summary-section .sale-summary {
+    border-top: 2px solid #007bff; padding-top: 1.2rem; margin-top: 0.5rem;
+    background-color: #f8f9fa; border-radius: 6px; padding: 1.2rem;
+}
+#manager-content-add_local_sale .summary-row span:first-child { color: #333; }
+#manager-content-add_local_sale .summary-row span:last-child { font-weight: 600; color: #0056b3; }
+#manager-content-add_local_sale .total-row span:last-child strong { font-size: 1.1em; color: #004085; }
+#manager-content-add_local_sale .error-message {
+    background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;
+    padding: 0.75rem 1rem; border-radius: 4px; margin-top: 1rem; text-align: center;
+}
+
+/* --- Tab Navigation for Initial Balances --- */
+.tab-navigation-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.tab-button {
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #495057;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    margin-right: 0.5rem; /* Space between tab buttons */
+}
+
+.tab-button:hover {
+    color: #0056b3;
+}
+
+.tab-button.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+    font-weight: 600;
+}
+
+.tab-content {
+    display: none; /* Hidden by default */
+    padding-top: 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block; /* Show active tab content */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Ensure table inputs in initial balances are slightly smaller for better fit */
+#manager-content-initial_balances .admin-table td input[type="number"].form-control-sm {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+    height: 32px; /* Adjust height if needed */
+}
+/* Style for the placeholder text in date/month inputs */
+.report-filters-dynamic input[type="date"]::placeholder,
+.report-filters-dynamic input[type="month"]::placeholder {
+    color: #6B7280; /* A medium gray, more visible than very light grays */
+    opacity: 1; /* Ensure it's not transparent */
+}
+
+.report-filters-dynamic input[type="date"]::-webkit-input-placeholder,
+.report-filters-dynamic input[type="month"]::-webkit-input-placeholder {
+    color: #6B7280;
+    opacity: 1;
+}
+
+.report-filters-dynamic input[type="date"]::-moz-placeholder, /* Firefox 19+ */
+.report-filters-dynamic input[type="month"]::-moz-placeholder {
+    color: #6B7280;
+    opacity: 1;
+}
+
+.report-filters-dynamic input[type="date"]:-ms-input-placeholder, /* Edge */
+.report-filters-dynamic input[type="month"]:-ms-input-placeholder {
+    color: #6B7280;
+    opacity: 1;
+}
+
+.report-filters-dynamic input[type="date"]::-ms-input-placeholder, /* IE 10-11 */
+.report-filters-dynamic input[type="month"]::-ms-input-placeholder {
+    color: #6B7280;
+    opacity: 1;
+}
+/* Deal Product Item Selection - Updated for Grid */
+.deal-product-item-selection {
+    display: grid; 
+    grid-template-columns: auto 1fr auto auto; /* Checkbox, Label, Quantity, Price */
+    gap: 0.5rem; 
+    align-items: center;
+    padding: 0.6rem 0.2rem;
+    border-bottom: 1px dashed #e0e0e0;
+}
+.deal-product-item-selection:last-child {
+    border-bottom: none;
+}
+.deal-product-item-selection input[type="checkbox"] {
+    margin-right: 0; /* Grid handles spacing */
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+    justify-self: start; /* Align checkbox to the start of its cell */
+}
+.deal-product-item-selection label {
+    font-weight: normal;
+    color: #333;
+    cursor: pointer;
+    /* flex-grow: 1; Let grid handle width */
+    margin-bottom: 0;
+    text-align: left; /* Ensure label text is left-aligned */
+}
+.deal-product-item-selection .deal-product-quantity-input { /* New Style for Quantity Input */
+    width: 70px; /* Adjust width as needed */
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+    text-align: right;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 30px;
+    justify-self: end; /* Align to the right of its grid cell */
+}
+.deal-product-item-selection .deal-product-quantity-input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+.deal-product-item-selection .product-price-ref {
+    font-size: 0.85em;
+    color: #6c757d;
+    /* margin-left: auto; Grid handles spacing */
+    /* padding-left: 1rem; */
+    justify-self: end; /* Align to the right of its grid cell */
+    white-space: nowrap;
+}
+
+
+#manager-content-add_sales_return #sr-customer-sales-list-container ul.list-group,
+#rp-supplier-purchases-list-container ul.list-group {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#manager-content-add_sales_return #sr-customer-sales-list-container ul.list-group li.list-group-item,
+#rp-supplier-purchases-list-container ul.list-group li.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px dashed #eee;
+}
+#manager-content-add_sales_return #sr-customer-sales-list-container ul.list-group li.list-group-item:last-child,
+#rp-supplier-purchases-list-container ul.list-group li.list-group-item:last-child {
+    border-bottom: none;
+}
+
+#manager-content-add_sales_return #sr-customer-sales-list-container ul.list-group li.list-group-item span,
+#rp-supplier-purchases-list-container ul.list-group li.list-group-item span {
+    flex-grow: 1;
+    margin-right: 10px;
+    font-size:0.9em;
+}
+
+#manager-content-add_sales_return #sr-customer-sales-list-container ul.list-group li.list-group-item button,
+#rp-supplier-purchases-list-container ul.list-group li.list-group-item button {
+    flex-shrink: 0;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+/* Styles for sales return items table */
+#sr-items-to-return-tbody input.sr-return-quantity-input {
+    width: 80px; /* Adjust as needed */
+    text-align: right;
+}
+#rp-items-tbody input.editable-rp-item-field[data-field="returnQuantity"] {
+     width: 80px; /* Adjust as needed */
+    text-align: right;
+}
+#op-invoices-to-allocate-tbody input.op-allocate-input,
+#ip-invoices-to-allocate-tbody input.ip-allocate-input {
+    width: 120px;
+    text-align: right;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9em;
+    height: 30px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+#op-invoices-to-allocate-tbody input.op-allocate-input:focus,
+#ip-invoices-to-allocate-tbody input.ip-allocate-input:focus {
+     border-color: #007bff;
+    box-shadow: 0 0 0 0.15rem rgba(0,123,255,.2);
+}
+
+/* === Payment Modal - Modern Redesign === */
+#payment-modal .modal-content.payment-modal-content {
+    max-width: 480px; /* More compact and modern */
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.07);
+    background-color: #f9fafb; /* Slightly off-white */
+}
+
+#payment-modal-title.payment-modal-header-title {
+    font-size: 1.75rem; /* Larger, clearer title */
+    margin-bottom: 1.5rem;
+    color: #1f2937; /* Darker, more professional color */
+    font-weight: 700;
+    text-align: center;
+}
+
+#payment-modal .payment-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #e5e7eb; /* Light separator */
+}
+#payment-modal .payment-section:last-of-type {
+    border-bottom: none; /* No border for the last section */
+    padding-bottom: 0;
+}
+
+#payment-modal .payment-section label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #4b5563; /* Softer gray text */
+}
+
+#payment-modal #payment-modal-total-amount-display,
+#payment-modal #payment-modal-change-amount-display {
+    font-size: 2rem; /* Larger, more prominent numbers */
+    font-weight: 700;
+    color: #111827; /* Very dark text for high contrast */
+}
+
+#payment-modal #payment-modal-change-amount-display {
+    color: #10b981; /* Green for positive change */
+}
+
+#payment-modal .amount-received-section > div { /* Wrapper for the input */
+    flex-basis: 55%; /* Give it more space */
+}
+
+#payment-modal #payment-amount-received {
+    width: 100%;
+    text-align: right;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #d1d5db; /* Clearer border */
+    background-color: #fff;
+    color: #111827;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield; /* Removes number spinners */
+}
+#payment-modal #payment-amount-received::-webkit-outer-spin-button,
+#payment-modal #payment-amount-received::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#payment-modal #payment-amount-received:focus {
+    outline: none;
+    border-color: #3b82f6; /* Blue focus color */
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+#payment-modal .quick-pay-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 1.25rem 0;
+}
+
+#payment-modal .quick-pay-button {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #374151;
+    background-color: #e5e7eb;
+    border: 1px solid transparent;
+    border-radius: 20px; /* Pill shape */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+#payment-modal .quick-pay-button:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+#payment-modal .quick-pay-button.exact-amount-btn {
+    background-color: #dbeafe; /* Light blue */
+    color: #1e40af;
+}
+#payment-modal .quick-pay-button.exact-amount-btn:hover {
+    background-color: #bfdbfe;
+}
+
+
+#payment-modal #payment-modal-error.error-message {
+    text-align: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: -0.5rem; /* Pull actions up a bit */
+    color: #ef4444; /* Brighter red */
+}
+
+#payment-modal .modal-actions.payment-modal-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+#payment-modal .btn-payment-action {
+    flex-grow: 1;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+#payment-modal #confirm-payment-btn {
+    background: linear-gradient(to right, #10b981, #14b8a6); /* Green gradient */
+    color: white;
+}
+#payment-modal #confirm-payment-btn:hover {
+    background: linear-gradient(to right, #059669, #0d9488);
+}
+#payment-modal #cancel-payment-btn {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+#payment-modal #cancel-payment-btn:hover {
+    background-color: #e5e7eb;
+}
+
+/* === START: Login Page Dark Mode Customization === */
+#auth-view {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.login-wrapper {
+    background-color: #0f172a;
+    color: white;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.login-showcase {
+    background: linear-gradient(135deg, #1e3a8a, #6366f1);
+    color: white;
+}
+
+.login-header h3 {
+    color: #f1f5f9;
+}
+
+.form-group label {
+    color: #cbd5e1;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+
+#login-form .btn-primary {
+    background: linear-gradient(to right, #8b5cf6, #6366f1);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+}
+
+#login-form .btn-primary:hover {
+    background: linear-gradient(to right, #7c3aed, #4f46e5);
+}
+
+#admin-login-shortcut-btn {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+}
+
+#admin-login-shortcut-btn:hover {
+    background-color: #334155;
+}
+
+#open-shifts-info-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    border: 1px solid #334155;
+}
+
+.error-message {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border-left: 3px solid #ef4444;
+}
+/* --- END: Login Page Dark Mode Customization --- */
+
+/* Customer Segmentation Filters */
+.customer-segment-filters {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.segment-filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 20px;
+    background-color: #f0f3f5;
+    color: #495057;
+    border: 1px solid #d1d9e0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.segment-filter-btn:hover {
+    background-color: #e2e8ed;
+    border-color: #c8d0d8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.segment-filter-btn.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Customer Tags */
+.customer-tag-container {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-left: 0.75rem;
+    vertical-align: middle;
+}
+
+.customer-tag {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    font-size: 0.75em;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 10rem; /* pill shape */
+    cursor: help;
+}
+
+.customer-tag.tag-vip {
+    background-color: #ffc107; /* Warning yellow */
+    color: #212529;
+}
+
+.customer-tag.tag-regular {
+    background-color: #17a2b8; /* Info blue */
+}
+
+.customer-tag.tag-risk {
+    background-color: #e74c3c; /* A softer red */
+}

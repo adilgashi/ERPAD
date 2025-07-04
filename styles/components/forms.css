@@ -1,0 +1,405 @@
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem; 
+    color: #555e68; 
+    font-weight: 500; 
+    font-size: 0.95rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group-icon {
+    position: absolute;
+    left: 18px; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd; 
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 3; 
+}
+.input-group-icon.select-icon { 
+    right: 35px; 
+    left: auto;
+    pointer-events: none; 
+}
+
+/* General input styling (text, password, select) */
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="file"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea,
+.form-group input[type="search"],
+.filter-container input[type="search"].form-control {
+    width: 100%;
+    padding: 0.9rem 1.2rem; 
+    height: 54px; 
+    border: 1px solid #dbe0f3; 
+    border-radius: 10px; 
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #344054; 
+    background-color: #fdfdff; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-container input[type="search"].form-control { 
+    padding-left: 45px; 
+    margin-bottom: 1rem; 
+}
+
+.form-group select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23adb5bd' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); 
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    padding-right: 3rem; 
+}
+.input-group select {
+    padding-left: 50px; 
+}
+
+.form-group textarea.form-control { 
+    height: auto;
+    min-height: 90px; 
+}
+
+.form-control-file {
+    padding: 0.6rem 1rem;
+    height: auto;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"] {
+    padding-left: 50px; 
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input[type="search"]:focus,
+.filter-container input[type="search"].form-control:focus {
+    border-color: #007bff; 
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.15); 
+    background-color: #fff;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* Grid layouts for forms */
+.form-grid-2-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem 1.5rem;
+}
+.form-grid-2-cols .form-group {
+    margin-bottom: 0; 
+}
+
+.form-grid-3-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
+    gap: 1rem 1.5rem; 
+}
+.form-grid-3-cols .form-group {
+    margin-bottom: 0; 
+}
+
+.form-group-span-2 {
+    grid-column: span 2;
+}
+.form-group-span-3 {
+    grid-column: span 3;
+}
+
+.checkbox-label-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500; 
+    color: #555e68; 
+    font-size: 0.95rem; 
+    margin-bottom: 0; 
+}
+.checkbox-label-inline input[type="checkbox"] {
+    width: 18px; 
+    height: 18px;
+    accent-color: #007bff; 
+    margin-right: 0; 
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    min-height: 1.25em;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(231, 76, 60, 0.05);
+    border-left: 3px solid #e74c3c;
+    border-radius: 4px;
+}
+
+/* Purchase form specific input/label styling (made more general here) */
+.purchase-form-section .form-group label,
+#manager-content-add_local_sale .form-group label,
+#manager-content-outgoing_payments #outgoing-payment-form label {
+    font-weight: 500;
+    color: #333;
+}
+.purchase-form-section .form-control,
+.purchase-form-section input[type="text"],
+.purchase-form-section input[type="date"],
+.purchase-form-section input[type="number"],
+.purchase-form-section select,
+#manager-content-add_local_sale input,
+#manager-content-add_local_sale select,
+#manager-content-outgoing_payments #outgoing-payment-form input[type="text"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="number"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="date"],
+#manager-content-outgoing_payments #outgoing-payment-form select,
+#manager-content-outgoing_payments #outgoing-payment-form textarea {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+}
+
+.purchase-form-section input[type="number"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="number"] {
+    text-align: right;
+}
+
+.purchase-form-section .input-with-unit {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+.purchase-form-section .input-with-unit input[type="number"] {
+    flex-grow: 1; 
+    min-width: 70px; 
+}
+.purchase-form-section .input-unit-display {
+    font-size: 0.9em;
+    color: #555;
+    white-space: nowrap;
+}
+.purchase-form-section #lp-item-unit-details.form-text { 
+    font-size: 0.8em;
+    margin-top: 0.3rem;
+    color: #6c757d;
+    display: block; 
+}
+.purchase-form-section .lp-item-actions { 
+    align-self: flex-end; 
+}
+
+.input-with-symbol { /* From reconciliation, can be generic */
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile phone specific form adjustments */
+@media (max-width: 576px) {
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group select {
+        padding: 0.8rem 1rem;
+        height: 50px;
+        font-size: 0.95rem;
+    }
+    .input-group input[type="text"],
+    .input-group input[type="password"],
+    .input-group select {
+        padding-left: 45px; 
+    }
+    .input-group-icon {
+        left: 15px;
+    }
+    .input-group-icon.select-icon {
+        right: 30px;
+    }
+    .form-group select {
+        background-position: right 1rem center;
+    }
+}
+
+/* Form actions group */
+.form-actions-group { 
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end; 
+}
+
+/* Deal Form specific (can be generalized if structure is reused) */
+.form-row-flex {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.form-group-flex-item {
+    flex: 1;
+    margin-bottom: 0 !important; 
+}
+.modal-product-selection-list {
+    max-height: 250px; 
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    margin-top: 0.5rem;
+}
+.deal-product-item-selection { 
+    display: grid; /* Use grid for checkbox, label, quantity, price */
+    grid-template-columns: auto 1fr auto auto; /* Checkbox, Label, Quantity, Price */
+    gap: 0.5rem; /* Gap between elements in a row */
+    align-items: center;
+    padding: 0.6rem 0.2rem;
+    border-bottom: 1px dashed #e0e0e0;
+}
+.deal-product-item-selection:last-child { 
+    border-bottom: none;
+}
+.deal-product-item-selection input[type="checkbox"] { 
+    margin-right: 0; /* Grid handles spacing */
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+    justify-self: start;
+}
+.deal-product-item-selection label { 
+    font-weight: normal;
+    color: #333;
+    cursor: pointer;
+    /* flex-grow: 1; Let grid handle width */
+    margin-bottom: 0;
+    text-align: left;
+}
+.deal-product-item-selection .deal-product-quantity-input { /* New Style for Quantity Input */
+    width: 70px; /* Adjust width as needed */
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+    text-align: right;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 30px;
+    justify-self: end; /* Align to the right of its grid cell */
+}
+.deal-product-item-selection .deal-product-quantity-input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+.deal-product-item-selection .product-price-ref { 
+    font-size: 0.85em;
+    color: #6c757d;
+    /* margin-left: auto; Grid handles spacing */
+    /* padding-left: 1rem; */
+    justify-self: end; /* Align to the right of its grid cell */
+    white-space: nowrap;
+}
+
+.logo-preview-container {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.logo-preview-image {
+    max-width: 150px;
+    max-height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    display: none; 
+}
+
+/* Super Admin Menu Editor Specific Inputs */
+.menu-editor-input {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px; 
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    background-color: #fdfdff;
+    color: #344054;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 40px; 
+}
+.menu-editor-input:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.15);
+}
+
+/* Permissions Group (Super Admin Package Management) */
+.permissions-group {
+    border: 1px solid #e0e0e0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    background-color: #fdfdff;
+}
+.permissions-group legend {
+    font-weight: 600;
+    color: #333;
+    padding: 0 0.5rem;
+}
+.permission-group-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #e0e0e0;
+}
+.permission-group-header input[type="checkbox"] {
+    margin-right: 0.5rem;
+    width: 17px;
+    height: 17px;
+}
+.permission-group-header label {
+    font-weight: 500;
+    color: #444;
+}
+.permissions-group div:not(.permission-group-header) { 
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem; 
+}
+.permissions-group div:not(.permission-group-header) input[type="checkbox"] {
+    margin-right: 0.6rem;
+    width: 16px;
+    height: 16px;
+}
+.permissions-group div:not(.permission-group-header) label {
+    font-weight: normal;
+    color: #555;
+}
+
+.package-permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}

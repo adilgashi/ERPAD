@@ -1,0 +1,447 @@
+/* Manager Content Sections */
+.manager-content-section {
+    background-color: #fff; 
+    padding: 1.5rem; 
+    border-radius: 12px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    margin: 1.5rem; 
+    box-sizing: border-box;
+}
+.manager-content-section:last-child { 
+    /* margin-bottom: 0; */
+}
+
+/* Specific title styling for manager sections */
+.manager-section-title {
+    font-size: 1.75rem; 
+    color: #2c3e50; 
+    margin-top: 0;
+    margin-bottom: 1.5rem; 
+    padding-bottom: 0.75rem; 
+    border-bottom: 2px solid #e9ecef; 
+    font-weight: 600; 
+}
+
+/* Section Subtitle (e.g., in Initial Balances) */
+.section-subtitle {
+    font-size: 1.25rem;
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #ced4da;
+    font-weight: 500;
+}
+
+/* Actions Grid Styling */
+.actions-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 1.5rem;
+}
+
+/* Filter container common styling */
+.manager-content-section .filter-container.product-search-container {
+    margin-bottom: 1.25rem; 
+}
+.manager-content-section .filter-container.product-search-container .search-icon {
+    left: 18px; 
+    font-size: 1.2rem; 
+}
+.manager-content-section .filter-container.product-search-container input[type="search"].form-control {
+    height: 50px; 
+    padding-left: 50px; 
+    border-radius: 8px; 
+    border-color: #ced4da;
+    font-size: 1rem;
+}
+.manager-content-section .filter-container.product-search-container input[type="search"].form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.2);
+}
+
+/* Purchase Form specific section */
+.purchase-form-section {
+    /* Background is already white from .manager-content-section */
+    /* Padding is already applied by .manager-content-section */
+}
+
+.purchase-form-section .modal-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #e0e6ed; 
+}
+.purchase-form-section .modal-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.purchase-form-section .modal-section-title {
+    font-size: 1.3rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+}
+
+.purchase-form-section .table-responsive {
+    border: 1px solid #dee2e6;
+    border-radius: 8px; 
+}
+
+.purchase-form-section .summary-section .sale-summary {
+    background-color: #f8f9fa; 
+    padding: 1.25rem;
+    border-radius: 8px;
+    border-top: 2px solid #007bff; 
+}
+
+/* Report View styling in manager area */
+.manager-main-content .report-view-main-area {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin: 1.5rem; 
+}
+.manager-main-content .report-view-header {
+    border-bottom-color: #e0e6ed; 
+}
+.manager-main-content .report-view-header .section-title {
+    color: #2c3e50; 
+}
+.manager-main-content .report-actions-bar .btn {
+    border-radius: 8px; 
+}
+
+/* === Enhanced Report Filters Area Styling (.report-filters-dynamic) === */
+.report-filters-dynamic { 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end; 
+    gap: 1rem 1.5rem; 
+    background-color: #f8f9fc; 
+    padding: 1.5rem;
+    border-radius: 12px; 
+    border: 1px solid #e0e7ff; 
+    box-shadow: 0 6px 18px rgba(100, 116, 139, 0.08), 0 1px 3px rgba(0,0,0,0.03);
+    margin-bottom: 2rem; 
+}
+
+.report-filters-dynamic .form-group, 
+.report-filters-dynamic .filter-group { 
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; 
+    flex: 1 1 230px; 
+    min-width: 200px;
+    margin-bottom: 0; 
+}
+
+.report-filters-dynamic label {
+    font-weight: 500;
+    color: #4A5568; 
+    font-size: 0.9rem;
+    margin-bottom: 0; 
+}
+
+.report-filters-dynamic input[type="date"],
+.report-filters-dynamic input[type="number"],
+.report-filters-dynamic select {
+    width: 100%; 
+    height: 48px; 
+    padding: 0.75rem 1rem;
+    border-radius: 8px; 
+    font-size: 0.95rem;
+    border: 1px solid #CBD5E0; 
+    background-color: #FFFFFF;
+    color: #2D3748; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.report-filters-dynamic input[type="date"]:focus,
+.report-filters-dynamic input[type="number"]:focus,
+.report-filters-dynamic select:focus {
+    border-color: #4299E1; 
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2); 
+    outline: none;
+}
+
+.report-filters-dynamic select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em 1.25em;
+    padding-right: 2.5rem; 
+}
+
+.report-filters-dynamic button[id*="generate-dynamic-report-btn"],
+.report-filters-dynamic button[id*="generate-item-ledger-btn"],
+.report-filters-dynamic button[id*="generate-supplier-ledger-btn"],
+.report-filters-dynamic button[id*="generate-customer-ledger-btn"],
+.report-filters-dynamic button#dynamic-report-generate-btn-active { 
+    padding: 0 1.75rem;
+    height: 48px; 
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: #3182CE; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0; 
+    align-self: flex-end; 
+}
+
+.report-filters-dynamic button[id*="generate-dynamic-report-btn"]:hover,
+.report-filters-dynamic button[id*="generate-item-ledger-btn"]:hover,
+.report-filters-dynamic button[id*="generate-supplier-ledger-btn"]:hover,
+.report-filters-dynamic button[id*="generate-customer-ledger-btn"]:hover,
+.report-filters-dynamic button#dynamic-report-generate-btn-active:hover {
+    background-color: #2B6CB0; 
+    transform: translateY(-1px);
+}
+/* --- End of Enhanced Report Filters Area Styling --- */
+
+.manager-main-content .report-content {
+    /* Style for the area where the actual report table/data is shown */
+}
+.manager-main-content .report-table-container {
+    border-radius: 8px;
+    border-color: #e0e6ed;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04); 
+}
+.manager-main-content .report-summary {
+    background-color: #f0f4f8; 
+    border-radius: 8px;
+    border-top-color: #007bff; 
+}
+
+/* Subscription info styling */
+#manager-content-subscription .card-like-content {
+    padding: 2rem; 
+}
+#manager-content-subscription .status-badge {
+    padding: 0.4em 0.8em; 
+    font-size: 0.9em;
+}
+#manager-content-subscription #upgrade-options-list { 
+    gap: 1.5rem; 
+}
+#manager-content-subscription .subscription-upgrade-tile {
+    border-color: #c8d0d8; 
+}
+#manager-content-subscription .subscription-upgrade-tile:hover {
+    border-color: #17a2b8; 
+}
+
+/* Specific styles for purchase forms (Local Purchase, Return Purchase, Local Sale) within manager view */
+#manager-content-add_local_purchase .manager-section-title,
+#manager-content-add_return_purchase .manager-section-title,
+#manager-content-add_local_sale .manager-section-title,
+#manager-content-add_sales_return .manager-section-title,
+#manager-content-outgoing_payments .manager-section-title,
+#manager-content-incoming_payments .manager-section-title {
+    font-size: 1.6rem; 
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+}
+
+#manager-content-add_local_purchase > form > .modal-section:first-of-type,
+#manager-content-add_return_purchase > form > .modal-section:first-of-type,
+#manager-content-add_local_sale > form > .modal-section:first-of-type,
+#manager-content-add_sales_return > form > .modal-section:first-of-type,
+#manager-content-outgoing_payments > form > .modal-section:first-of-type,
+#manager-content-incoming_payments > form > .modal-section:first-of-type {
+    margin-bottom: 0.8rem; 
+    padding-bottom: 0.3rem; 
+    border-bottom: 1px dashed #e9ecef; 
+}
+
+#manager-content-add_local_purchase > form > .modal-section:first-of-type .form-group,
+#manager-content-add_return_purchase > form > .modal-section:first-of-type .form-group,
+#manager-content-add_local_sale > form > .modal-section:first-of-type .form-group,
+#manager-content-add_sales_return > form > .modal-section:first-of-type .form-group,
+#manager-content-outgoing_payments > form > .modal-section:first-of-type .form-group,
+#manager-content-incoming_payments > form > .modal-section:first-of-type .form-group {
+    margin-bottom: 0.6rem; 
+}
+
+#manager-content-add_local_purchase > form > .modal-section:first-of-type .form-group label,
+#manager-content-add_return_purchase > form > .modal-section:first-of-type .form-group label,
+#manager-content-add_local_sale > form > .modal-section:first-of-type .form-group label,
+#manager-content-add_sales_return > form > .modal-section:first-of-type .form-group label,
+#manager-content-outgoing_payments > form > .modal-section:first-of-type .form-group label,
+#manager-content-incoming_payments > form > .modal-section:first-of-type .form-group label {
+    font-size: 0.875rem; 
+    font-weight: 500; 
+    margin-bottom: 0.25rem; 
+}
+
+#manager-content-add_local_purchase > form > .modal-section:first-of-type input,
+#manager-content-add_local_purchase > form > .modal-section:first-of-type select,
+#manager-content-add_return_purchase > form > .modal-section:first-of-type input,
+#manager-content-add_return_purchase > form > .modal-section:first-of-type select,
+#manager-content-add_local_sale > form > .modal-section:first-of-type input,
+#manager-content-add_local_sale > form > .modal-section:first-of-type select,
+#manager-content-add_sales_return > form > .modal-section:first-of-type input,
+#manager-content-add_sales_return > form > .modal-section:first-of-type select,
+#manager-content-outgoing_payments > form > .modal-section:first-of-type input,
+#manager-content-outgoing_payments > form > .modal-section:first-of-type select,
+#manager-content-incoming_payments > form > .modal-section:first-of-type input,
+#manager-content-incoming_payments > form > .modal-section:first-of-type select {
+    height: 40px; 
+    padding: 0.6rem 0.9rem; 
+    font-size: 0.9rem; 
+}
+
+#manager-content-add_local_purchase > form > .modal-section:first-of-type .form-grid-3-cols,
+#manager-content-add_return_purchase > form > .modal-section:first-of-type .form-grid-3-cols,
+#manager-content-add_local_sale > form > .modal-section:first-of-type .form-grid-3-cols,
+#manager-content-add_sales_return > form > .modal-section:first-of-type .form-grid-3-cols,
+#manager-content-outgoing_payments > form > .modal-section:first-of-type .form-grid-3-cols,
+#manager-content-incoming_payments > form > .modal-section:first-of-type .form-grid-3-cols {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); row-gap: 0.6rem; column-gap: 1rem;
+}
+
+#manager-content-add_local_purchase > form > hr.modal-divider,
+#manager-content-add_return_purchase > form > hr.modal-divider,
+#manager-content-add_local_sale > form > hr.modal-divider,
+#manager-content-add_sales_return > form > hr.modal-divider {
+    margin-top: 0.8rem; margin-bottom: 1rem; border-top: 1px solid #e0e0e0; height: 0;
+}
+
+#manager-content-add_local_purchase > form > .modal-section:nth-of-type(3),
+#manager-content-add_return_purchase > form > .modal-section:nth-of-type(3),
+#manager-content-add_local_sale > form > .modal-section:nth-of-type(3),
+#manager-content-add_sales_return > form > .modal-section:nth-of-type(3) { /* Item Entry Section */
+    margin-bottom: 1rem; padding-bottom: 0rem; border-bottom: none;
+}
+#manager-content-add_local_purchase > form > .modal-section:nth-of-type(3) .modal-section-title,
+#manager-content-add_return_purchase > form > .modal-section:nth-of-type(3) .modal-section-title,
+#manager-content-add_local_sale > form > .modal-section:nth-of-type(3) .modal-section-title,
+#manager-content-add_sales_return > form > .modal-section:nth-of-type(3) .modal-section-title {
+    font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 1px dashed #e0e6ed;
+}
+
+#manager-content-add_local_purchase .item-entry-grid,
+#manager-content-add_return_purchase .item-entry-grid,
+#manager-content-add_local_sale .item-entry-grid,
+#manager-content-add_sales_return .item-entry-grid {
+    display: grid; grid-template-columns: 3fr auto; gap: 1rem; align-items: flex-end; margin-bottom: 1.2rem;
+}
+#manager-content-add_local_purchase .item-entry-grid .form-group,
+#manager-content-add_return_purchase .item-entry-grid .form-group,
+#manager-content-add_local_sale .item-entry-grid .form-group,
+#manager-content-add_sales_return .item-entry-grid .form-group { margin-bottom: 0; }
+
+#manager-content-add_local_purchase .item-entry-grid label,
+#manager-content-add_return_purchase .item-entry-grid label,
+#manager-content-add_local_sale .item-entry-grid label,
+#manager-content-add_sales_return .item-entry-grid label {
+    font-size: 0.85rem; font-weight: 500; margin-bottom: 0.3rem;
+}
+#manager-content-add_local_purchase .item-entry-grid select,
+#manager-content-add_local_purchase .item-entry-grid button,
+#manager-content-add_return_purchase .item-entry-grid select,
+#manager-content-add_return_purchase .item-entry-grid button,
+#manager-content-add_local_sale .item-entry-grid select,
+#manager-content-add_local_sale .item-entry-grid button,
+#manager-content-add_sales_return .item-entry-grid select,
+#manager-content-add_sales_return .item-entry-grid button {
+    height: 40px; padding: 0.5rem 0.75rem; font-size: 0.9rem;
+}
+#manager-content-add_local_purchase .item-entry-grid .lp-item-actions button,
+#manager-content-add_return_purchase .item-entry-grid .lp-item-actions button,
+#manager-content-add_local_sale .item-entry-grid .lp-item-actions button,
+#manager-content-add_sales_return .item-entry-grid .lp-item-actions button { font-weight: 500; width: auto; }
+
+#manager-content-add_local_purchase > form .modal-section.table-section,
+#manager-content-add_return_purchase > form .modal-section.table-section,
+#manager-content-add_local_sale > form .modal-section.table-section,
+#manager-content-add_sales_return > form .modal-section.table-section {
+    padding-top: 0; padding-bottom: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid #e0e6ed;
+}
+#manager-content-add_local_purchase > form .modal-section.table-section .table-responsive,
+#manager-content-add_return_purchase > form .modal-section.table-section .table-responsive,
+#manager-content-add_local_sale > form .modal-section.table-section .table-responsive,
+#manager-content-add_sales_return > form .modal-section.table-section .table-responsive {
+    max-height: 30vh; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 6px; background-color: #fdfdff;
+}
+#manager-content-add_local_purchase > form .modal-section.table-section .table-responsive .admin-table.items-table th,
+#manager-content-add_return_purchase > form .modal-section.table-section .table-responsive .admin-table.items-table th,
+#manager-content-add_local_sale > form .modal-section.table-section .table-responsive .admin-table.items-table th,
+#manager-content-add_sales_return > form .modal-section.table-section .table-responsive .admin-table.items-table th {
+    position: sticky; top: 0; z-index: 1; background-color: #e9ecef;
+}
+#manager-content-add_local_purchase .modal-section:last-of-type,
+#manager-content-add_return_purchase .modal-section:last-of-type,
+#manager-content-add_local_sale .modal-section:last-of-type,
+#manager-content-add_sales_return .modal-section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+/* Outgoing Payments - Compact form elements */
+#manager-content-outgoing_payments #outgoing-payment-form .form-group {
+    margin-bottom: 0.6rem; 
+}
+#manager-content-outgoing_payments #outgoing-payment-form label {
+    font-size: 0.85rem; 
+    margin-bottom: 0.25rem; 
+}
+#manager-content-outgoing_payments #outgoing-payment-form input[type="text"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="number"],
+#manager-content-outgoing_payments #outgoing-payment-form input[type="date"],
+#manager-content-outgoing_payments #outgoing-payment-form select,
+#manager-content-outgoing_payments #outgoing-payment-form textarea {
+    height: 40px; 
+    padding: 0.5rem 0.8rem; 
+    font-size: 0.9rem; 
+}
+#manager-content-outgoing_payments #outgoing-payment-form textarea {
+    height: auto; 
+    min-height: 60px; 
+}
+#manager-content-outgoing_payments #op-invoice-allocation-section {
+     margin-top: 0.8rem; 
+}
+#manager-content-outgoing_payments #op-invoice-allocation-section .table-responsive {
+    max-height: 200px; 
+}
+
+/* Sales Return specific styles */
+#manager-content-add_sales_return #sr-customer-sales-list-container {
+    margin-top: 1rem; max-height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 0.5rem; display:none;
+}
+#manager-content-add_sales_return #sr-customer-sales-list-container h4 {
+    margin-top:0; margin-bottom:0.5rem; font-size:1.1rem; color:#555;
+}
+#manager-content-add_sales_return #sr-original-sale-details.info-message.secondary {
+    display:none; margin-top: 1rem; text-align: left;
+}
+#manager-content-add_sales_return #sr-items-to-return-tbody input.sr-return-quantity-input {
+    width: 80px; /* Adjust as needed */
+    text-align: right;
+}
+
+/* Specific styles for manager content sections that are effectively forms */
+#manager-content-add_local_purchase,
+#manager-content-add_return_purchase,
+#manager-content-add_local_sale,
+#manager-content-add_sales_return,
+#manager-content-outgoing_payments,
+#manager-content-incoming_payments {
+    /* These inherit .manager-content-section for base padding, background etc. */
+    /* .purchase-form-section class adds more specific form structure styles */
+}
+#manager-content-initial_balances {
+    /* Specific styles for initial balances if needed */
+}
+#manager-content-stock_overview,
+#manager-content-supplier_balances,
+#manager-content-customer_balances,
+#manager-content-item_ledger,
+#manager-content-supplier_ledger,
+#manager-content-customer_ledger {
+    /* Specific styles for table/filter based views if needed */
+}

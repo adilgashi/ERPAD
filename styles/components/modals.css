@@ -1,0 +1,340 @@
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent; 
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 650px; /* Default max-width */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1001; 
+}
+.modal-content.large-modal-content {
+    max-width: 950px;
+}
+.modal-content.medium-modal-content { 
+    max-width: 750px; 
+}
+.modal-content.small-modal-content { 
+    max-width: 500px;
+}
+
+.close-button {
+    color: #6c757d;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #343a40;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 { 
+    margin-top: 0;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 1.6rem; 
+}
+.modal-content h3.modal-section-title { 
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    color: #495057;
+    font-size: 1.25rem;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.6rem;
+}
+
+/* Modal-like sections within purchase forms etc. */
+.purchase-form-section .modal-section,
+#manager-content-add_local_sale .modal-section,
+#manager-content-outgoing_payments .modal-section,
+#manager-content-incoming_payments .modal-section,
+#manager-content-add_sales_return .modal-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #e0e6ed; 
+}
+.purchase-form-section .modal-section:last-of-type,
+#manager-content-add_local_sale .modal-section:last-of-type,
+#manager-content-outgoing_payments .modal-section:last-of-type,
+#manager-content-incoming_payments .modal-section:last-of-type,
+#manager-content-add_sales_return .modal-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.purchase-form-section .modal-section-title,
+#manager-content-add_local_sale .modal-section-title,
+#manager-content-outgoing_payments .modal-section-title,
+#manager-content-incoming_payments .modal-section-title,
+#manager-content-add_sales_return .modal-section-title {
+    font-size: 1.3rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+}
+
+.modal-product-list { /* Used in startDayModal */
+    max-height: 280px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 1.8rem;
+    background-color: #f8f9fa;
+}
+.modal-product-item { /* Used in startDayModal */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+.modal-product-item:last-child {
+    border-bottom: none;
+}
+.modal-product-item label {
+    flex-basis: 60%;
+    margin-bottom: 0;
+    color: #495057;
+}
+.modal-product-item input[type="number"] {
+    flex-basis: 35%;
+    padding: 0.6rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 25px;
+}
+
+/* Info fields in Local Purchase Details Modal */
+#local-purchase-details-modal .info-field,
+#return-purchase-details-modal .info-field,
+#outgoing-payment-details-modal .info-field,
+#sales-return-details-modal .info-field {
+    margin-bottom: 0.5rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed #eee;
+}
+#local-purchase-details-modal .info-field:last-child,
+#return-purchase-details-modal .info-field:last-child,
+#outgoing-payment-details-modal .info-field:last-child,
+#sales-return-details-modal .info-field:last-child {
+    border-bottom: none;
+}
+#local-purchase-details-modal .info-field label,
+#return-purchase-details-modal .info-field label,
+#outgoing-payment-details-modal .info-field label,
+#sales-return-details-modal .info-field label {
+    font-weight: 500;
+    color: #555;
+    margin-right: 0.5rem;
+}
+#local-purchase-details-modal .info-field span,
+#return-purchase-details-modal .info-field span,
+#outgoing-payment-details-modal .info-field span,
+#sales-return-details-modal .info-field span {
+    color: #333;
+}
+#local-purchase-details-modal .admin-table.items-table,
+#return-purchase-details-modal .admin-table.items-table,
+#outgoing-payment-details-modal .admin-table.items-table,
+#sales-return-details-modal .admin-table.items-table {
+    margin-top: 0.5rem; 
+}
+#local-purchase-details-modal .modal-content.large-modal-content,
+#return-purchase-details-modal .modal-content.large-modal-content,
+#outgoing-payment-details-modal .modal-content.large-modal-content,
+#sales-return-details-modal .modal-content.large-modal-content {
+    max-width: 1000px; 
+}
+
+/* Reconciliation Modal Specific Styles */
+.modal-content.reconciliation-modal-content-enhanced {
+    max-width: 1050px; 
+    padding: 1.5rem 2rem; 
+    background-color: #fdfdfd; 
+}
+
+.reconciliation-main-title {
+    font-size: 1.7rem; 
+    font-weight: 600;
+    color: #2c3e50; 
+    margin-bottom: 1.2rem; 
+    padding-bottom: 0.8rem; 
+    border-bottom: 2px solid #e0e6ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.reconciliation-title-icon {
+    font-size: 1.5em; 
+}
+
+.reconciliation-main-content-wrapper {
+    display: flex;
+    gap: 1.5rem; 
+    align-items: flex-start; 
+}
+
+.reconciliation-section {
+    background-color: #fff;
+    padding: 1.25rem; 
+    border: 1px solid #e9ecef;
+    border-radius: 12px; 
+    margin-bottom: 1rem; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex: 1; 
+    min-width: 0; 
+}
+.reconciliation-main-content-wrapper + .reconciliation-section { 
+    margin-top: 0.5rem; 
+}
+
+.reconciliation-section:last-of-type {
+    margin-bottom: 0.8rem; 
+}
+
+.reconciliation-section-title {
+    font-size: 1.2rem; 
+    font-weight: 500;
+    color: #34495e; 
+    margin-top: 0;
+    margin-bottom: 0.8rem; 
+    padding-bottom: 0.5rem; 
+    border-bottom: 1px dashed #ced4da;
+}
+.reconciliation-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: 1.2rem; 
+}
+
+/* Payment Modal Specific Styles */
+#payment-modal .modal-content.payment-modal-content {
+    max-width: 500px; 
+    padding: 1.8rem; 
+    border-radius: 12px; 
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12); 
+}
+
+#payment-modal-title.payment-modal-header-title {
+    font-size: 1.5rem; 
+    margin-bottom: 1.2rem; 
+    text-align: center;
+    font-weight: 600;
+    color: #344054; 
+}
+
+#payment-modal .payment-section {
+    margin-bottom: 0.8rem; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0; 
+    border-bottom: 1px solid #e5e7eb; 
+}
+#payment-modal .payment-section:last-of-type {
+    border-bottom: none;
+}
+
+#payment-modal .payment-section label {
+    font-weight: 500;
+    color: #4b5563; 
+    flex-basis: 48%; 
+    text-align: left;
+    font-size: 1rem; 
+}
+
+#payment-modal #payment-modal-total-amount-display,
+#payment-modal #payment-modal-change-amount-display {
+    font-size: 1.6rem; 
+    font-weight: 700;
+    color: #1f2937; 
+    flex-basis: 48%; 
+    text-align: right;
+    background-color: transparent !important; 
+    border: none !important;
+    padding: 0 !important;
+}
+
+#payment-modal #payment-amount-received {
+    flex-grow: 1; 
+    text-align: right;
+    padding: 0.7rem 0.9rem; 
+    font-size: 1.5rem; 
+    border-radius: 8px;
+    border: 1px solid #d1d5db; 
+    height: 48px; 
+    box-sizing: border-box;
+    width: 100%; 
+}
+#payment-modal .amount-received-section > div:last-child { 
+    flex-basis: 48%;
+    display: flex;
+}
+
+#payment-modal .quick-pay-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem; 
+    justify-content: center;
+    margin: 1rem 0; 
+}
+
+#payment-modal .quick-pay-button {
+    padding: 0.6rem 1rem; 
+    font-size: 0.9rem;
+    background-color: #f3f4f6; 
+    border: 1px solid #e5e7eb;
+    border-radius: 6px; 
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    font-weight: 500;
+    color: #374151; 
+}
+#payment-modal .quick-pay-button:hover {
+    background-color: #e5e7eb;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+}
+#payment-modal .quick-pay-button.exact-amount-btn {
+    background-color: #dbeafe; 
+    border-color: #bfdbfe;
+    color: #1e40af; 
+}
+
+#payment-modal #payment-modal-error.error-message {
+    color: #ef4444; 
+    font-size: 0.875rem;
+    margin-top: 0

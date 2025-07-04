@@ -1,0 +1,269 @@
+
+{
+  "appSettings": {
+    "mainAppName": "Arka Elektronike PRO",
+    "mainAppLogoUrl": null,
+    "mainAppAddress": "Tiranë, Shqipëri",
+    "mainAppNipt": "M12345678X",
+    "mainAppBankName": "Banka Kombëtare Tregtare",
+    "mainAppBankAccountNumber": "AL90205111111111111111111111",
+    "mainAppIban": "AL90205111111111111111111111",
+    "mainAppSwift": "NCBAALTX",
+    "loginShowcaseTitlePrefix": "Mirë se vini në",
+    "loginShowcaseSubtitle": "Zgjidhja juaj e plotë për menaxhimin e biznesit."
+  },
+  "businesses": [
+    {
+      "id": "biz-test1",
+      "name": "Biznesi Test",
+      "logoUrl": null,
+      "isActive": true,
+      "subscriptionPackageId": "SUB-001",
+      "subscriptionActivationCode": "ACT-BIZ--1-TEST",
+      "subscriptionEndDate": 1761499200000,
+      "fiscalYear": 2024,
+      "lastClosedPeriodEndDate": "2023-12-31",
+      "invoiceIdSeed": 1,
+      "purchaseInvoiceIdSeed": 1,
+      "returnPurchaseInvoiceIdSeed": 1,
+      "outgoingPaymentIdSeed": 1,
+      "incomingPaymentIdSeed": 1,
+      "localSaleInvoiceIdSeed": 1,
+      "salesReturnInvoiceIdSeed": 1,
+      "creditNoteIdSeed": 1,
+      "debitNoteIdSeed": 1,
+      "productionOrderIdSeed": 1,
+      "payrollEntryIdSeed": 1,
+      "defaultCustomerId": "cust-default"
+    }
+  ],
+  "subscriptionPackages": [
+    {
+      "id": "SUB-001",
+      "name": "Pako Premium",
+      "price": 0,
+      "durationYears": 1,
+      "features": [
+        "Menaxhim i plotë i Inventarit",
+        "Raporte të Avancuara",
+        "Moduli i Prodhimit",
+        "Menaxhim i Klientëve dhe Furnitorëve",
+        "Të gjitha veçoritë"
+      ],
+      "grantsAllAccess": true,
+      "allowedViews": []
+    }
+  ],
+  "managerMenuConfig": [
+    { "id": "cat_dashboard", "name": "Përmbledhje", "icon": "📊", "order": 1, "defaultOpen": true, "items": [
+      { "id": "item_dashboard", "name": "Paneli Kryesor", "icon": "🏠", "dataView": "dashboard", "order": 1}
+    ]},
+    { "id": "cat_actions", "name": "Veprimet Ditore", "icon": "⚙️", "order": 2, "defaultOpen": false, "items": [
+      { "id": "item_actions", "name": "Veprimet e Arkës", "icon": "🛠️", "dataView": "actions", "order": 1},
+      { "id": "item_todays_sales", "name": "Shitjet e Sotme", "icon": "🛒", "dataView": "todays_sales", "order": 2}
+    ]},
+    { "id": "cat_financial_management", "name": "Financa", "icon": "💰", "order": 3, "defaultOpen": false, "items": [
+      { "id": "item_outgoing_payments", "name": "Pagesat Dalëse", "icon": "💸", "dataView": "outgoing_payments", "order": 1 },
+      { "id": "item_incoming_payments", "name": "Pagesat Hyrëse", "icon": "🪙", "dataView": "incoming_payments", "order": 2 },
+      { "id": "item_initial_balances", "name": "Saldot Fillestare", "icon": "⚖️", "dataView": "initial_balances", "order": 3 },
+      { "id": "item_credit_notes", "name": "Nota Krediti (Shitje)", "icon": "📉", "dataView": "credit_notes", "order": 4 },
+      { "id": "item_debit_notes", "name": "Nota Debiti (Blerje)", "icon": "📈", "dataView": "debit_notes", "order": 5 }
+    ]},
+    { "id": "cat_accounting", "name": "Kontabiliteti", "icon": "🧾", "order": 4, "defaultOpen": false, "items": [
+      { "id": "item_chart_of_accounts", "name": "Plani Kontabël", "icon": "📋", "dataView": "chart_of_accounts", "order": 1 },
+      { "id": "item_general_ledger", "name": "Libri i Përgjithshëm", "icon": "📖", "dataView": "general_ledger", "order": 2 },
+      { "id": "item_balance_sheet", "name": "Bilanci", "icon": "🏛️", "dataView": "balance_sheet", "order": 3 },
+      { "id": "item_profit_loss", "name": "Pasqyra e A/SH (P&L)", "icon": "⚖️", "dataView": "profit_and_loss", "order": 4 },
+      { "id": "item_trial_balance", "name": "Bilanci Provë", "icon": "📊", "dataView": "trialBalance", "order": 5 },
+      { "id": "item_vat_report", "name": "Raporti i TVSH-së", "icon": "％", "dataView": "vatReport", "order": 6 },
+      { "id": "item_account_ledger", "name": "Kartela e Llogarisë", "icon": "📒", "dataView": "accountLedger", "order": 7 },
+      { "id": "item_accounting_settings", "name": "Cilësimet Kontabël", "icon": "🔧", "dataView": "accounting_settings", "order": 8 },
+      { "id": "item_period_closing", "name": "Mbyllja e Periudhës Fiskale", "icon": "🔐", "dataView": "period_closing", "order": 9 }
+    ]},
+    { "id": "cat_inventory_management", "name": "Inventari & Produktet", "icon": "📦", "order": 5, "defaultOpen": false, "items": [
+      { "id": "item_product_management", "name": "Menaxhimi i Produkteve", "icon": "📝", "dataView": "product_management", "order": 1},
+      { "id": "item_category_management", "name": "Menaxhimi i Kategorive", "icon": "🗂️", "dataView": "category_management", "order": 2},
+      { "id": "item_item_type_management", "name": "Menaxhimi i Llojeve", "icon": "🏷️", "dataView": "item_type_management", "order": 3},
+      { "id": "item_deal_management", "name": "Menaxhimi i Ofertave", "icon": "🎉", "dataView": "deal_management", "order": 4},
+      { "id": "item_stock_overview", "name": "Gjendja e Stoqeve", "icon": "📊", "dataView": "stock_overview", "order": 5},
+      { "id": "item_item_ledger", "name": "Kartela e Artikullit", "icon": "📒", "dataView": "item_ledger", "order": 6}
+    ]},
+    { "id": "cat_purchases_management", "name": "Blerjet", "icon": "🛍️", "order": 6, "defaultOpen": false, "items": [
+      { "id": "item_local_purchases", "name": "Blerjet Vendore", "icon": "🛒", "dataView": "local_purchases", "order": 1 },
+      { "id": "item_add_local_purchase", "name": "Shto Blerje Vendore", "icon": "➕", "dataView": "add_local_purchase", "order": 2 },
+      { "id": "item_return_purchases_list", "name": "Kthimet e Blerjeve", "icon": "↩️", "dataView": "return_purchases_list", "order": 3 },
+      { "id": "item_add_return_purchase", "name": "Shto Kthim Blerjeje", "icon": "➕↩️", "dataView": "add_return_purchase", "order": 4 }
+    ]},
+     { "id": "cat_sales_management", "name": "Shitjet (Faturim)", "icon": "🧾", "order": 7, "defaultOpen": false, "items": [
+      { "id": "item_local_sales_management", "name": "Faturat e Shitjes", "icon": "🧾", "dataView": "local_sales_management", "order": 1 },
+      { "id": "item_add_local_sale", "name": "Shto Faturë Shitje", "icon": "➕🧾", "dataView": "add_local_sale", "order": 2 },
+      { "id": "item_sales_returns_list", "name": "Kthimet e Shitjeve", "icon": "↩️🧾", "dataView": "sales_returns_list", "order": 3 },
+      { "id": "item_add_sales_return", "name": "Shto Kthim Shitjeje", "icon": "➕↩️🧾", "dataView": "add_sales_return", "order": 4 }
+    ]},
+    { "id": "cat_crm_management", "name": "Klientët & Furnitorët", "icon": "👥", "order": 8, "defaultOpen": false, "items": [
+      { "id": "item_customer_management", "name": "Menaxhimi i Blerësve", "icon": "🧑‍💼", "dataView": "customer_management", "order": 1},
+      { "id": "item_customer_ledger", "name": "Kartela e Blerësit", "icon": "📒", "dataView": "customer_ledger", "order": 2},
+      { "id": "item_customer_balances", "name": "Salldot e Blerësve", "icon": "💰", "dataView": "customer_balances", "order": 3},
+      { "id": "item_supplier_management", "name": "Menaxhimi i Furnitorëve", "icon": "🚚", "dataView": "supplier_management", "order": 4},
+      { "id": "item_supplier_ledger", "name": "Kartela e Furnitorit", "icon": "📒", "dataView": "supplier_ledger", "order": 5},
+      { "id": "item_supplier_balances", "name": "Salldot e Furnitorëve", "icon": "💰", "dataView": "supplier_balances", "order": 6}
+    ]},
+    { "id": "cat_hr", "name": "Burimet Njerëzore", "icon": "🧑‍🤝‍🧑", "order": 9, "defaultOpen": false, "items": [
+        { "id": "item_hr_management", "name": "Menaxhimi i Punonjësve", "icon": "👥", "dataView": "hr_management", "order": 1 },
+        { "id": "item_hr_payroll", "name": "Menaxhimi i Pagave", "icon": "💶", "dataView": "payroll_management", "order": 2 },
+        { "id": "item_hr_schedule_management", "name": "Menaxhimi i Orarit të Punës", "icon": "🗓️", "dataView": "hr_schedule_management", "order": 3 },
+        { "id": "item_hr_time_tracking", "name": "Regjistrimi i Hyrje/Daljes", "icon": "⏰", "dataView": "hr_time_tracking", "order": 4 },
+        { "id": "item_hr_leave_overtime", "name": "Pushimet & Orët Shtesë", "icon": "🏝️", "dataView": "hr_leave_overtime", "order": 5 },
+        { "id": "item_hr_holidays", "name": "Kalendari i Festave Zyrtare", "icon": "🎉", "dataView": "hr_holidays", "order": 6 }
+    ]},
+    { "id": "cat_production", "name": "Prodhimi", "icon": "🏭", "order": 10, "defaultOpen": false, "items": [
+      { "id": "item_production_stages", "name": "Menaxhimi i Hapeve të Prodhimit", "icon": "🧱", "dataView": "production_stages", "order": 1 },
+      { "id": "item_production_routings", "name": "Proceset Teknologjike (Routings)", "icon": "📜", "dataView": "production_routings", "order": 2 },
+      { "id": "item_recipe_management", "name": "Menaxhimi i Recetave (BOM)", "icon": "📋", "dataView": "recipe_management", "order": 3 },
+      { "id": "item_production_orders", "name": "Urdhërat e Prodhimit", "icon": "📦", "dataView": "production_orders", "order": 4 }
+    ]},
+    { "id": "cat_reports", "name": "Raportet", "icon": "📈", "order": 11, "defaultOpen": false, "items": [
+      { "id": "item_sales_reports", "name": "Raportet e Shitjeve", "icon": "📊", "dataView": "sales_reports", "order": 1},
+      { "id": "item_purchases_reports", "name": "Raportet e Blerjeve", "icon": "🛍️", "dataView": "purchases_reports", "order": 2},
+      { "id": "item_production_reports", "name": "Raportet e Prodhimit", "icon": "🏭", "dataView": "production_reports", "order": 3},
+      { "id": "item_returns_reports", "name": "Raportet e Kthimeve", "icon": "↩️", "dataView": "returns_reports", "order": 4},
+      { "id": "item_notes_reports", "name": "Raportet e Notave", "icon": "📝", "dataView": "notes_reports", "order": 5},
+      { "id": "item_cash_reports", "name": "Raportet e Arkës", "icon": "💰", "dataView": "cash_reports", "order": 6},
+      { "id": "item_logs", "name": "Regjistrat e Sistemit", "icon": "📋", "dataView": "logs", "order": 7}
+    ]},
+    { "id": "cat_settings_management", "name": "Cilësimet & Administrimi", "icon": "🔧", "order": 12, "defaultOpen": false, "items": [
+      { "id": "item_user_management", "name": "Menaxhimi i Përdoruesve", "icon": "👥", "dataView": "user_management", "order": 1 },
+      { "id": "item_group_management", "name": "Menaxhimi i Grupeve", "icon": "🧑‍🤝‍🧑", "dataView": "group_management", "order": 2 },
+      { "id": "item_data_management", "name": "Menaxhimi i të Dhënave", "icon": "💾", "dataView": "data_management", "order": 3 },
+      { "id": "item_subscription", "name": "Abonimi", "icon": "💳", "dataView": "subscription", "order": 4 }
+    ]}
+  ],
+  "privileges": [
+    { "id": "dashboard", "name": "Paneli Kryesor", "category": "Përmbledhje", "description": "Lejon shikimin e panelit kryesor me statistika."},
+    { "id": "actions", "name": "Veprimet e Arkës", "category": "Veprimet Ditore", "description": "Lejon hapjen, mbylljen dhe menaxhimin e arkave ditore."},
+    { "id": "todays_sales", "name": "Shitjet e Sotme", "category": "Veprimet Ditore", "description": "Lejon shikimin e faturave të shitjes për ditën aktuale."},
+    { "id": "outgoing_payments", "name": "Pagesat Dalëse", "category": "Financa", "description": "Lejon menaxhimin e pagesave dalëse ndaj furnitorëve."},
+    { "id": "incoming_payments", "name": "Pagesat Hyrëse", "category": "Financa", "description": "Lejon menaxhimin e pagesave hyrëse nga klientët."},
+    { "id": "initial_balances", "name": "Saldot Fillestare", "category": "Financa", "description": "Lejon menaxhimin e saldove fillestare për artikuj, klientë dhe furnitorë."},
+    { "id": "credit_notes", "name": "Nota Krediti (Shitje)", "category": "Financa", "description": "Lejon krijimin dhe menaxhimin e notave të kreditit për klientët."},
+    { "id": "debit_notes", "name": "Nota Debiti (Blerje)", "category": "Financa", "description": "Lejon krijimin dhe menaxhimin e notave të debitit për furnitorët."},
+    { "id": "chart_of_accounts", "name": "Plani Kontabël", "category": "Kontabiliteti", "description": "Lejon menaxhimin e planit kontabël të biznesit."},
+    { "id": "general_ledger", "name": "Libri i Përgjithshëm", "category": "Kontabiliteti", "description": "Lejon shikimin dhe shtimin e veprimeve në librin e madh."},
+    { "id": "balance_sheet", "name": "Bilanci", "category": "Kontabiliteti", "description": "Lejon gjenerimin e raportit të bilancit."},
+    { "id": "accounting_settings", "name": "Cilësimet Kontabël", "category": "Kontabiliteti", "description": "Lejon konfigurimin e llogarive default për automatizim."},
+    { "id": "product_management", "name": "Menaxhimi i Produkteve", "category": "Inventari & Produktet", "description": "Lejon shtimin, modifikimin dhe fshirjen e produkteve."},
+    { "id": "category_management", "name": "Menaxhimi i Kategorive", "category": "Inventari & Produktet", "description": "Lejon menaxhimin e kategorive të produkteve."},
+    { "id": "item_type_management", "name": "Menaxhimi i Llojeve", "category": "Inventari & Produktet", "description": "Lejon menaxhimin e llojeve të artikujve (p.sh., Lëndë e Parë, Produkt Final)."},
+    { "id": "deal_management", "name": "Menaxhimi i Ofertave", "category": "Inventari & Produktet", "description": "Lejon krijimin dhe menaxhimin e ofertave speciale."},
+    { "id": "stock_overview", "name": "Gjendja e Stoqeve", "category": "Inventari & Produktet", "description": "Lejon shikimin e gjendjes së stoqeve për të gjithë artikujt."},
+    { "id": "item_ledger", "name": "Kartela e Artikullit", "category": "Inventari & Produktet", "description": "Lejon shikimin e lëvizjeve historike për një artikull."},
+    { "id": "local_purchases", "name": "Blerjet Vendore", "category": "Blerjet", "description": "Lejon shikimin e faturave të blerjeve vendore."},
+    { "id": "add_local_purchase", "name": "Shto Blerje Vendore", "category": "Blerjet", "description": "Lejon regjistrimin e faturave të reja të blerjeve vendore."},
+    { "id": "return_purchases_list", "name": "Kthimet e Blerjeve", "category": "Blerjet", "description": "Lejon shikimin e faturave të kthimeve të blerjeve."},
+    { "id": "add_return_purchase", "name": "Shto Kthim Blerjeje", "category": "Blerjet", "description": "Lejon regjistrimin e kthimeve të reja të blerjeve."},
+    { "id": "local_sales_management", "name": "Faturat e Shitjes", "category": "Shitjet (Faturim)", "description": "Lejon shikimin e faturave të shitjes vendore."},
+    { "id": "add_local_sale", "name": "Shto Faturë Shitje", "category": "Shitjet (Faturim)", "description": "Lejon krijimin e faturave të reja të shitjes vendore."},
+    { "id": "sales_returns_list", "name": "Kthimet e Shitjeve", "category": "Shitjet (Faturim)", "description": "Lejon shikimin e faturave të kthimeve të shitjeve."},
+    { "id": "add_sales_return", "name": "Shto Kthim Shitjeje", "category": "Shitjet (Faturim)", "description": "Lejon regjistrimin e kthimeve të reja të shitjeve."},
+    { "id": "customer_management", "name": "Menaxhimi i Blerësve", "category": "Klientët & Furnitorët", "description": "Lejon menaxhimin e të dhënave të blerësve."},
+    { "id": "customer_ledger", "name": "Kartela e Blerësit", "category": "Klientët & Furnitorët", "description": "Lejon shikimin e kartelës së lëvizjeve për një blerës."},
+    { "id": "customer_balances", "name": "Salldot e Blerësve", "category": "Klientët & Furnitorët", "description": "Lejon shikimin e saldove aktuale për të gjithë blerësit."},
+    { "id": "supplier_management", "name": "Menaxhimi i Furnitorëve", "category": "Klientët & Furnitorët", "description": "Lejon menaxhimin e të dhënave të furnitorëve."},
+    { "id": "supplier_ledger", "name": "Kartela e Furnitorit", "category": "Klientët & Furnitorët", "description": "Lejon shikimin e kartelës së lëvizjeve për një furnitor."},
+    { "id": "supplier_balances", "name": "Salldot e Furnitorëve", "category": "Klientët & Furnitorët", "description": "Lejon shikimin e saldove aktuale për të gjithë furnitorët."},
+    { "id": "hr_management", "name": "Menaxhimi i Punonjësve", "category": "Burimet Njerëzore", "description": "Lejon menaxhimin e punonjësve dhe të dhënat e tyre."},
+    { "id": "payroll_management", "name": "Menaxhimi i Pagave", "category": "Burimet Njerëzore", "description": "Lejon gjenerimin dhe menaxhimin e listëpagesave."},
+    { "id": "hr_schedule_management", "name": "Menaxhimi i Orarit të Punës", "category": "Burimet Njerëzore", "description": "Lejon menaxhimin e orareve të punës."},
+    { "id": "hr_time_tracking", "name": "Regjistrimi Hyrje/Dalje", "category": "Burimet Njerëzore", "description": "Lejon regjistrimin manual të hyrje-daljeve."},
+    { "id": "hr_leave_overtime", "name": "Pushimet & Orët Shtesë", "category": "Burimet Njerëzore", "description": "Lejon menaxhimin e pushimeve dhe orëve shtesë."},
+    { "id": "hr_holidays", "name": "Kalendari i Festave Zyrtare", "category": "Burimet Njerëzore", "description": "Shfaq kalendarin e festave zyrtare."},
+    { "id": "production_stages", "name": "Menaxhimi i Hapeve të Prodhimit", "category": "Prodhimi", "description": "Lejon menaxhimin e fazave të prodhimit."},
+    { "id": "production_routings", "name": "Proceset Teknologjike (Routings)", "category": "Prodhimi", "description": "Lejon menaxhimin e proceseve teknologjike."},
+    { "id": "recipe_management", "name": "Menaxhimi i Recetave (BOM)", "category": "Prodhimi", "description": "Lejon krijimin dhe menaxhimin e recetave për produktet finale."},
+    { "id": "production_orders", "name": "Urdhërat e Prodhimit", "category": "Prodhimi", "description": "Lejon krijimin dhe ndjekjen e urdhërave të prodhimit."},
+    { "id": "sales_reports", "name": "Raportet e Shitjeve", "category": "Raportet", "description": "Lejon aksesin në të gjitha raportet e shitjeve."},
+    { "id": "purchases_reports", "name": "Raportet e Blerjeve", "category": "Raportet", "description": "Lejon aksesin në të gjitha raportet e blerjeve."},
+    { "id": "production_reports", "name": "Raportet e Prodhimit", "category": "Raportet", "description": "Lejon aksesin në të gjitha raportet e prodhimit."},
+    { "id": "returns_reports", "name": "Raportet e Kthimeve", "category": "Raportet", "description": "Lejon aksesin në raportet e kthimeve të shitjeve dhe blerjeve."},
+    { "id": "notes_reports", "name": "Raportet e Notave", "category": "Raportet", "description": "Lejon aksesin në raportet e notave të kreditit dhe debitit."},
+    { "id": "cash_reports", "name": "Raportet e Arkës", "category": "Raportet", "description": "Lejon aksesin në raportet e arkës dhe barazimeve."},
+    { "id": "logs", "name": "Regjistrat e Sistemit", "category": "Raportet", "description": "Lejon aksesin në historikun e veprimeve të sistemit."},
+    { "id": "user_management", "name": "Menaxhimi i Përdoruesve", "category": "Cilësimet & Administrimi", "description": "Lejon shtimin dhe menaxhimin e llogarive të përdoruesve."},
+    { "id": "group_management", "name": "Menaxhimi i Grupeve", "category": "Cilësimet & Administrimi", "description": "Lejon menaxhimin e grupeve dhe lejeve të tyre."},
+    { "id": "data_management", "name": "Menaxhimi i të Dhënave", "category": "Cilësimet & Administrimi", "description": "Lejon kryerjen e backup-it të të dhënave."},
+    { "id": "subscription", "name": "Abonimi", "category": "Cilësimet & Administrimi", "description": "Lejon shikimin dhe menaxhimin e abonimit të biznesit."}
+  ],
+  "groupPrivileges": [],
+  "users": [
+    {
+      "id": "user-adil",
+      "businessId": "biz-test1",
+      "username": "adil",
+      "passwordHash": "bWVuYXhoZXIxMjM=",
+      "role": "menaxher",
+      "groupId": "grp-admin"
+    },
+    {
+      "id": "user-jeta",
+      "businessId": "biz-test1",
+      "username": "jeta",
+      "passwordHash": "MTIz",
+      "role": "shites"
+    }
+  ],
+  "groups": [
+    {
+      "id": "grp-admin",
+      "businessId": "biz-test1",
+      "name": "Administrator",
+      "description": "Ka akses të plotë në të gjitha modulet."
+    },
+    {
+      "id": "grp-shites",
+      "businessId": "biz-test1",
+      "name": "Shitës",
+      "description": "Ka akses vetëm në modulin e shitjes (POS)."
+    }
+  ],
+  "employees": [],
+  "timeLogs": [],
+  "leaveRequests": [],
+  "overtimeEntries": [],
+  "payrollEntries": [],
+  "products": [],
+  "categories": [],
+  "itemTypes": [],
+  "deals": [],
+  "customers": [],
+  "suppliers": [],
+  "businessDetails": [],
+  "dailyCashLog": [],
+  "salesLog": [],
+  "clearedSalesLog": [],
+  "purchaseInvoices": [],
+  "returnPurchaseInvoices": [],
+  "salesReturnInvoices": [],
+  "outgoingPayments": [],
+  "incomingPayments": [],
+  "localSalesInvoices": [],
+  "creditNotes": [],
+  "debitNotes": [],
+  "recipes": [],
+  "productionOrders": [],
+  "productionStages": [],
+  "productionRoutings": [],
+  "accounts": [
+    {
+      "id": "acc-retained-earnings",
+      "businessId": "biz-test1",
+      "accountNumber": "3200",
+      "name": "Fitimi i Mbartur",
+      "type": "Equity",
+      "description": "Llogaria ku transferohet fitimi ose humbja neto në fund të periudhës.",
+      "isSystemAccount": true,
+      "balance": 0
+    }
+  ],
+  "journalEntries": [],
+  "accountingSettings": []
+}

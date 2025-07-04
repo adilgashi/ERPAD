@@ -1,0 +1,394 @@
+/* print.css */
+@page {
+    size: A4;
+    margin: 1.8cm 1.5cm; /* Top/Bottom: 1.8cm, Left/Right: 1.5cm */
+}
+
+body.print-active,
+body.print-active .printable-area,
+body.print-active .printable-invoice-area,
+body.print-active #print-preview-content {
+    font-family: 'Arial', 'Helvetica Neue', sans-serif; /* More standard print fonts */
+    font-size: 9pt; /* Standard base size for print */
+    line-height: 1.4; /* Slightly increased for readability */
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+/* Hide non-printable elements */
+body.print-active #app-root > header.app-header,
+body.print-active nav#manager-sidebar,
+body.print-active nav#super-admin-sidebar,
+body.print-active .modal .close-button,
+body.print-active .modal-actions button:not(#actual-print-from-preview-btn),
+body.print-active .report-actions-bar:not(.within-print-preview),
+body.print-active .filter-container,
+body.print-active .product-search-container,
+body.print-active #dynamic-report-filters-area,
+body.print-active .report-view-header #back-to-reports-list-btn,
+body.print-active .btn:not(.printable-content-button):not(#actual-print-from-preview-btn),
+body.print-active .no-print,
+body.print-active .action-grid-button,
+body.print-active .form-actions-group:not(.print-include-actions),
+body.print-active .sidebar-main-actions,
+body.print-active #super-admin-sidebar-logout-btn,
+body.print-active #logout-btn,
+body.print-active #seller-workspace #product-catalog-section,
+body.print-active #seller-workspace #current-sale-section .current-sale-header-controls .sale-actions,
+body.print-active #auth-view,
+body.print-active #manager-panel-staging-area,
+body.print-active #seller-cash-status-container,
+body.print-active #user-session-controls .btn-danger,
+body.print-active .modal:not(#print-preview-modal):not(#seller-shift-sales-modal):not(#local-purchase-details-modal):not(#return-purchase-details-modal):not(#outgoing-payment-details-modal) {
+    display: none !important;
+}
+
+/* Ensure the main content area for printing is visible and properly sized */
+body.print-active #app-root,
+body.print-active main.app-main,
+body.print-active #print-preview-modal,
+body.print-active #print-preview-content,
+body.print-active .printable-area,
+body.print-active .printable-invoice-area,
+body.print-active .report-table-container,
+body.print-active .report-content,
+body.print-active #seller-shift-sales-content,
+body.print-active #lp-details-printable-content,
+body.print-active #rp-details-printable-content,
+body.print-active #op-details-printable-content {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #ffffff !important;
+}
+
+/* If print preview modal is directly printed, ensure its content is primary */
+body.print-active #print-preview-modal {
+    position: static !important;
+}
+body.print-active #print-preview-modal .modal-content {
+     box-shadow: none !important;
+     border: none !important;
+     padding: 0 !important;
+     margin: 0 !important;
+     max-width: 100% !important;
+     background-color: transparent !important;
+}
+body.print-active #print-preview-modal .modal-actions {
+    display: none !important; /* Hide actions within the preview when printing itself */
+}
+
+
+/* --- General Document Structure for Printing --- */
+.printable-area, .printable-invoice-area {
+    padding: 0;
+}
+
+.print-header-info, .invoice-header-print {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1.5px solid #333;
+    padding-bottom: 8mm;
+    margin-bottom: 10mm;
+}
+
+.print-header-info .report-logo, .invoice-header-print .invoice-logo {
+    flex-shrink: 0;
+    margin-right: 8mm;
+    max-width: 40mm; /* Control logo width */
+}
+.print-header-info .report-logo img, .invoice-header-print .invoice-logo img {
+    max-height: 20mm; /* Approx 75px, good for A4 */
+    width: auto;
+    object-fit: contain;
+}
+
+.print-header-info .report-business-details, .invoice-header-print .invoice-business-details {
+    flex-grow: 1;
+    text-align: left;
+}
+.print-header-info .report-business-name, .invoice-header-print .invoice-business-details h2 {
+    font-size: 16pt; /* Prominent business name */
+    margin: 0 0 2mm 0;
+    font-weight: bold;
+    color: #1A237E; /* Dark blue, professional */
+}
+.print-header-info .report-business-detail, .invoice-header-print .invoice-business-details p {
+    font-size: 8.5pt; /* Smaller for details */
+    margin: 0.8mm 0;
+    line-height: 1.3;
+}
+
+.print-header-info .report-meta-info, .invoice-header-print .invoice-meta {
+    text-align: right;
+    flex-shrink: 0;
+    min-width: 60mm; /* Ensure space for invoice number/date */
+}
+.print-header-info .report-meta-info h1, .invoice-header-print .invoice-meta h1 { /* FATURË, KARTELË, etc. */
+    font-size: 18pt;
+    color: #333;
+    margin: 0 0 3mm 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.print-header-info .report-meta-info p, .invoice-header-print .invoice-meta p {
+    font-size: 9pt;
+    margin: 1mm 0;
+    line-height: 1.3;
+}
+.print-header-info .report-meta-info p strong, .invoice-header-print .invoice-meta p strong {
+    font-weight: 600; /* Use 600 for a slightly less heavy bold */
+}
+
+h3.report-main-title, h3.ledger-main-title, h3.section-title-print {
+    font-size: 12pt;
+    text-align: center;
+    margin-bottom: 3mm;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #2c3e50;
+    padding-bottom: 1mm;
+    border-bottom: 1px solid #ccc;
+}
+p.report-period, p.ledger-period {
+    font-size: 9.5pt;
+    text-align: center;
+    margin-bottom: 7mm;
+}
+p.ledger-subject-info { /* For displaying Product: Name (Code) or Supplier: Name (Code) */
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 1mm !important; /* Override default paragraph margin if needed */
+    font-size: 10pt;
+}
+
+
+/* --- Table Styling --- */
+table.admin-table, table.invoice-items-table, table.item-ledger-table, table.supplier-ledger-table, table.customer-ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6mm;
+    font-size: 8.5pt; /* Smaller for dense tables */
+    table-layout: auto; /* Allow table to adjust column widths based on content */
+}
+table.admin-table th, table.admin-table td,
+table.invoice-items-table th, table.invoice-items-table td,
+table.item-ledger-table th, table.item-ledger-table td,
+table.supplier-ledger-table th, table.supplier-ledger-table td,
+table.customer-ledger-table th, table.customer-ledger-table td {
+    border: 1px solid #666; /* Slightly darker, clear borders */
+    padding: 2mm 2.5mm; /* More padding for readability */
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+table.admin-table th, table.invoice-items-table th,
+table.item-ledger-table th, table.supplier-ledger-table th, table.customer-ledger-table th {
+    background-color: #DFE3E8 !important; /* Professional light grey */
+    color: #172B4D !important; /* Dark blue-grey text for contrast */
+    font-weight: 600; /* Semibold for headers */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-transform: uppercase; /* Uppercase headers for formality */
+    font-size: 8pt; /* Slightly smaller header font */
+}
+
+/* Alignments */
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+.strong, strong { font-weight: bold !important; }
+
+/* Item lists within tables */
+.item-list ul {
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    font-size: 8pt !important;
+}
+.item-list li {
+    margin-bottom: 0.5mm !important;
+    padding: 0 !important;
+    white-space: normal;
+}
+
+/* Summary section for reports */
+.summary, .report-summary, .invoice-summary-section {
+    margin-top: 6mm;
+    padding-top: 4mm;
+    border-top: 1px solid #555;
+    page-break-before: auto;
+}
+.summary p, .report-summary p, .invoice-summary-section p {
+    font-size: 9pt;
+    margin: 1.5mm 0;
+    font-weight: 500;
+}
+.summary strong, .report-summary strong, .invoice-summary-section strong {
+    font-weight: bold;
+}
+
+/* Financial Totals (subtotal, VAT, total) specific styling */
+table.invoice-items-table tfoot td {
+    font-weight: bold !important;
+    background-color: #F4F6F8 !important; /* Very light grey for footer totals */
+    border-top: 1.5px solid #000 !important; /* Stronger separator for totals */
+    font-size: 9pt;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+table.invoice-items-table tfoot tr:last-child td { /* Grand Total row */
+    font-size: 10pt;
+    color: #003366; /* Dark blue for grand total */
+}
+
+
+/* Footer section for reports (generation time, signatures) */
+.report-footer, .invoice-print-footer {
+    margin-top: 12mm;
+    padding-top: 5mm;
+    border-top: 1px solid #ccc;
+    font-size: 8pt;
+    color: #333;
+}
+.generation-time {
+    text-align: right;
+    margin-bottom: 10mm;
+    font-style: italic;
+}
+
+/* --- Invoice Specific Styles --- */
+.invoice-parties {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8mm;
+    font-size: 9pt;
+}
+.invoice-parties > div { /* .invoice-supplier-details, .invoice-customer-details, etc. */
+    width: 48%;
+    padding: 2mm;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+}
+.invoice-parties h3 {
+    font-size: 10pt;
+    margin: 0 0 2mm 0;
+    padding-bottom: 1mm;
+    font-weight: bold;
+    color: #1A237E;
+    border-bottom: 1px dotted #999;
+}
+.invoice-parties p {
+    margin: 1mm 0;
+    line-height: 1.3;
+}
+
+
+.notes-section {
+    margin: 6mm 0;
+    padding: 3mm;
+    border: 1px dashed #bbb;
+    font-size: 8pt;
+    background-color: #f9f9f9 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+.notes-title {
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1mm;
+    color: #2c3e50;
+}
+.notes-content {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.invoice-summary-details {
+    margin-top: 6mm;
+    padding-top: 3mm;
+    border-top: 1px dashed #aaa;
+    font-size: 9pt;
+}
+.invoice-summary-details p {
+    text-align: right;
+    margin: 1mm 0;
+}
+
+/* --- Payslip Specific Styles --- */
+.payslip-container { font-family: 'Segoe UI', sans-serif; color: #333; }
+.payslip-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
+.payslip-logo img { max-width: 150px; max-height: 70px; }
+.payslip-logo h2 { margin: 0; font-size: 1.5em; color: #333; }
+.payslip-company-details { text-align: right; font-size: 0.9em; line-height: 1.4; }
+.payslip-company-details p { margin: 0; }
+.payslip-title { text-align: center; font-size: 1.5em; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
+.payslip-employee-details { display: flex; justify-content: space-between; margin-bottom: 20px; background: #f9f9f9; padding: 10px; border-radius: 5px; border: 1px solid #eee; }
+.payslip-employee-details p { margin: 2px 0; }
+.payslip-body { display: flex; gap: 20px; justify-content: space-between; page-break-inside: avoid;}
+.payslip-section { flex: 1; }
+.payslip-section h4 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px; font-size: 1.1em; }
+.payslip-section table { width: 100%; border-collapse: collapse; }
+.payslip-section td { padding: 8px 5px; border-bottom: 1px dotted #eee; }
+.payslip-section .total-row td { font-weight: bold; background: #f0f0f0; border-top: 1px solid #ccc; border-bottom: none; }
+.payslip-summary { text-align: right; margin-top: 20px; padding-top: 10px; border-top: 2px solid #333; }
+.payslip-summary p { margin: 5px 0; }
+.payslip-summary span { font-size: 1.2em; font-weight: bold; }
+.payslip-summary .final-amount { font-size: 1.4em; color: #0056b3; }
+.payslip-footer { display: flex; justify-content: space-around; margin-top: 50px; page-break-before: auto; }
+.signature-area { border-top: 1px solid #333; width: 40%; text-align: center; padding-top: 5px; font-size: 0.8em; }
+.signature-area p { margin: 40px 0 0 0; }
+
+/* Signature and Stamp areas */
+.signatures-and-stamp-container { /* New wrapper */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align top */
+    margin-top: 15mm;
+    padding-top: 7mm;
+    border-top: 1px solid #777;
+}
+
+.stamp-area {
+    width: 30%; /* Example for a stamp area if three columns */
+    text-align: center;
+    align-self: flex-end; /* Align stamp area lower if desired */
+}
+.stamp-area p.stamp-label { /* Specific class for label */
+    font-size: 8.5pt;
+    margin-bottom: 2mm;
+}
+.stamp-box {
+    height: 25mm;
+    width: 40mm; /* Typical stamp size */
+    border: 1px solid #555;
+    margin: 1mm auto 0 auto; /* Center the box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7pt;
+    color: #aaa;
+    /* content: "Vula / Stamp"; Optionally */
+}
+
+
+.invoice-thank-you-message {
+    text-align: center;
+    margin-top: 10mm;
+    font-style: italic;
+    font-size: 7.5pt;
+    color: #555;
+}
+
+
+/* --- Page Break Control --- */
+table { 
+    page-break-inside: avoid; 
+}

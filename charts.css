@@ -1,0 +1,90 @@
+/* charts.css */
+
+/* General chart container styling */
+.chart-container {
+    width: 100%;
+    min-height: 200px; /* Minimum height for larger charts */
+    margin-top: 1rem; /* Space above chart container in widget */
+    padding: 10px; /* Padding around the canvas */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for chart area */
+    box-sizing: border-box;
+    position: relative; /* For Chart.js responsiveness */
+}
+
+/* Smaller chart container for widgets like "Today's Sales" */
+.chart-container.small-chart-container {
+    min-height: 120px; /* Reduced height for smaller charts */
+    padding: 5px;
+    margin-top: 0.5rem;
+}
+
+.chart-container canvas {
+    display: block;
+    width: 100% !important; /* Ensure canvas is responsive */
+    height: auto !important; /* Maintain aspect ratio if not overridden by Chart.js options */
+}
+
+/* Styling for the wrapper div if you choose to use chart-wrapper instead of directly styling the placeholder ID */
+.chart-wrapper {
+    width: 100%;
+    position: relative; /* Needed for Chart.js to maintain aspect ratio */
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 1rem;
+    box-sizing: border-box;
+}
+
+.chart-wrapper.small-chart-wrapper {
+    min-height: 120px; /* Example height for small charts */
+    max-height: 150px;
+}
+
+.chart-wrapper canvas {
+    display: block;
+    max-width: 100%;
+    height: auto; /* Default, Chart.js will override if maintainAspectRatio:false */
+}
+
+
+/* Placeholder for chart titles (if used outside of widget headers) */
+.chart-title {
+    text-align: center;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Fallback for .chart-placeholder-enhanced if it's still used somewhere or as a base */
+.chart-placeholder-enhanced {
+    border: 1px dashed #b0bec5;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #78909c;
+    font-style: italic;
+    border-radius: 10px;
+    background-color: #eceff1;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    padding: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.chart-placeholder-enhanced span:first-child {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #546e7a;
+}
+
+.chart-placeholder-enhanced:hover {
+    background-color: #e0e0e0;
+    border-color: #90a4ae;
+}

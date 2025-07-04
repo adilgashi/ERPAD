@@ -1,0 +1,97 @@
+
+/* Global Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent body/html from scrolling */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Modern font stack */
+    background-color: #eef2f7; /* Global background for a cleaner look */
+    color: #333; /* Default text color */
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+#app-root {
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style to visually hide accessible headings */
+#current-sale-heading,
+#product-catalog-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+
+.cash-value { /* General class for monetary values */
+    font-weight: 600;
+}
+.cash-value.positive { color: #16a34a; } /* Green for positive balances/profits */
+.cash-value.negative { color: #dc2626; } /* Red for negative balances/losses */
+.cash-value.zero { color: #343a40; } /* Default/neutral color for zero balance */
+
+.readonly-field {
+    background-color: #e9ecef;
+    opacity: 1; /* Ensure it's fully opaque */
+    cursor: not-allowed; /* Indicate it's not editable */
+    border-color: #ced4da;
+}
+.readonly-field:focus {
+    box-shadow: none; /* Remove focus shadow for readonly */
+    border-color: #ced4da; /* Keep border same on focus */
+}
+
+.info-message {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center;
+}
+.info-message.success:not(.header-status-message) {
+    background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc;
+}
+
+.info-message.error:not(.header-status-message) {
+    background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7;
+}
+.info-message.info:not(.header-status-message) {
+     background-color: #cff4fc; color: #055160; border: 1px solid #b6effb;
+}
+.info-message.secondary { /* New style for less prominent info messages */
+    background-color: #f8f9fa; /* Lighter background */
+    color: #5a6268; /* Softer text color */
+    border: 1px solid #e9ecef; /* Lighter border */
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+}
+
+.balance-interpretation-note {
+    text-align: left;
+    font-style: normal;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 2rem;
+    font-style: italic;
+    color: #6c757d;
+}
+    

@@ -1,0 +1,191 @@
+
+/* Tables */
+.table-responsive {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden; /* Default for most tables */
+    width: 100%;
+    min-height: 0; 
+}
+/* Specific for forms where horizontal scroll might be needed for item tables */
+.purchase-form-section .table-responsive,
+#manager-content-add_local_sale .table-responsive {
+    overflow-x: auto;
+}
+
+
+.pos-table, .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.pos-table th, .pos-table td,
+.admin-table th, .admin-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.pos-table th, .admin-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Ensure header stays above content when scrolling */
+}
+/* More specific sticky header for scrollable purchase form tables */
+.purchase-form-section > form .modal-section.table-section .table-responsive .admin-table.items-table th,
+#manager-content-add_local_sale > form .modal-section.table-section .table-responsive .admin-table.items-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    background-color: #e9ecef; /* Ensure background for sticky header */
+}
+
+
+.pos-table tbody tr:hover, .admin-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+.pos-table tbody tr.deal-row { 
+    background-color: #e6f7ff; 
+}
+.pos-table tbody tr.deal-row:hover {
+    background-color: #d0efff;
+}
+.deal-badge {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #17a2b8; 
+    border-radius: 0.25rem;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* Specific column alignments/widths for #product-table (Seller POS) */
+#product-table td:nth-child(2), /* Çmimi */
+#product-table td:nth-child(3) { /* Stoku/Info */
+    text-align: right;
+    white-space: nowrap;
+}
+#product-table th:nth-child(2),
+#product-table th:nth-child(3) {
+    text-align: right;
+}
+#product-table td:nth-child(4) { /* Veprim */
+    text-align: center;
+}
+#product-table th:nth-child(4) {
+    text-align: center;
+}
+
+/* Specific column widths for #product-list-manager-table (Manager Product List) */
+#product-list-manager-table th:nth-child(1), 
+#product-list-manager-table td:nth-child(1) { /* Kodi */
+    width: 10%;
+}
+#product-list-manager-table th:nth-child(2), 
+#product-list-manager-table td:nth-child(2) { /* Emri */
+    width: 30%;
+}
+#product-list-manager-table th:nth-child(3), 
+#product-list-manager-table td:nth-child(3) { /* Kategoria */
+    width: 20%;
+}
+#product-list-manager-table th:nth-child(4), 
+#product-list-manager-table td:nth-child(4) { /* Çmimi */
+    width: 15%;
+    text-align: right;
+}
+#product-list-manager-table th:nth-child(5), 
+#product-list-manager-table td:nth-child(5) { /* Stoku */
+    width: 10%;
+    text-align: right;
+}
+#product-list-manager-table th:nth-child(6) { /* Veprime, this was for 6 columns, product table has 8 now */
+    /* width: 15%; This might need adjustment if more columns are added */
+    text-align: center;
+}
+#product-list-manager-table td:nth-child(8) { /* Veprime for 8 columns */
+    text-align: center;
+}
+
+
+/* Table specific to purchase/local sale items on page forms */
+.purchase-form-section .admin-table.items-table,
+#manager-content-add_local_sale .admin-table.items-table {
+    font-size: 0.9rem;
+}
+.purchase-form-section .admin-table.items-table th,
+#manager-content-add_local_sale .admin-table.items-table th {
+    background-color: #e9ecef; 
+    color: #343a40;
+    padding: 0.75rem;
+}
+.purchase-form-section .admin-table.items-table td,
+#manager-content-add_local_sale .admin-table.items-table td {
+    padding: 0.6rem 0.75rem;
+    vertical-align: middle;
+}
+.purchase-form-section .admin-table.items-table .btn-danger.btn-sm,
+#manager-content-add_local_sale .admin-table.items-table .btn-danger.btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+.purchase-form-section .admin-table.items-table td input[type="number"],
+#manager-content-add_local_sale .admin-table.items-table td input[type="number"] {
+    width: 80px; 
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9em;
+    text-align: right;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 30px; 
+}
+.purchase-form-section .admin-table.items-table td input[type="number"]:focus,
+#manager-content-add_local_sale .admin-table.items-table td input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.15rem rgba(0,123,255,.2);
+}
+
+/* Enhanced table styles for reports */
+.report-table-container .pos-table th, /* More specific selector */
+.report-table-container .admin-table th { 
+    background-color: #e0e6ed; 
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 0.9rem 1rem;
+}
+.report-table-container .pos-table td, 
+.report-table-container .admin-table td { 
+    padding: 0.8rem 1rem; 
+    vertical-align: top; 
+}
+.report-table-container .pos-table tbody tr:nth-child(even),
+.report-table-container .admin-table tbody tr:nth-child(even) { 
+    background-color: #f8f9fa;
+}
+.report-table-container .pos-table tbody tr:hover,
+.report-table-container .admin-table tbody tr:hover { 
+    background-color: #eef1f3; 
+}
+
+/* Manager content section table styles (if different from general admin-table) */
+.manager-content-section .admin-table th {
+    /* These are largely covered by .admin-table th, but can be overridden */
+}
+.manager-content-section .admin-table td {
+    /* ... */
+}
+.manager-content-section .admin-table tbody tr:nth-child(even) {
+    /* ... */
+}
+.manager-content-section .admin-table tbody tr:hover {
+    /* ... */
+}
+    

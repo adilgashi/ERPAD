@@ -1,0 +1,269 @@
+/* Enhanced Dashboard Widget Cards */
+.dashboard-widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 1.5rem; 
+}
+
+.widget-card {
+    background-color: #ffffff;
+    padding: 1.25rem; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); 
+    border: 1px solid #e9ecef; 
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    display: flex;
+    flex-direction: column; 
+}
+.widget-card:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07); 
+}
+
+.widget-card-header {
+    display: flex;
+    align-items: center; 
+    gap: 0.6rem; 
+    margin-bottom: 0.75rem; 
+    padding-bottom: 0.5rem; 
+    border-bottom: 1px solid #f0f3f5; 
+}
+
+.widget-icon { 
+    font-size: 1.2rem; 
+    color: #5f6368; 
+    background-color: transparent; 
+    padding: 0.2rem;
+    border-radius: 6px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    min-width: 28px; 
+    min-height: 28px;
+}
+
+.widget-card-header h4 {
+    font-size: 1.05rem; 
+    color: #34495e; 
+    font-weight: 600;
+    margin: 0; 
+    flex-grow: 1;
+}
+
+.widget-card .large-stat {
+    font-size: 2rem; 
+    font-weight: 700;
+    color: #2c3e50; 
+    margin: 0.25rem 0 0.1rem 0; 
+    line-height: 1.2;
+    text-align: left; 
+}
+
+.widget-card .widget-label {
+    font-size: 0.875rem;
+    color: #5a6268;
+    line-height: 1.4;
+    margin-bottom: 0.1rem; 
+    font-weight: 500;
+}
+
+.widget-card p {
+    font-size: 0.875rem; 
+    color: #6c757d; 
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+}
+.widget-card p:last-of-type {
+    margin-bottom: 0;
+}
+.widget-card p strong { 
+    color: #343a40;
+    font-weight: 500; 
+}
+
+.widget-card #dashboard-today-sales-count,
+.widget-card #dashboard-overall-sales-count,
+.widget-card #dashboard-overall-purchases-count {
+    font-size: 0.8rem; 
+    color: #78909c; 
+    margin-top: 0.05rem; 
+}
+
+#widget-subscription-status #dashboard-subscription-status {
+    margin-top: 0.3rem; 
+}
+#widget-subscription-status #dashboard-subscription-status p {
+    margin-bottom: 0.4rem; 
+    font-size: 0.875rem;
+}
+#widget-subscription-status #dash-sub-status.status-badge {
+    font-size: 0.75rem;
+    padding: 0.3em 0.7em; 
+    border-radius: 14px; 
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+#widget-open-shifts #dash-open-shifts-count {
+    font-weight: 600; 
+}
+#dashboard-open-shifts-summary {
+    margin-top: 0.5rem;
+    font-size: 0.825rem; 
+    max-height: 120px; 
+    overflow-y: auto;
+    padding-right: 0.5rem; 
+}
+#dashboard-open-shifts-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#dashboard-open-shifts-summary li {
+    padding: 0.4rem 0.1rem; 
+    border-bottom: 1px solid #f0f3f5; 
+    line-height: 1.3;
+}
+#dashboard-open-shifts-summary li:last-child {
+    border-bottom: none;
+}
+#dashboard-open-shifts-summary li strong {
+    font-weight: 500;
+    color: #34495e;
+}
+#dashboard-open-shifts-summary p { 
+    padding: 0.8rem 0;
+    text-align: center;
+    font-style: italic
+}
+
+/* Widget Card Chart Container adjustments */
+.widget-card .chart-container {
+    margin-top: 1rem; 
+    padding: 0; 
+    border: none; 
+    background-color: transparent;
+}
+.widget-card .chart-container.small-chart-container {
+    margin-top: 0.75rem; 
+    min-height: 100px; /* Reduced min-height for charts */
+}
+
+.widget-card .chart-placeholder { /* Fallback if chart doesn't load */
+    font-size: 0.85rem;
+    color: #78909c;
+    background-color: #f8f9fa;
+    border: 1px dashed #ced4da;
+    min-height: 80px; /* Reduced placeholder height */
+    padding: 0.8rem;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Status Badges (General) */
+.status-badge {
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    font-size: 0.85em; /* Adjusted for widget context */
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.35rem; /* Standardized rounding */
+}
+.status-badge.active {
+    color: #fff;
+    background-color: #28a745; /* Green for active */
+}
+.status-badge.inactive {
+    color: #fff;
+    background-color: #dc3545; /* Red for inactive/expired */
+}
+.status-badge.warning { /* For partially paid or other warnings */
+    color: #212529;
+    background-color: #ffc107; /* Yellow for warning */
+}
+
+/* Scrollbar styling for widget content if needed */
+.widget-scrollable-content::-webkit-scrollbar {
+    width: 5px;
+}
+.widget-scrollable-content::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+.widget-scrollable-content::-webkit-scrollbar-thumb {
+    background: #c5c5c5; 
+    border-radius: 10px;
+}
+.widget-scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
+.widget-card-footer {
+    margin-top: auto; 
+    padding-top: 1rem; 
+    border-top: 1px solid #f0f3f5;
+}
+
+/* Gemini Analysis Widget Specifics */
+#gemini-analysis-content {
+    min-height: 120px; /* Ensure a minimum height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gemini-placeholder-text {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+    padding: 1rem;
+}
+
+#gemini-analysis-output ul {
+    list-style: none;
+    padding-left: 0.5rem;
+    margin-top: 0;
+}
+
+#gemini-analysis-output ul li {
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed #eef2f7;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+#gemini-analysis-output ul li::before {
+    content: '🔹'; /* Or '✨', '💡' */
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    color: #007bff;
+    font-size: 1em;
+}
+
+#gemini-analysis-output ul li:last-child {
+    border-bottom: none;
+}
+
+/* Simple CSS Spinner */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #007bff;
+    margin: 0 auto 10px auto;
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
