@@ -8,4 +8,6 @@ export const appHeaderElement = document.querySelector('.app-header') as HTMLEle
 export const appTitleTextElement = document.getElementById('app-title-text') as HTMLSpanElement | null;
 export const userGreetingElement = document.getElementById('user-greeting') as HTMLSpanElement | null;
 export const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement | null;
+export const themeToggleWrapper = document.getElementById('theme-toggle-wrapper') as HTMLDivElement | null;
+export const themeToggleInput = document.getElementById('theme-toggle') as HTMLInputElement | null;
 export const pageBlurOverlay = document.getElementById('page-blur-overlay') as HTMLDivElement | null;

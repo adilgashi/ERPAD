@@ -11,6 +11,36 @@ import { SaleRecord, PurchaseInvoice, BusinessDetails, ReturnPurchaseInvoice, Ou
 import * as seller from '../seller';
 import { ReportType } from '../manager/reports';
 
+// Theme management
+export function initThemeToggle(): void {
+    const themeToggleInput = document.getElementById('theme-toggle') as HTMLInputElement | null;
+    if (!themeToggleInput) return;
+    
+    // Check for saved theme preference or use preferred color scheme
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set initial theme
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggleInput.checked = true;
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggleInput.checked = false;
+    }
+    
+    // Add event listener for theme toggle
+    themeToggleInput.addEventListener('change', function() {
+        if (this.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
+
 export * from '../manager/reports';
 
 // --- Custom Confirmation Modal Logic ---
@@ -297,6 +327,9 @@ export function initUIEventListeners(): void {
     dom.customCancelConfirmBtn?.addEventListener('click', closeCustomConfirmModal);
     dom.customConfirmModalCloseBtn?.addEventListener('click', closeCustomConfirmModal);
 
+    // Initialize theme toggle
+    initThemeToggle();
+    
     dom.printPreviewModalCloseBtn?.addEventListener('click', closePrintPreviewModal);
     dom.cancelPrintPreviewBtn?.addEventListener('click', closePrintPreviewModal);
     dom.actualPrintFromPreviewBtn?.addEventListener('click', handleActualPrintFromPreview);

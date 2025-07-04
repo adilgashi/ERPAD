@@ -1,0 +1,231 @@
+:root {
+  /* Light Theme Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f4f7f9;
+  --color-bg-tertiary: #eef2f7;
+  --color-bg-sidebar: #2c3e50;
+  --color-bg-sidebar-hover: #34495e;
+  --color-bg-sidebar-active: #1abc9c;
+  --color-bg-card: #ffffff;
+  --color-bg-modal: #ffffff;
+  --color-bg-dropdown: #ffffff;
+  --color-bg-input: #fdfdff;
+  --color-bg-button-primary: #007bff;
+  --color-bg-button-secondary: #6c757d;
+  --color-bg-button-success: #28a745;
+  --color-bg-button-danger: #dc3545;
+  --color-bg-button-warning: #ffc107;
+  --color-bg-button-info: #17a2b8;
+  
+  --color-text-primary: #333333;
+  --color-text-secondary: #555e68;
+  --color-text-tertiary: #6c757d;
+  --color-text-sidebar: #bdc3c7;
+  --color-text-sidebar-active: #ffffff;
+  --color-text-button: #ffffff;
+  --color-text-button-warning: #212529;
+  
+  --color-border-primary: #dee2e6;
+  --color-border-secondary: #e9ecef;
+  --color-border-input: #dbe0f3;
+  --color-border-sidebar: #37475a;
+  
+  --color-shadow: rgba(0, 0, 0, 0.08);
+  --color-shadow-modal: rgba(0, 0, 0, 0.15);
+  
+  --color-positive: #16a34a;
+  --color-negative: #dc2626;
+  --color-neutral: #343a40;
+  
+  --color-auth-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --color-auth-showcase-bg: linear-gradient(45deg, #1D2B64, #4E65FF);
+  --color-auth-showcase-text: #ffffff;
+  
+  /* Status Colors */
+  --color-status-active: #28a745;
+  --color-status-inactive: #dc3545;
+  --color-status-warning: #ffc107;
+  
+  /* Table Colors */
+  --color-table-header-bg: #f8f9fa;
+  --color-table-header-text: #495057;
+  --color-table-border: #dee2e6;
+  --color-table-row-hover: #f1f3f5;
+  --color-table-deal-row: #e6f7ff;
+  --color-table-deal-row-hover: #d0efff;
+  
+  /* Form Colors */
+  --color-input-bg: #fdfdff;
+  --color-input-text: #344054;
+  --color-input-placeholder: #adb5bd;
+  --color-input-border: #dbe0f3;
+  --color-input-focus-border: #007bff;
+  --color-input-focus-shadow: rgba(0, 123, 255, 0.15);
+  
+  /* Message Colors */
+  --color-info-bg: #cff4fc;
+  --color-info-text: #055160;
+  --color-info-border: #b6effb;
+  --color-success-bg: #d1e7dd;
+  --color-success-text: #0f5132;
+  --color-success-border: #badbcc;
+  --color-error-bg: #f8d7da;
+  --color-error-text: #842029;
+  --color-error-border: #f5c2c7;
+  --color-secondary-info-bg: #f8f9fa;
+  --color-secondary-info-text: #5a6268;
+  --color-secondary-info-border: #e9ecef;
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+  --color-bg-primary: #1a1d21;
+  --color-bg-secondary: #242830;
+  --color-bg-tertiary: #2a2e37;
+  --color-bg-sidebar: #1a1d21;
+  --color-bg-sidebar-hover: #2a2e37;
+  --color-bg-sidebar-active: #1abc9c;
+  --color-bg-card: #242830;
+  --color-bg-modal: #242830;
+  --color-bg-dropdown: #2a2e37;
+  --color-bg-input: #2a2e37;
+  --color-bg-button-primary: #0d6efd;
+  --color-bg-button-secondary: #5c636a;
+  --color-bg-button-success: #198754;
+  --color-bg-button-danger: #dc3545;
+  --color-bg-button-warning: #ffc107;
+  --color-bg-button-info: #0dcaf0;
+  
+  --color-text-primary: #e9ecef;
+  --color-text-secondary: #ced4da;
+  --color-text-tertiary: #adb5bd;
+  --color-text-sidebar: #adb5bd;
+  --color-text-sidebar-active: #ffffff;
+  --color-text-button: #ffffff;
+  --color-text-button-warning: #212529;
+  
+  --color-border-primary: #343a40;
+  --color-border-secondary: #495057;
+  --color-border-input: #495057;
+  --color-border-sidebar: #343a40;
+  
+  --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-shadow-modal: rgba(0, 0, 0, 0.3);
+  
+  --color-positive: #10b981;
+  --color-negative: #ef4444;
+  --color-neutral: #9ca3af;
+  
+  --color-auth-bg: linear-gradient(135deg, #1a1d21 0%, #2a2e37 100%);
+  --color-auth-showcase-bg: linear-gradient(45deg, #0f172a, #3b82f6);
+  --color-auth-showcase-text: #ffffff;
+  
+  /* Status Colors */
+  --color-status-active: #10b981;
+  --color-status-inactive: #ef4444;
+  --color-status-warning: #f59e0b;
+  
+  /* Table Colors */
+  --color-table-header-bg: #2a2e37;
+  --color-table-header-text: #e9ecef;
+  --color-table-border: #343a40;
+  --color-table-row-hover: #2a2e37;
+  --color-table-deal-row: #1e3a5f;
+  --color-table-deal-row-hover: #254b7a;
+  
+  /* Form Colors */
+  --color-input-bg: #2a2e37;
+  --color-input-text: #e9ecef;
+  --color-input-placeholder: #6c757d;
+  --color-input-border: #495057;
+  --color-input-focus-border: #0d6efd;
+  --color-input-focus-shadow: rgba(13, 110, 253, 0.25);
+  
+  /* Message Colors */
+  --color-info-bg: #032830;
+  --color-info-text: #0dcaf0;
+  --color-info-border: #087990;
+  --color-success-bg: #051b11;
+  --color-success-text: #20c997;
+  --color-success-border: #0f5132;
+  --color-error-bg: #2c0b0e;
+  --color-error-text: #ea868f;
+  --color-error-border: #842029;
+  --color-secondary-info-bg: #212529;
+  --color-secondary-info-text: #adb5bd;
+  --color-secondary-info-border: #343a40;
+}
+
+/* Apply theme variables to elements */
+body {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+/* Theme Toggle Switch */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 48px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  background-color: white;
+  bottom: 4px;
+  content: "";
+  height: 16px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 16px;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #1abc9c;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.slider-icons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  align-items: center;
+  height: 100%;
+  color: white;
+  font-size: 12px;
+}
+
+.slider-icons .sun-icon {
+  margin-right: auto;
+}
+
+.slider-icons .moon-icon {
+  margin-left: auto;
+}

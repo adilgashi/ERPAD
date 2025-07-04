@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arka Elektronike</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/auth.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/views/manager.css">
+  <link rel="stylesheet" href="styles/views/seller.css">
+  <link rel="stylesheet" href="styles/components/accordions.css">
+  <link rel="stylesheet" href="styles/components/buttons.css">
+  <link rel="stylesheet" href="styles/components/forms.css">
+  <link rel="stylesheet" href="styles/components/modals.css">
+  <link rel="stylesheet" href="styles/components/tables.css">
+  <link rel="stylesheet" href="styles/components/tabs.css">
+  <link rel="stylesheet" href="styles/components/widgets.css">
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/theme-overrides.css">
+  <link rel="stylesheet" href="styles/print.css" media="print">
+</head>
+<body>
+  <div id="app-root">
+    <!-- App Header -->
+    <header class="app-header">
+      <h1 id="app-title-text">Arka Elektronike</h1>
+      <div class="header-right-group">
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="theme-toggle">
+            <div class="slider-icons">
+              <span class="sun-icon">☀️</span>
+              <span class="moon-icon">🌙</span>
+            </div>
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="seller-cash-status-container" class="seller-cash-status-header" style="display: none;">
+          <div class="cash-status-grid-header">
+            <p>Arka Fillestare: <span id="seller-initial-cash">0.00</span> €</p>
+            <p>Shitjet: <span id="seller-total-sales-cash">0.00</span> €</p>
+            <p>Gjendja Aktuale: <span id="seller-current-cash">0.00</span> €</p>
+          </div>
+          <p id="seller-day-status-message" class="info-message success header-status-message" style="display: none;"></p>
+        </div>
+        <div id="user-session-controls">
+          <span id="user-greeting">Mirë se erdhe, Përdorues</span>
+          <button id="logout-btn" class="btn btn-danger btn-sm">
+            <span class="icon">🚪</span>
+            <span class="logout-btn-text">Dil</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <!-- Page Blur Overlay -->
+    <div id="page-blur-overlay"></div>
+  </div>
+  <script type="module" src="/src/index.tsx"></script>
+</body>
+</html>
