@@ -51,11 +51,11 @@ export function renderProductsForDealSelection(dealIdToEdit?: string) {
     dom.dealFormProductSelectionDiv.innerHTML = '';
 
     let productsForSelection = [...state.products];
-            toast.showErrorToast(`Produkti me ID ${dealItem.productId} brenda ofertës "${deal.name}" nuk u gjet. Oferta nuk mund të shtohet.`);
+    let selectedProductItems: DealItem[] = [];
 
     if (dealIdToEdit) {
         const currentDeal = state.deals.find(d => d.id === dealIdToEdit);
-            toast.showErrorToast(`Stoku i pamjaftueshëm për produktin "${productInDeal.name}" (pjesë e ofertës "${deal.name}"). Nevojitet: ${dealItem.quantity}, Stoku aktual: ${productInDeal.stock}. Oferta nuk mund të shtohet.`);
+        if (currentDeal) {
             selectedProductItems = [...currentDeal.items];
         }
     }
@@ -120,7 +120,6 @@ export function renderProductsForDealSelection(dealIdToEdit?: string) {
                  // Optionally reset quantity or keep it if user re-checks
                 // quantityInput.value = '1'; 
             } else {
-                 toast.showErrorToast(`Stoku i pamjaftueshëm për të rritur sasinë e ofertës "${deal.name}". Produkti "${productInDeal.name}" ka vetëm ${productInDeal.stock} në stok.`);
                 quantityInput.select();
             }
         });
