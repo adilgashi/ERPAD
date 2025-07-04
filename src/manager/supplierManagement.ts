@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Customer, Supplier } from '../models';
 import { generateUniqueId } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -246,7 +247,7 @@ export function handleDeleteSupplier(supplierId: string, supplierName: string): 
     // Future check: If suppliers are linked to products/purchases, prevent deletion if in use.
     // const isSupplierInUse = state.products.some(p => p.supplierId === supplierId);
     // if (isSupplierInUse) {
-    //     alert(`Furnitori "${supplierName}" është i lidhur me produkte dhe nuk mund të fshihet.`);
+    //     toast.showErrorToast(`Furnitori "${supplierName}" është i lidhur me produkte dhe nuk mund të fshihet.`);
     //     return;
     // }
 
@@ -255,6 +256,6 @@ export function handleDeleteSupplier(supplierId: string, supplierName: string): 
         state.setSuppliers(state.suppliers.filter(s => s.id !== supplierId));
         storage.saveSuppliersToLocalStorage(state.currentManagingBusinessId, state.suppliers);
         renderSupplierListForManager();
-        alert(`Furnitori "${supplierName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Furnitori "${supplierName}" u fshi me sukses.`);
     });
 }

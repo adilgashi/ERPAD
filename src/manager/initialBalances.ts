@@ -6,6 +6,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Product, Customer, Supplier } from '../models';
 import { showCustomConfirm } from '../core/ui'; 
 
@@ -248,7 +249,7 @@ const InitialBalances = {
                         changesMade = true;
                     }
                 } else if (stockInput.value.trim() !== '') {
-                     alert(`Vlera e stokut për produktin me ID ${productId} është e pavlefshme. Ju lutem futni një numër pozitiv ose zero.`);
+                     toast.showErrorToast(`Vlera e stokut për produktin me ID ${productId} është e pavlefshme. Ju lutem futni një numër pozitiv ose zero.`);
                      stockInput.value = state.products.find(p => p.id === productId)?.stock.toString() || '0';
                 }
             }
@@ -256,11 +257,11 @@ const InitialBalances = {
         if (changesMade) {
             storage.saveProductsToLocalStorage(state.currentManagingBusinessId, state.products);
             showCustomConfirm("Stoku fillestar i artikujve u ruajt me sukses.", () => {
-                this.renderInitialProductStockTable(); 
+                this.renderInitialProductStockTable();
                 if (typeof (window as any).renderManagerStockOverview === 'function') (window as any).renderManagerStockOverview();
             });
         } else {
-            showCustomConfirm("Nuk ka ndryshime për të ruajtur në stoqet e artikujve.", () => {});
+            toast.showInfoToast("Nuk ka ndryshime për të ruajtur në stoqet e artikujve.");
         }
     },
 
@@ -280,7 +281,7 @@ const InitialBalances = {
                         changesMade = true;
                     }
                 } else if (balanceInput.value.trim() !== '') {
-                     alert(`Vlera e saldos për blerësin me ID ${customerId} është e pavlefshme.`);
+                     toast.showErrorToast(`Vlera e saldos për blerësin me ID ${customerId} është e pavlefshme.`);
                      balanceInput.value = (state.customers.find(c => c.id === customerId)?.openingBalance || 0).toString();
                 }
             }
@@ -297,7 +298,7 @@ const InitialBalances = {
                 }
             });
         } else {
-            showCustomConfirm("Nuk ka ndryshime për të ruajtur në saldot e blerësve.", () => {});
+            toast.showInfoToast("Nuk ka ndryshime për të ruajtur në saldot e blerësve.");
         }
     },
 
@@ -317,7 +318,7 @@ const InitialBalances = {
                         changesMade = true;
                     }
                 } else if (balanceInput.value.trim() !== '') {
-                     alert(`Vlera e saldos për furnitorin me ID ${supplierId} është e pavlefshme.`);
+                     toast.showErrorToast(`Vlera e saldos për furnitorin me ID ${supplierId} është e pavlefshme.`);
                      balanceInput.value = (state.suppliers.find(s => s.id === supplierId)?.openingBalance || 0).toString();
                 }
             }
@@ -334,7 +335,7 @@ const InitialBalances = {
                 }
             });
         } else {
-            showCustomConfirm("Nuk ka ndryshime për të ruajtur në saldot e furnitorëve.", () => {});
+            toast.showInfoToast("Nuk ka ndryshime për të ruajtur në saldot e furnitorëve.");
         }
     }
 };

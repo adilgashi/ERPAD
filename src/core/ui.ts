@@ -5,6 +5,7 @@
 
 import * as dom from './dom';
 import * as state from './state';
+import * as toast from './toast';
 import { showSuperAdminPanel } from '../superAdmin';
 import { showManagerDashboardView } from '../manager/index';
 import { SaleRecord, PurchaseInvoice, BusinessDetails, ReturnPurchaseInvoice, OutgoingPayment, SalesReturnInvoice, LocalSaleInvoice, ReportTypeEnum, PettyCashEntry, Customer } from '../models';
@@ -329,6 +330,9 @@ export function initUIEventListeners(): void {
 
     // Initialize theme toggle
     initThemeToggle();
+
+    // Initialize toast container
+    toast.initToastContainer();
     
     dom.printPreviewModalCloseBtn?.addEventListener('click', closePrintPreviewModal);
     dom.cancelPrintPreviewBtn?.addEventListener('click', closePrintPreviewModal);

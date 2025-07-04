@@ -7,6 +7,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Category } from '../models';
 import { generateUniqueId } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -137,7 +138,7 @@ export function handleDeleteCategory(categoryId: string, categoryName: string): 
 
     const isCategoryInUse = state.products.some(p => p.categoryId === categoryId);
     if (isCategoryInUse) {
-        alert(`Kategoria "${categoryName}" është në përdorim nga një ose më shumë produkte dhe nuk mund të fshihet. Ju lutem hiqni këtë kategori nga produktet përkatëse fillimisht.`);
+        toast.showErrorToast(`Kategoria "${categoryName}" është në përdorim nga një ose më shumë produkte dhe nuk mund të fshihet. Ju lutem hiqni këtë kategori nga produktet përkatëse fillimisht.`);
         return;
     }
 
@@ -149,6 +150,6 @@ export function handleDeleteCategory(categoryId: string, categoryName: string): 
         if (dom.productFormModal?.style.display === 'block' && dom.productFormCategorySelect) {
             populateProductCategoryDropdown(dom.productFormCategorySelect);
         }
-        alert(`Kategoria "${categoryName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Kategoria "${categoryName}" u fshi me sukses.`);
     });
 }

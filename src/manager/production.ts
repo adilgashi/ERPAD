@@ -9,6 +9,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Recipe, ProductionOrder, RecipeIngredient, Product, ProductionOrderStage, ProductionRoutingStage } from '../models';
 import { generateUniqueId, getTodayDateString } from '../core/utils';
 import { showCustomConfirm, isAnyOtherModalOrDropdownActive } from '../core/ui';
@@ -52,7 +53,7 @@ function renderRecipeList(): void {
 function handleDeleteRecipe(recipeId: string, recipeName: string): void {
     const isInUse = state.productionOrders.some(order => order.recipeId === recipeId && order.status !== 'Cancelled');
     if (isInUse) {
-        alert(`Receta "${recipeName}" është në përdorim nga një urdhër prodhimi dhe nuk mund të fshihet.`);
+        toast.showErrorToast(`Receta "${recipeName}" është në përdorim nga një urdhër prodhimi dhe nuk mund të fshihet.`);
         return;
     }
     showCustomConfirm(`Jeni i sigurt që doni të fshini recetën "${recipeName}"?`, () => {
@@ -379,7 +380,7 @@ function handleCreateProductionOrder(e: Event): void {
     
     renderProductionOrderList();
     closeProductionOrderFormModal();
-    showCustomConfirm(`Urdhri i prodhimit ${newOrder.id} u krijua. Përfundojeni për të ndryshuar stokun.`, () => {});
+    toast.showSuccessToast(`Urdhri i prodhimit ${newOrder.id} u krijua. Përfundojeni për të ndryshuar stokun.`);
 }
 
 function handleCompleteProductionOrder(orderId: string): void {
@@ -390,7 +391,7 @@ function handleCompleteProductionOrder(orderId: string): void {
     const recipe = state.recipes.find(r => r.id === order.recipeId);
     
     if (!recipe) {
-        alert(`Receta për urdhrin ${orderId} nuk u gjet. Veprimi u anulua.`);
+        toast.showErrorToast(`Receta për urdhrin ${orderId} nuk u gjet. Veprimi u anulua.`);
         return;
     }
 
@@ -400,7 +401,7 @@ function handleCompleteProductionOrder(orderId: string): void {
         const product = state.products.find(p => p.id === ing.productId);
         const requiredQty = ing.quantity * order.quantityToProduce;
         if (!product || product.stock < requiredQty) {
-            alert(`Stoku i pamjaftueshëm për "${product?.name || 'I panjohur'}". Veprimi u anulua.`);
+            toast.showErrorToast(`Stoku i pamjaftueshëm për "${product?.name || 'I panjohur'}". Veprimi u anulua.`);
             stockError = true;
         }
     });
@@ -422,7 +423,7 @@ function handleCompleteProductionOrder(orderId: string): void {
     storage.saveProductionOrdersToLocalStorage(state.currentManagingBusinessId!, state.productionOrders);
 
     renderProductionOrderList();
-    showCustomConfirm(`Urdhri ${orderId} u përfundua dhe stoku u përditësua.`, () => {});
+    toast.showSuccessToast(`Urdhri ${orderId} u përfundua dhe stoku u përditësua.`);
 }
 
 function handleCancelProductionOrder(orderId: string): void {
@@ -431,7 +432,7 @@ function handleCancelProductionOrder(orderId: string): void {
     
     const order = state.productionOrders[orderIndex];
     if (order.status !== 'Pending') {
-        alert("Vetëm urdhërat në pritje mund të anulohen.");
+        toast.showWarningToast("Vetëm urdhërat në pritje mund të anulohen.");
         return;
     }
     
@@ -470,7 +471,7 @@ function renderProductionStageList(): void {
 function handleDeleteProductionStage(stageId: string, stageName: string): void {
     const isInUse = state.productionRoutings.some(r => r.stages.some(s => s.stageId === stageId));
     if (isInUse) {
-        alert(`Faza "${stageName}" është në përdorim nga një ose më shumë procese teknologjike dhe nuk mund të fshihet.`);
+        toast.showErrorToast(`Faza "${stageName}" është në përdorim nga një ose më shumë procese teknologjike dhe nuk mund të fshihet.`);
         return;
     }
     showCustomConfirm(`Jeni i sigurt që doni të fshini fazën "${stageName}"?`, () => {
@@ -578,7 +579,7 @@ function renderProductionRoutingList(): void {
 function handleDeleteProductionRouting(routingId: string, routingName: string): void {
     const isInUse = state.recipes.some(r => r.routingId === routingId);
     if (isInUse) {
-        alert(`Procesi teknologjik "${routingName}" është në përdorim nga një ose më shumë receta dhe nuk mund të fshihet.`);
+        toast.showErrorToast(`Procesi teknologjik "${routingName}" është në përdorim nga një ose më shumë receta dhe nuk mund të fshihet.`);
         return;
     }
     showCustomConfirm(`Jeni i sigurt që doni të fshini procesin "${routingName}"?`, () => {

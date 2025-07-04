@@ -7,6 +7,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import * as utils from '../core/utils';
 import { showAuthView } from '../core/auth';
 import { updateAppTitle, showCustomConfirm } from '../core/ui';
@@ -97,7 +98,7 @@ export async function handleSaveSuperAdminAppSettings(event: Event): Promise<voi
 
     state.setSuperAdminAppSettings(newSettings);
     await storage.saveSuperAdminAppSettings(newSettings);
-    alert("Cilësimet e aplikacionit u ruajtën.");
+    toast.showSuccessToast("Cilësimet e aplikacionit u ruajtën.");
     updateAppTitle(); 
     await showAuthView(); 
     if (state.currentUser?.isSuperAdmin) showSuperAdminPanel(); 
@@ -113,7 +114,7 @@ export function handleDeleteSuperAdminAppLogo(): void {
             dom.saAppLogoPreview.style.display = 'none';
         }
         if(dom.saAppLogoInput) dom.saAppLogoInput.value = '';
-        alert("Logoja e aplikacionit u fshi.");
+        toast.showSuccessToast("Logoja e aplikacionit u fshi.");
     });
 }
 

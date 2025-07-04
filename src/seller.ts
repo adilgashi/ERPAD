@@ -6,6 +6,7 @@
 import * as dom from './core/dom';
 import * as state from './core/state';
 import * as storage from './core/storage';
+import * as toast from './core/toast';
 import { Product, SaleItem, SaleRecord, ClearedSaleLogEntry, Deal, Customer, DealItem, PettyCashEntry } from './models';
 import { comparePassword, generateUniqueId } from './core/utils';
 import { showCustomConfirm, openPrintPreviewModal, isAnyOtherModalOrDropdownActive, generatePrintableSalesReportHTML } from './core/ui';
@@ -131,13 +132,13 @@ export function renderProductsForSale(): void {
 
 export function addProductToSale(productId: string): void {
     if (!state.currentManagingBusinessId || !state.currentSellerDailyCashEntry || state.currentSellerDailyCashEntry.isReconciled) {
-        alert("Arka nuk është aktive ose është barazuar. Nuk mund të shtohen produkte.");
+        toast.showErrorToast("Arka nuk është aktive ose është barazuar. Nuk mund të shtohen produkte.");
         return;
     }
     const product = state.products.find(p => p.id === productId);
     if (!product) return;
     if (!product.isActive) {
-        alert(`Produkti "${product.name}" nuk është aktiv dhe nuk mund të shtohet në shitje.`);
+        toast.showWarningToast(`Produkti "${product.name}" nuk është aktiv dhe nuk mund të shtohet në shitje.`);
         return;
     }
 
@@ -146,13 +147,13 @@ export function addProductToSale(productId: string): void {
     const existingItem = state.currentSale.find(item => item.id === productId && !item.isDeal);
     if (existingItem) {
         if(product.stock < (existingItem.quantity + 1)) {
-            alert(`Stoku i pamjaftueshëm për produktin "${product.name}". Stoku aktual: ${product.stock}.`);
+            toast.showWarningToast(`Stoku i pamjaftueshëm për produktin "${product.name}". Stoku aktual: ${product.stock}.`);
             return;
         }
         existingItem.quantity++;
     } else {
         if(product.stock < 1) {
-            alert(`Stoku i pamjaftueshëm për produktin "${product.name}". Stoku aktual: ${product.stock}.`);
+            toast.showWarningToast(`Stoku i pamjaftueshëm për produktin "${product.name}". Stoku aktual: ${product.stock}.`);
             return;
         }
         state.currentSale.push({
@@ -172,12 +173,12 @@ export function addProductToSale(productId: string): void {
 
 export function addDealToSale(dealId: string): void {
     if (!state.currentManagingBusinessId || !state.currentSellerDailyCashEntry || state.currentSellerDailyCashEntry.isReconciled) {
-        alert("Arka nuk është aktive ose është barazuar. Nuk mund të shtohen oferta.");
+        toast.showErrorToast("Arka nuk është aktive ose është barazuar. Nuk mund të shtohen oferta.");
         return;
     }
     const deal = state.deals.find(d => d.id === dealId && d.isActive);
     if (!deal) {
-        alert("Oferta nuk u gjet ose nuk është aktive.");
+        toast.showErrorToast("Oferta nuk u gjet ose nuk është aktive.");
         return;
     }
     
@@ -222,7 +223,7 @@ export function addDealToSale(dealId: string): void {
 
 function promptClearSingleSaleItem(itemId: string, isDealItem: boolean): void {
     if (!state.currentSellerDailyCashEntry || state.currentSellerDailyCashEntry.isReconciled) {
-        alert("Arka nuk është aktive ose është barazuar. Nuk mund të hiqet artikulli.");
+        toast.showErrorToast("Arka nuk është aktive ose është barazuar. Nuk mund të hiqet artikulli.");
         return;
     }
     state.setItemToClearFromSale({ id: itemId, isDeal: isDealItem });
@@ -315,11 +316,11 @@ export function updateTotals(): void {
 
 export function clearSale(): void {
     if (!state.currentSellerDailyCashEntry || state.currentSellerDailyCashEntry.isReconciled) {
-         alert("Arka nuk është aktive ose është barazuar. Nuk mund të pastrohet shitja.");
+         toast.showErrorToast("Arka nuk është aktive ose është barazuar. Nuk mund të pastrohet shitja.");
         return;
     }
     if (state.currentSale.length === 0) {
-        alert("Nuk ka asgjë për të pastruar.");
+        toast.showInfoToast("Nuk ka asgjë për të pastruar.");
         return;
     }
 
@@ -370,16 +371,16 @@ export async function handleConfirmClearSaleWithPIN(): Promise<void> {
             if (state.itemToClearFromSale) {
                 // Clearing a single item
                 updateQuantity(state.itemToClearFromSale.id, 0, state.itemToClearFromSale.isDeal);
-                alert("Artikulli u hoq nga shitja.");
+                toast.showSuccessToast("Artikulli u hoq nga shitja.");
             } else {
                 // Clearing the whole sale
                 if (!state.currentManagingBusinessId || !state.currentUser || !state.currentSellerDailyCashEntry) {
-                    alert("Gabim sistemi: Mungojnë të dhënat për të pastruar shitjen.");
+                    toast.showErrorToast("Gabim sistemi: Mungojnë të dhënat për të pastruar shitjen.");
                     closeClearSaleConfirmationModal(); // Close modal on error
                     return;
                 }
                 if (state.currentSale.length === 0) {
-                     alert("Nuk ka asgjë për të pastruar.");
+                     toast.showInfoToast("Nuk ka asgjë për të pastruar.");
                      closeClearSaleConfirmationModal();
                      return;
                 }
@@ -400,7 +401,7 @@ export async function handleConfirmClearSaleWithPIN(): Promise<void> {
                 state.setCurrentSale([]);
                 renderSaleItems();
                 updateTotals();
-                alert("Shitja aktuale u pastrua.");
+                toast.showSuccessToast("Shitja aktuale u pastrua.");
             }
 
             // Close modal for both successful cases
@@ -422,11 +423,11 @@ export async function handleConfirmClearSaleWithPIN(): Promise<void> {
 
 export function triggerCompleteSale(): void {
     if (state.currentSale.length === 0) {
-        alert("Nuk ka produkte në shitje për të përfunduar.");
+        toast.showWarningToast("Nuk ka produkte në shitje për të përfunduar.");
         return;
     }
      if (!state.currentSellerDailyCashEntry || state.currentSellerDailyCashEntry.isReconciled) {
-        alert("Arka nuk është aktive ose është barazuar. Nuk mund të përfundohet shitja.");
+        toast.showErrorToast("Arka nuk është aktive ose është barazuar. Nuk mund të përfundohet shitja.");
         return;
     }
     openPaymentModal();
@@ -494,11 +495,11 @@ export function calculateChangeInPaymentModal() {
 
 export async function handleConfirmPayment(): Promise<void> {
     if (!state.currentManagingBusinessId || !state.currentUser || !state.currentSellerDailyCashEntry || !dom.paymentAmountReceivedInput || !dom.paymentModalErrorElement) {
-        alert("Gabim: Mungojnë detajet e nevojshme për të konfirmuar pagesën.");
+        toast.showErrorToast("Gabim: Mungojnë detajet e nevojshme për të konfirmuar pagesën.");
         return;
     }
     if (state.currentSellerDailyCashEntry.isReconciled) {
-        alert("Arka është barazuar. Nuk mund të regjistrohet shitja.");
+        toast.showErrorToast("Arka është barazuar. Nuk mund të regjistrohet shitja.");
         closePaymentModal();
         return;
     }
@@ -607,7 +608,7 @@ export async function handleConfirmPayment(): Promise<void> {
     
     resetCustomerSearchInput();
     
-    alert(`Shitja u përfundua me sukses! Fatura: ${saleRecord.invoiceNumber}. Kusuri: ${changeGiven.toFixed(2)} €`);
+    toast.showSuccessToast(`Shitja u përfundua me sukses! Fatura: ${saleRecord.invoiceNumber}. Kusuri: ${changeGiven.toFixed(2)} €`);
 }
 
 export function showSellerShiftSalesModal() {
@@ -784,7 +785,7 @@ export function handleSellerCustomerSelectionChange(event: Event) {
 // --- Petty Cash Functions ---
 function openPettyCashModal(): void {
     if (!state.currentSellerDailyCashEntry || state.currentSellerDailyCashEntry.isReconciled) {
-        alert("Ju duhet të keni një arkë të hapur dhe të pa barazuar për të regjistruar një shpenzim.");
+        toast.showWarningToast("Ju duhet të keni një arkë të hapur dhe të pa barazuar për të regjistruar një shpenzim.");
         return;
     }
     if (!dom.pettyCashModal || !dom.pettyCashForm || !dom.pettyCashFormError) return;
@@ -807,7 +808,7 @@ function closePettyCashModal(): void {
 async function handleSavePettyCash(event: Event): Promise<void> {
     event.preventDefault();
     if (!dom.pettyCashDescription || !dom.pettyCashAmount || !dom.pettyCashFormError || !state.currentUser || !state.currentSellerDailyCashEntry || !state.currentManagingBusinessId) {
-        alert("Gabim sistemi: Mungojnë të dhënat për të ruajtur shpenzimin.");
+        toast.showErrorToast("Gabim sistemi: Mungojnë të dhënat për të ruajtur shpenzimin.");
         return;
     }
 
@@ -850,6 +851,6 @@ async function handleSavePettyCash(event: Event): Promise<void> {
         dom.sellerCurrentCashElement.textContent = newCurrentCash.toFixed(2);
     }
 
-    showCustomConfirm("Shpenzimi u regjistrua me sukses.", () => {});
+    toast.showSuccessToast("Shpenzimi u regjistrua me sukses.");
     closePettyCashModal();
 }

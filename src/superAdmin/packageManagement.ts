@@ -7,6 +7,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { SubscriptionPackage } from '../models';
 import * as utils from '../core/utils';
 import { showCustomConfirm, isAnyOtherModalOrDropdownActive } from '../core/ui';
@@ -373,7 +374,7 @@ export function renderSubscriptionPackageList() {
 export function handleDeleteSubscriptionPackage(packageId: string, packageName: string): void {
     const isInUse = state.businesses.some(b => b.subscriptionPackageId === packageId || b.futureSubscriptionPackageId === packageId);
     if (isInUse) {
-        alert(`Paketa "${packageName}" është aktualisht në përdorim nga një ose më shumë biznese (si abonim aktiv ose i ardhshëm) dhe nuk mund të fshihet.`);
+        toast.showErrorToast(`Paketa "${packageName}" është aktualisht në përdorim nga një ose më shumë biznese (si abonim aktiv ose i ardhshëm) dhe nuk mund të fshihet.`);
         return;
     }
 
@@ -381,28 +382,28 @@ export function handleDeleteSubscriptionPackage(packageId: string, packageName: 
         state.setSubscriptionPackages(state.subscriptionPackages.filter(p => p.id !== packageId));
         await storage.saveSubscriptionPackages(state.subscriptionPackages);
         renderSubscriptionPackageList();
-        alert(`Paketa e abonimit "${packageName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Paketa e abonimit "${packageName}" u fshi me sukses.`);
     });
 }
 
 export async function handleApplySelectedPackageImmediately(): Promise<void> {
     if (!state.currentManagingBusinessId || !dom.futureSubscriptionPackageSelect) {
-        alert("Nuk ka biznes të zgjedhur ose paketë të zgjedhur.");
+        toast.showErrorToast("Nuk ka biznes të zgjedhur ose paketë të zgjedhur.");
         return;
     }
     const business = state.businesses.find(b => b.id === state.currentManagingBusinessId);
     if (!business) {
-        alert("Biznesi nuk u gjet.");
+        toast.showErrorToast("Biznesi nuk u gjet.");
         return;
     }
     const selectedPackageId = dom.futureSubscriptionPackageSelect.value;
     if (!selectedPackageId) {
-        alert("Ju lutem zgjidhni një paketë abonimi.");
+        toast.showWarningToast("Ju lutem zgjidhni një paketë abonimi.");
         return;
     }
     const subscriptionPackage = state.subscriptionPackages.find(p => p.id === selectedPackageId);
     if (!subscriptionPackage) {
-        alert("Paketa e abonimit e zgjedhur nuk është valide.");
+        toast.showErrorToast("Paketa e abonimit e zgjedhur nuk është valide.");
         return;
     }
 
@@ -419,7 +420,7 @@ export async function handleApplySelectedPackageImmediately(): Promise<void> {
     business.upgradeRequest = undefined; 
 
     await storage.saveAllBusinesses(state.businesses);
-    alert(`Paketa "${subscriptionPackage.name}" u aplikua menjëherë për biznesin "${business.name}". Abonimi skadon më ${new Date(subscriptionEndDate).toLocaleDateString('sq-AL')}.`);
+    toast.showSuccessToast(`Paketa "${subscriptionPackage.name}" u aplikua menjëherë për biznesin "${business.name}". Abonimi skadon më ${new Date(subscriptionEndDate).toLocaleDateString('sq-AL')}.`);
     
     const { renderManagingBusinessViewContent } = await import('./businessManagement'); 
     renderManagingBusinessViewContent(business.id);

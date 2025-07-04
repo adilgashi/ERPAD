@@ -6,6 +6,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import * as config from '../core/config';
 import { downloadFile } from '../core/utils';
 
@@ -15,13 +16,13 @@ export function initDataManagementEventListeners(): void {
 
 export async function handleDownloadBusinessBackup(): Promise<void> {
     if (!state.currentManagingBusinessId) {
-        alert("Nuk është zgjedhur asnjë biznes për backup.");
+        toast.showErrorToast("Nuk është zgjedhur asnjë biznes për backup.");
         return;
     }
     const businessId = state.currentManagingBusinessId;
     const business = state.businesses.find(b => b.id === businessId);
     if (!business) {
-        alert("Biznesi nuk u gjet.");
+        toast.showErrorToast("Biznesi nuk u gjet.");
         return;
     }
 
@@ -57,9 +58,9 @@ export async function handleDownloadBusinessBackup(): Promise<void> {
 
         const filename = `backup_${business.name.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0,10)}.json`;
         downloadFile(JSON.stringify(backupData, null, 2), filename, 'application/json');
-        alert(`Backup për biznesin "${business.name}" u shkarkua si ${filename}.`);
+        toast.showSuccessToast(`Backup për biznesin "${business.name}" u shkarkua si ${filename}.`);
     } catch (error) {
         console.error("Error creating backup:", error);
-        alert("Gabim gjatë krijimit të backup-it. Shikoni konsolën për detaje.");
+        toast.showErrorToast("Gabim gjatë krijimit të backup-it. Shikoni konsolën për detaje.");
     }
 }

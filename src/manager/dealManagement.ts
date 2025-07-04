@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Deal, DealItem } from '../models'; // MODIFIED: Imported DealItem
 import { generateUniqueId } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -50,11 +51,11 @@ export function renderProductsForDealSelection(dealIdToEdit?: string) {
     dom.dealFormProductSelectionDiv.innerHTML = '';
 
     let productsForSelection = [...state.products];
-    let selectedProductItems: DealItem[] = [];
+            toast.showErrorToast(`Produkti me ID ${dealItem.productId} brenda ofertës "${deal.name}" nuk u gjet. Oferta nuk mund të shtohet.`);
 
     if (dealIdToEdit) {
         const currentDeal = state.deals.find(d => d.id === dealIdToEdit);
-        if (currentDeal) {
+            toast.showErrorToast(`Stoku i pamjaftueshëm për produktin "${productInDeal.name}" (pjesë e ofertës "${deal.name}"). Nevojitet: ${dealItem.quantity}, Stoku aktual: ${productInDeal.stock}. Oferta nuk mund të shtohet.`);
             selectedProductItems = [...currentDeal.items];
         }
     }
@@ -119,7 +120,7 @@ export function renderProductsForDealSelection(dealIdToEdit?: string) {
                  // Optionally reset quantity or keep it if user re-checks
                 // quantityInput.value = '1'; 
             } else {
-                quantityInput.focus();
+                 toast.showErrorToast(`Stoku i pamjaftueshëm për të rritur sasinë e ofertës "${deal.name}". Produkti "${productInDeal.name}" ka vetëm ${productInDeal.stock} në stok.`);
                 quantityInput.select();
             }
         });
@@ -255,7 +256,7 @@ export function handleDeleteDeal(dealId: string, dealName: string): void {
         state.setDeals(state.deals.filter(d => d.id !== dealId));
         storage.saveDealsToLocalStorage(state.currentManagingBusinessId, state.deals);
         renderDealListForManager();
-        alert(`Oferta "${dealName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Oferta "${dealName}" u fshi me sukses.`);
     });
 }
 

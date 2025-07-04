@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { LocalSaleInvoice, LocalSaleInvoiceItem, Customer, Product, Business } from '../models';
 import { generateUniqueId, getTodayDateString } from '../core/utils';
 import * as uiUtils from '../core/ui';
@@ -570,8 +571,11 @@ function openLocalSaleDetailsModal(invoiceId: string): void {
     // This function can reuse the local purchase details modal structure if it's generic enough
     // For now, it's just a placeholder.
     const invoice = state.localSalesInvoices.find(inv => inv.id === invoiceId);
-    if (!invoice) { uiUtils.showCustomConfirm("Fatura e shitjes vendore nuk u gjet.", () => {}); return; }
-    alert(`Showing details for ${invoiceId}: Customer: ${invoice.customerName || 'Standard'}, Total: ${invoice.totalAmountWithVAT.toFixed(2)}€`);
+    if (!invoice) { 
+        toast.showErrorToast("Fatura e shitjes vendore nuk u gjet.");
+        return; 
+    }
+    toast.showInfoToast(`Showing details for ${invoiceId}: Customer: ${invoice.customerName || 'Standard'}, Total: ${invoice.totalAmountWithVAT.toFixed(2)}€`);
 }
 
 function handleDeleteLocalSaleInvoice(invoiceId: string, invoiceNumberForDisplay: string): void {

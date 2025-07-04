@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { PurchaseInvoice, PurchaseInvoiceItem, Supplier, Product, Business } from '../models';
 import { generateUniqueId, getTodayDateString } from '../core/utils';
 import { showCustomConfirm, generatePrintablePurchaseInvoiceHTML, openPrintPreviewModal } from '../core/ui';
@@ -459,7 +460,7 @@ export async function handleSaveLocalPurchase(event: Event): Promise<void> {
 
     const supplier = state.suppliers.find(s => s.id === supplierId);
     if (!supplier) {
-        dom.localPurchaseFormErrorElement.textContent = "Furnitori i zgjedhur nuk është valid.";
+        toast.showErrorToast("Furnitori i zgjedhur nuk është valid.");
         return;
     }
 
@@ -543,7 +544,7 @@ export async function handleSaveLocalPurchase(event: Event): Promise<void> {
     
     const successMessage = `Fatura e blerjes u ruajt me sukses! (${currentEditingPurchaseInvoiceId ? 'Modifikuar' : 'Shtuar'})`;
     showCustomConfirm(successMessage, () => {
-        currentEditingPurchaseInvoiceId = null; 
+        currentEditingPurchaseInvoiceId = null;
         openLocalPurchaseFormModal(); // Reset the form for a new entry
         
         if (typeof (window as any).renderManagerStockOverview === 'function') (window as any).renderManagerStockOverview();
@@ -563,7 +564,7 @@ function openLocalPurchaseDetailsModal(invoiceId: string): void {
 
     const invoice = state.purchaseInvoices.find(inv => inv.id === invoiceId);
     if (!invoice) {
-        alert("Fatura e blerjes nuk u gjet.");
+        toast.showErrorToast("Fatura e blerjes nuk u gjet.");
         return;
     }
 
@@ -637,12 +638,12 @@ function handleDeletePurchaseInvoice(invoiceId: string, invoiceNumberForDisplay:
 
     const invoiceToDelete = state.purchaseInvoices.find(inv => inv.id === invoiceId);
     if (!invoiceToDelete) {
-        alert("Fatura nuk u gjet për fshirje.");
+        toast.showErrorToast("Fatura nuk u gjet për fshirje.");
         return;
     }
 
     if (isDateInClosedPeriod(invoiceToDelete.invoiceDate)) {
-        alert(`Fatura "${invoiceNumberForDisplay}" është në një periudhë të mbyllur dhe nuk mund të fshihet.`);
+        toast.showErrorToast(`Fatura "${invoiceNumberForDisplay}" është në një periudhë të mbyllur dhe nuk mund të fshihet.`);
         return;
     }
 

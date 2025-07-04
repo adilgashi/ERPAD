@@ -7,7 +7,8 @@ import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
 import * as config from '../core/config';
-import * as ui from '../core/ui'; // Added import for ui module
+import * as ui from '../core/ui';
+import * as toast from '../core/toast';
 import { DailyCashEntry, ReconciliationInfo, Product } from '../models';
 import { getTodayDateString, simpleHash, comparePassword, generateUniqueId } from '../core/utils';
 import { renderDashboardSummary } from './dashboard';
@@ -125,7 +126,7 @@ async function handleSaveStartDaySetup(event: Event): Promise<void> {
     state.dailyCashLog.push(newEntry);
     await storage.saveDailyCashLog(state.currentManagingBusinessId, state.dailyCashLog);
 
-    alert(`Arka u hap me sukses për ${newEntry.sellerUsername} për ${today} (${shift}).`);
+    toast.showSuccessToast(`Arka u hap me sukses për ${newEntry.sellerUsername} për ${today} (${shift}).`);
     closeStartDayModal();
     renderDashboardSummary();
     
@@ -192,7 +193,7 @@ function handleSelectEntryToEditChange(): void {
         dom.editEntryShiftStrongElement.textContent = entryToEdit.shift === 'paradite' ? 'Paradite' : 'Masdite';
         dom.editInitialCashInput.value = entryToEdit.initialCash.toString();
         
-        if (dom.editModalProductStockList) dom.editModalProductStockList.innerHTML = ''; 
+        toast.showSuccessToast("Ndryshimet në hyrjen e arkës u ruajtën.");
 
         dom.editEntryDetailsView.style.display = 'block';
         dom.saveEditOpenCashEntryBtn.disabled = false;
@@ -445,7 +446,7 @@ async function handleConfirmReconciliation(event: Event): Promise<void> {
     };
 
     await storage.saveDailyCashLog(state.currentManagingBusinessId, state.dailyCashLog);
-    alert(`Arka për ${entryToReconcile.sellerUsername} (${new Date(entryToReconcile.date + "T00:00:00").toLocaleDateString('sq-AL')}, ${entryToReconcile.shift}) u barazua me sukses.`);
+    toast.showSuccessToast(`Arka për ${entryToReconcile.sellerUsername} (${new Date(entryToReconcile.date + "T00:00:00").toLocaleDateString('sq-AL')}, ${entryToReconcile.shift}) u barazua me sukses.`);
     closeReconciliationModal();
     renderDashboardSummary();
 
@@ -521,7 +522,7 @@ export async function handleChangeClearSalePin(event: Event): Promise<void> {
     }
 
     await storage.saveClearSalePinHash(state.currentManagingBusinessId, newPin);
-    alert("PIN-i për pastrimin e shitjes u ndryshua me sukses.");
+    toast.showSuccessToast("PIN-i për pastrimin e shitjes u ndryshua me sukses.");
     closeChangeClearSalePinModal();
 }
 if (dom.changeClearSalePinForm) { 

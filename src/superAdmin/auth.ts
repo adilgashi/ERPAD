@@ -7,6 +7,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import * as utils from '../core/utils';
 import { showAuthView as showMainAuthView } from '../core/auth';
 import { showCustomConfirm } from '../core/ui';
@@ -54,7 +55,7 @@ export async function handleChangeSuperAdminPassword(event: Event): Promise<void
     const newHash = utils.simpleHash(newPassword);
     await storage.saveSuperAdminPasswordHash(newHash);
     state.setSuperAdminPasswordHash(newHash); 
-    alert("Fjalëkalimi i Super Adminit u ndryshua me sukses.");
+    toast.showSuccessToast("Fjalëkalimi i Super Adminit u ndryshua me sukses.");
     if (dom.superAdminPasswordForm) dom.superAdminPasswordForm.reset();
     dom.superAdminPasswordErrorElement.textContent = "";
 }

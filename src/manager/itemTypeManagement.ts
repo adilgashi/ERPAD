@@ -7,6 +7,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { ItemType } from '../models';
 import { generateUniqueId } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -154,7 +155,7 @@ export function handleDeleteItemType(itemTypeId: string, itemTypeName: string): 
 
     const isItemTypeInUse = state.products.some(p => p.itemTypeId === itemTypeId);
     if (isItemTypeInUse) {
-        alert(`Lloji i artikullit "${itemTypeName}" është në përdorim nga një ose më shumë produkte dhe nuk mund të fshihet. Ju lutem hiqni këtë lloj artikulli nga produktet përkatëse fillimisht.`);
+        toast.showErrorToast(`Lloji i artikullit "${itemTypeName}" është në përdorim nga një ose më shumë produkte dhe nuk mund të fshihet. Ju lutem hiqni këtë lloj artikulli nga produktet përkatëse fillimisht.`);
         return;
     }
 
@@ -164,6 +165,6 @@ export function handleDeleteItemType(itemTypeId: string, itemTypeName: string): 
         storage.saveItemTypesToLocalStorage(state.currentManagingBusinessId, state.itemTypes);
         renderItemTypeList();
         // TODO: Update product form if open
-        alert(`Lloji i artikullit "${itemTypeName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Lloji i artikullit "${itemTypeName}" u fshi me sukses.`);
     });
 }

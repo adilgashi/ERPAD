@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 // import * as config from '../core/config'; // No longer needed for static packages
 import { showManagerDashboardView } from './index'; 
 import * as superAdmin from '../superAdmin';
@@ -194,12 +195,12 @@ export function handleSubscriptionUpgradeRequest(requestedPackageId: string) {
     const requestedPackage = state.subscriptionPackages.find(p => p.id === requestedPackageId);
 
     if (!business || !requestedPackage) {
-        alert("Gabim: Biznesi ose pakoja e kërkuar nuk u gjet.");
+        toast.showErrorToast("Gabim: Biznesi ose pakoja e kërkuar nuk u gjet.");
         return;
     }
 
     if (business.upgradeRequest) {
-        alert("Ju tashmë keni një kërkesë për përmirësim në proces. Ju lutem prisni që administratori ta trajtojë atë.");
+        toast.showInfoToast("Ju tashmë keni një kërkesë për përmirësim në proces. Ju lutem prisni që administratori ta trajtojë atë.");
         return;
     }
 
@@ -254,7 +255,7 @@ export function handleActivateNewSubscription() {
 
 
         storage.saveAllBusinesses(state.businesses);
-        alert(`Abonimi u aktivizua me sukses! Paketa: ${futurePkg.name}, Skadon më: ${new Date(newSubscriptionEndDate).toLocaleDateString('sq-AL')}`);
+        toast.showSuccessToast(`Abonimi u aktivizua me sukses! Paketa: ${futurePkg.name}, Skadon më: ${new Date(newSubscriptionEndDate).toLocaleDateString('sq-AL')}`);
         
         dom.subscriptionActivationErrorElement.textContent = "";
         dom.newSubscriptionActivationCodeInput.value = "";

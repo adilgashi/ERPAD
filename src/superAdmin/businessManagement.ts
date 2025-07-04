@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import * as config from '../core/config';
 import { Business, User, BusinessDetails, SubscriptionPackage } from '../models'; 
 import * as utils from '../core/utils';
@@ -132,7 +133,7 @@ export async function handleSaveNewBusiness(event: Event): Promise<void> {
     
     await storage.saveClearSalePinHash(businessId, config.DEFAULT_CLEAR_SALE_PIN);
 
-    alert(`Biznesi "${name}" u krijua me sukses! Kodi i aktivizimit: ${activationCode}`);
+    toast.showSuccessToast(`Biznesi "${name}" u krijua me sukses! Kodi i aktivizimit: ${activationCode}`);
     closeAddBusinessModal();
     renderSuperAdminContentBusinessList();
 }
@@ -270,15 +271,15 @@ export async function handleSaveBusinessDetails(event: Event): Promise<void> {
                 business.logoUrl = logoUrl;
                 await storage.saveBusinessDetails(state.currentManagingBusinessId, details);
                 await storage.saveAllBusinesses(state.businesses);
-                alert("Detajet e biznesit u ruajtën (me logo të re).");
+                toast.showSuccessToast("Detajet e biznesit u ruajtën (me logo të re).");
                 if (dom.businessLogoPreviewSA) dom.businessLogoPreviewSA.src = logoUrl;
             } catch (err) {
-                alert("Gabim gjatë ngarkimit të logos.");
+                toast.showErrorToast("Gabim gjatë ngarkimit të logos.");
             }
         } else {
             await storage.saveBusinessDetails(state.currentManagingBusinessId, details);
             await storage.saveAllBusinesses(state.businesses);
-            alert("Detajet e biznesit u ruajtën.");
+            toast.showSuccessToast("Detajet e biznesit u ruajtën.");
         }
     }
     renderManagingBusinessViewContent(state.currentManagingBusinessId); 
@@ -299,7 +300,7 @@ export async function handleDeleteBusinessLogoSA(): Promise<void> {
             dom.businessLogoPreviewSA.style.display = 'none';
         }
         if(dom.businessLogoInputSA) dom.businessLogoInputSA.value = '';
-        alert("Logoja e biznesit u fshi.");
+        toast.showSuccessToast("Logoja e biznesit u fshi.");
     });
 }
 
@@ -315,7 +316,7 @@ export function handleDeleteBusiness(businessId: string, businessName: string): 
         state.setBusinesses(state.businesses.filter(b => b.id !== businessId));
         await storage.saveAllBusinesses(state.businesses);
         
-        alert(`Biznesi "${businessName}" dhe të gjitha të dhënat e tij u fshinë përgjithmonë.`);
+        toast.showSuccessToast(`Biznesi "${businessName}" dhe të gjitha të dhënat e tij u fshinë përgjithmonë.`);
         showSuperAdminBusinessListView(); 
     });
 }
@@ -353,12 +354,15 @@ export async function handleGenerateFutureSubscriptionCode(): Promise<void> {
 
 export async function handleOpenNewFiscalYear(): Promise<void> {
     if (!state.currentManagingBusinessId) { alert("Nuk ka biznes të zgjedhur."); return; }
-    const business = state.businesses.find(b => b.id === state.currentManagingBusinessId);
-    if (!business) { alert("Biznesi nuk u gjet."); return; }
+        toast.showErrorToast("Nuk ka biznes të zgjedhur."); 
+    if (!business) { 
+        toast.showErrorToast("Biznesi nuk u gjet."); 
+        return; 
+    }
 
     const currentYear = new Date().getFullYear();
     if (business.fiscalYear >= currentYear) {
-        alert(`Viti fiskal aktual (${business.fiscalYear}) është i njëjtë ose më i madh se viti aktual (${currentYear}). Nuk mund të hapet vit i ri fiskal.`);
+        toast.showErrorToast(`Viti fiskal aktual (${business.fiscalYear}) është i njëjtë ose më i madh se viti aktual (${currentYear}). Nuk mund të hapet vit i ri fiskal.`);
         return;
     }
     
@@ -378,14 +382,17 @@ export async function handleOpenNewFiscalYear(): Promise<void> {
             business.creditNoteIdSeed = 1;
             business.debitNoteIdSeed = 1;
             await storage.saveAllBusinesses(state.businesses);
-            alert(`Viti i ri fiskal ${business.fiscalYear} u hap me sukses për "${business.name}". Numrat e faturave u resetuan.`);
+            toast.showSuccessToast(`Viti i ri fiskal ${business.fiscalYear} u hap me sukses për "${business.name}". Numrat e faturave u resetuan.`);
             renderManagingBusinessViewContent(business.id); 
         }
     );
 }
 
 export function handleRestoreBusinessBackupPrompt(): void {
-    if (!state.currentManagingBusinessId) { alert("Ju lutem zgjidhni një biznes së pari për të restauruar të dhënat."); return; }
+    if (!state.currentManagingBusinessId) { 
+        toast.showWarningToast("Ju lutem zgjidhni një biznes së pari për të restauruar të dhënat."); 
+        return; 
+    }
     if (dom.backupFileInput) {
         showCustomConfirm("Restaurimi i një backup-i do të mbishkruajë të gjitha të dhënat aktuale për këtë biznes! Ky veprim nuk mund të kthehet. Jeni i sigurt që doni të vazhdoni?", () => {
              dom.backupFileInput?.click();
@@ -396,7 +403,10 @@ export function handleRestoreBusinessBackupPrompt(): void {
 export function handleBackupFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
-    if (!state.currentManagingBusinessId) { alert("Gabim: Nuk ka biznes të zgjedhur për restaurim."); return; }
+    if (!state.currentManagingBusinessId) { 
+        toast.showErrorToast("Gabim: Nuk ka biznes të zgjedhur për restaurim."); 
+        return; 
+    }
 
     const file = input.files[0];
     const reader = new FileReader();
@@ -456,7 +466,7 @@ export async function proceedWithRestore(backupData: any, businessIdToRestore: s
 
     await storage.loadAllBusinessData(businessIdToRestore);
     renderManagingBusinessViewContent(businessIdToRestore); 
-    alert("Të dhënat e biznesit u restauruan me sukses nga backup-i.");
+    toast.showSuccessToast("Të dhënat e biznesit u restauruan me sukses nga backup-i.");
 }
 
 export function renderBusinessDetailsForm(): void {

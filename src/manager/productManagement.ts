@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Product, Category, Supplier, ItemType, Recipe, RecipeIngredient } from '../models';
 import { generateUniqueId, readFileAsDataURL } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -426,12 +427,12 @@ export function handleDeleteProduct(productId: string, productName: string): voi
 
     const isProductInDeal = state.deals.some(deal => deal.items.some(item => item.productId === productId));
     if (isProductInDeal) {
-        alert(`Produkti "${productName}" është pjesë e një ose më shumë ofertave dhe nuk mund të fshihet. Ju lutem hiqni produktin nga ofertat përkatëse fillimisht.`);
+        toast.showErrorToast(`Produkti "${productName}" është pjesë e një ose më shumë ofertave dhe nuk mund të fshihet. Ju lutem hiqni produktin nga ofertat përkatëse fillimisht.`);
         return;
     }
     const isProductInRecipe = state.recipes.some(recipe => recipe.ingredients.some(ing => ing.productId === productId) || recipe.finalProductId === productId);
     if (isProductInRecipe) {
-        alert(`Produkti "${productName}" është në përdorim në një ose më shumë receta dhe nuk mund të fshihet.`);
+        toast.showErrorToast(`Produkti "${productName}" është në përdorim në një ose më shumë receta dhe nuk mund të fshihet.`);
         return;
     }
 
@@ -446,7 +447,7 @@ export function handleDeleteProduct(productId: string, productName: string): voi
          if (typeof (window as any).renderManagerStockOverview === 'function') {
             (window as any).renderManagerStockOverview();
         }
-        alert(`Produkti "${productName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Produkti "${productName}" u fshi me sukses.`);
     });
 }
 

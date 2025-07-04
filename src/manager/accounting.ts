@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Account, AccountType, JournalEntry, JournalEntryLine, AccountingSettings } from '../models';
 import { generateUniqueId, getTodayDateString } from '../core/utils';
 import { showCustomConfirm, isAnyOtherModalOrDropdownActive, generateReportHeaderHTML, generateReportFooterHTML } from '../core/ui';
@@ -882,7 +883,7 @@ async function handleSaveAccountingSettings(event: Event) {
     
     state.setAccountingSettings(newSettings);
     await storage.saveAccountingSettings(state.currentManagingBusinessId, newSettings);
-    alert('Cilësimet e kontabilitetit u ruajtën me sukses.');
+    toast.showSuccessToast('Cilësimet e kontabilitetit u ruajtën me sukses.');
 }
 
 // --- Event Listeners ---

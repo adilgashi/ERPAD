@@ -6,6 +6,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { Customer } from '../models';
 import { generateUniqueId } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -140,7 +141,7 @@ export function handleSaveCustomer(event: Event): void {
         return;
     }
     if (!code) {
-        dom.customerFormErrorElement.textContent = "Kodi i blerësit mungon.";
+        toast.showErrorToast(`Furnitori "${supplierName}" është në përdorim nga një ose më shumë produkte dhe nuk mund të fshihet. Ju lutem hiqni këtë furnitor nga produktet përkatëse fillimisht.`);
         return;
     }
 
@@ -198,7 +199,7 @@ export function handleDeleteCustomer(customerId: string, customerName: string): 
         storage.saveCustomersToLocalStorage(state.currentManagingBusinessId, state.customers);
         renderCustomerListForManager();
         populateSellerCustomerSelect(); 
-        alert(`Blerësi "${customerName}" u fshi me sukses.`);
+        toast.showSuccessToast(`Blerësi "${customerName}" u fshi me sukses.`);
     });
 }
 
@@ -210,7 +211,7 @@ export function handleSetDefaultCustomer(customerId: string) {
         storage.saveAllBusinesses(state.businesses);
         renderCustomerListForManager(); 
         populateSellerCustomerSelect(); 
-        alert(`Blerësi u caktua si default.`);
+        toast.showSuccessToast(`Blerësi u caktua si default.`);
     }
 }
 

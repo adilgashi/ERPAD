@@ -7,6 +7,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { MenuCategoryConfig, MenuItemConfig } from '../models';
 import * as utils from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -257,7 +258,7 @@ export function handleSaveManagerMenuConfig() {
 
     state.setManagerMenuConfig(updatedConfig); 
     storage.saveManagerMenuConfig(state.managerMenuConfig); 
-    alert("Konfigurimi i menysë së menaxherit u ruajt me sukses!");
+    toast.showSuccessToast("Konfigurimi i menysë së menaxherit u ruajt me sukses!");
     
     renderManagerMenuEditor(); 
      
@@ -281,7 +282,7 @@ export function handleResetManagerMenuConfig() {
         state.setManagerMenuConfig(storage.getDefaultManagerMenuConfig());
         storage.saveManagerMenuConfig(state.managerMenuConfig);
         renderManagerMenuEditor(); 
-        alert("Menyja e menaxherit u rikthye në konfigurimin fillestar.");
+        toast.showSuccessToast("Menyja e menaxherit u rikthye në konfigurimin fillestar.");
         
         if(state.currentUser?.role === 'menaxher' && dom.managerDashboardView?.style.display === 'flex') {
             if (typeof (window as any).refreshManagerSidebar === 'function') {

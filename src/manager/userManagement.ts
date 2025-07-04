@@ -8,6 +8,7 @@
 import * as dom from '../core/dom';
 import * as state from '../core/state';
 import * as storage from '../core/storage';
+import * as toast from '../core/toast';
 import { User, UserRole } from '../models';
 import { generateUniqueId, simpleHash } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
@@ -235,14 +236,14 @@ export function handleDeleteUser(userId: string, username: string): void {
     if (!state.currentManagingBusinessId) return;
     
     if (state.currentUser && state.currentUser.id === userId) {
-        alert("Nuk mund të fshini përdoruesin aktualisht të kyçur.");
+        toast.showErrorToast("Nuk mund të fshini përdoruesin aktualisht të kyçur.");
         return;
     }
     const userToDelete = state.users.find(u => u.id === userId);
     if (userToDelete?.role === 'menaxher') {
         const otherManagers = state.users.filter(u => u.role === 'menaxher' && u.id !== userId);
         if (state.currentUserFormModalContext === 'manager' && otherManagers.length === 0) { 
-            alert("Nuk mund të fshini menaxherin e vetëm. Duhet të ketë të paktën një menaxher.");
+            toast.showErrorToast("Nuk mund të fshini menaxherin e vetëm. Duhet të ketë të paktën një menaxher.");
             return;
         }
     }
@@ -259,7 +260,7 @@ export function handleDeleteUser(userId: string, username: string): void {
         } else {
             renderUserListForManager();
         }
-        alert(`Përdoruesi "${username}" u fshi me sukses.`);
+        toast.showSuccessToast(`Përdoruesi "${username}" u fshi me sukses.`);
     });
 }
 
