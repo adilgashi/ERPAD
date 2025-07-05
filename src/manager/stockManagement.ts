@@ -17,6 +17,28 @@ export function renderStockOverview(): void {
         return;
     }
 
+    // Add a button to navigate to stock adjustments
+    const container = dom.managerContentStockOverview;
+    if (container) {
+        const existingButton = container.querySelector('#go-to-stock-adjustments-btn');
+        if (!existingButton) {
+            const filterContainer = container.querySelector('.filter-container');
+            if (filterContainer) {
+                const adjustmentsButton = document.createElement('button');
+                adjustmentsButton.id = 'go-to-stock-adjustments-btn';
+                adjustmentsButton.className = 'btn btn-info';
+                adjustmentsButton.innerHTML = '<span class="icon">⚖️</span> Rregullimet e Stokut';
+                adjustmentsButton.style.marginLeft = '1rem';
+                adjustmentsButton.addEventListener('click', () => {
+                    if (typeof (window as any).setActiveManagerView === 'function') {
+                        (window as any).setActiveManagerView('stock_adjustments', 'Rregullimet e Stokut');
+                    }
+                });
+                filterContainer.appendChild(adjustmentsButton);
+            }
+        }
+    }
+
     const searchTerm = dom.stockOverviewSearchInput ? dom.stockOverviewSearchInput.value.toLowerCase().trim() : '';
     dom.stockOverviewTbody.innerHTML = '';
 

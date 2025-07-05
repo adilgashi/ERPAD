@@ -277,6 +277,25 @@ function handleGenerateItemLedger(): void {
         });
     });
 
+    // Stock Adjustments
+    state.stockAdjustments.filter(adj => 
+        adj.productId === productId && 
+        adj.timestamp >= reportStartDate && 
+        adj.timestamp <= reportEndDate
+    ).forEach(adj => {
+        const difference = adj.newQuantity - adj.oldQuantity;
+        ledgerEntries.push({
+            date: adj.timestamp,
+            displayDate: new Date(adj.timestamp).toLocaleDateString('sq-AL'),
+            type: `Rregullim Stoku (${adj.adjustmentType})`,
+            documentNumber: adj.id,
+            incoming: difference > 0 ? difference : 0,
+            outgoing: difference < 0 ? Math.abs(difference) : 0,
+            balance: 0, // To be calculated later
+            description: adj.notes
+        });
+    });
+    
     // Add Sales Return Invoices to ledger entries
     state.salesReturnInvoices.filter(inv => inv.timestamp >= reportStartDate && inv.timestamp <= reportEndDate).forEach(inv => {
         inv.items.forEach(item => {

@@ -327,6 +327,7 @@ export const savePurchaseInvoicesToLocalStorage = api.savePurchaseInvoices;
 export const saveRecipesToLocalStorage = api.saveRecipes;
 export const saveReturnPurchaseInvoicesToLocalStorage = api.saveReturnPurchaseInvoices;
 export const saveSalesLogToLocalStorage = api.saveSalesLog;
+export const saveStockAdjustments = api.saveStockAdjustments;
 export const saveSalesReturnInvoicesToLocalStorage = api.saveSalesReturnInvoices;
 export const saveSuppliersToLocalStorage = api.saveSuppliers;
 export const saveProductionOrdersToLocalStorage = api.saveProductionOrders;

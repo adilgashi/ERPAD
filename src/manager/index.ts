@@ -543,6 +543,7 @@ export function initManagerView(): void {
     stockManager.initStockManagementEventListeners();
     localPurchaseManager.initLocalPurchasesEventListeners();
     returnPurchaseManager.initReturnPurchasesEventListeners();
+    stockAdjustments.initStockAdjustmentsView('stock_adjustments');
     outgoingPaymentsManager.initOutgoingPaymentsEventListeners();
     incomingPaymentsManager.initIncomingPaymentsEventListeners();
     reportManager.initReportEventListeners();

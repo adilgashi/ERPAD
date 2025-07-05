@@ -253,6 +253,8 @@
   "productionStages": [],
   "productionRoutings": [],
   "accounts": [
+  ],
+  "stockAdjustments": [
     {
       "id": "acc-retained-earnings",
       "businessId": "biz-test1",
