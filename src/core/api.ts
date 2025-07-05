@@ -467,14 +467,6 @@ export async function savePayrollEntries(businessId: string, entries: PayrollEnt
     return saveBusinessData(businessId, config.BASE_PAYROLL_ENTRIES_STORAGE_KEY, entries);
 }
 
-// HR - Payroll
-export async function getPayrollEntries(businessId: string): Promise<PayrollEntry[]> {
-    return getBusinessData<PayrollEntry>(businessId, config.BASE_PAYROLL_ENTRIES_STORAGE_KEY, 'payrollEntries');
-}
-export async function savePayrollEntries(businessId: string, entries: PayrollEntry[]): Promise<void> {
-    return saveBusinessData(businessId, config.BASE_PAYROLL_ENTRIES_STORAGE_KEY, entries);
-}
-
 // Accounting - Accounts
 export async function getAccounts(businessId: string): Promise<Account[]> {
     return getBusinessData<Account>(businessId, config.BASE_ACCOUNTS_STORAGE_KEY, 'accounts');
