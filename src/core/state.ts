@@ -84,6 +84,7 @@ export function setCustomers(newCustomers: Customer[]): void { customers = newCu
 export function setCategories(newCategories: Category[]): void { categories = newCategories; }
 export function setItemTypes(newItemTypes: ItemType[]): void { itemTypes = newItemTypes; }
 export function setSuppliers(newSuppliers: Supplier[]): void { suppliers = newSuppliers; }
+export function setAccounts(newAccounts: Account[]): void { accounts = newAccounts; }
 export function setPurchaseInvoices(newPurchaseInvoices: PurchaseInvoice[]): void { purchaseInvoices = newPurchaseInvoices; }
 export function setReturnPurchaseInvoices(newReturnPurchaseInvoices: ReturnPurchaseInvoice[]): void { returnPurchaseInvoices = newReturnPurchaseInvoices; }
 export function setOutgoingPayments(newOutgoingPayments: OutgoingPayment[]): void { outgoingPayments = newOutgoingPayments; }
