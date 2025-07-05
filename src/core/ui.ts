@@ -6,11 +6,42 @@
 import * as dom from './dom';
 import * as state from './state';
 import * as toast from './toast';
+import * as toast from './toast';
 import { showSuperAdminPanel } from '../superAdmin';
 import { showManagerDashboardView } from '../manager/index';
 import { SaleRecord, PurchaseInvoice, BusinessDetails, ReturnPurchaseInvoice, OutgoingPayment, SalesReturnInvoice, LocalSaleInvoice, ReportTypeEnum, PettyCashEntry, Customer } from '../models';
 import * as seller from '../seller';
 import { ReportType } from '../manager/reports';
+
+// Theme management
+export function initThemeToggle(): void {
+    const themeToggleInput = document.getElementById('theme-toggle') as HTMLInputElement | null;
+    if (!themeToggleInput) return;
+    
+    // Check for saved theme preference or use preferred color scheme
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set initial theme
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggleInput.checked = true;
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggleInput.checked = false;
+    }
+    
+    // Add event listener for theme toggle
+    themeToggleInput.addEventListener('change', function() {
+        if (this.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
 
 // Theme management
 export function initThemeToggle(): void {
@@ -328,6 +359,12 @@ export function initUIEventListeners(): void {
     dom.customCancelConfirmBtn?.addEventListener('click', closeCustomConfirmModal);
     dom.customConfirmModalCloseBtn?.addEventListener('click', closeCustomConfirmModal);
 
+    // Initialize theme toggle
+    initThemeToggle();
+
+    // Initialize toast container
+    toast.initToastContainer();
+    
     // Initialize theme toggle
     initThemeToggle();
 
