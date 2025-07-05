@@ -44,6 +44,7 @@ import * as accountingManager from './accounting';
 import * as accountLedger from './accountLedger';
 import * as periodClosing from './periodClosing';
 import * as localSalesManager from './localSales';
+import * as stockAdjustments from './stockAdjustments';
 import { ReportType } from './reports';
 import { ReportTypeEnum } from '../models';
 import { showCashFlowStatementPanel } from './accounting';
@@ -116,6 +117,7 @@ export const viewInitializationFunctions: Record<string, (viewNameOrReportType: 
     'production_stages': productionManager.showProductionStagePanel,
     'production_routings': productionManager.showProductionRoutingPanel,
     'chart_of_accounts': accountingManager.showChartOfAccountsPanel,
+    'stock_adjustments': stockAdjustments.initStockAdjustmentsView,
     'general_ledger': accountingManager.showGeneralLedgerPanel,
     'balance_sheet': accountingManager.showBalanceSheetPanel,
     'profit_and_loss': accountingManager.showProfitAndLossPanel,
@@ -543,7 +545,6 @@ export function initManagerView(): void {
     stockManager.initStockManagementEventListeners();
     localPurchaseManager.initLocalPurchasesEventListeners();
     returnPurchaseManager.initReturnPurchasesEventListeners();
-    stockAdjustments.initStockAdjustmentsView('stock_adjustments');
     outgoingPaymentsManager.initOutgoingPaymentsEventListeners();
     incomingPaymentsManager.initIncomingPaymentsEventListeners();
     reportManager.initReportEventListeners();

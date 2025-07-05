@@ -11,6 +11,7 @@ import { StockAdjustment, Product } from '../models';
 import { generateUniqueId, getTodayDateString } from '../core/utils';
 import { showCustomConfirm } from '../core/ui';
 
+// Export the function to make it available to other modules
 export function initStockAdjustmentsView(viewName: string, targetContainer?: HTMLElement): void {
     if (!targetContainer) {
         console.error("Target container not provided for Stock Adjustments view.");
