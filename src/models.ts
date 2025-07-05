@@ -717,6 +717,7 @@ export enum ReportTypeEnum {
     CashFlowStatement = 'cashFlowStatement',
     ProfitAndLoss = 'profitAndLoss',
     
+    
     // Ledgers
     CustomerLedger = 'customerLedger',
     SupplierLedger = 'supplierLedger',

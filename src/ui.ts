@@ -429,6 +429,7 @@ export const reportCategories = [
     { id: 'cash_reports', name: 'Raportet e Arkës', containerId: 'cash-reports-category-tiles', reports: [
         { type: ReportTypeEnum.ReconciliationReport, name: "Raporti i Barazimit të Arkës" },
         { type: ReportTypeEnum.CashFlowStatement, name: "Pasqyra e Rrjedhës së Parave" },
+        { type: ReportTypeEnum.ProfitAndLoss, name: "Pasqyra e të Ardhurave dhe Shpenzimeve (P&L)" },
     ]},
     { id: 'logs', name: 'Regjistrat e Sistemit', containerId: 'logs-category-tiles', reports: [
         { type: ReportTypeEnum.ClearedSalesLog, name: "Regjistri i Shitjeve të Pastruara" },
