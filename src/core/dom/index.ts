@@ -17,7 +17,6 @@ export * from './commonModals';
 export * from './production';
 export * from './hr';
 export * from './payroll';
-export * from './payroll';
 export * from './creditDebitNotes';
 export * from './salesReturns';
 export * from './accounting';

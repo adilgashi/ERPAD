@@ -42,7 +42,6 @@ export let productionRoutings: ProductionRouting[] = [];
 export let timeLogs: TimeLog[] = [];
 export let leaveRequests: LeaveRequest[] = [];
 export let overtimeEntries: Overtime[] = [];
-export let payrollEntries: PayrollEntry[] = [];
 
 
 export let businesses: Business[] = []; 
@@ -117,7 +116,6 @@ export function setEmployees(newEmployees: Employee[]): void { employees = newEm
 export function setTimeLogs(newTimeLogs: TimeLog[]): void { timeLogs = newTimeLogs; }
 export function setLeaveRequests(newLeaveRequests: LeaveRequest[]): void { leaveRequests = newLeaveRequests; }
 export function setOvertimeEntries(newOvertimeEntries: Overtime[]): void { overtimeEntries = newOvertimeEntries; }
-export function setPayrollEntries(newPayrollEntries: PayrollEntry[]): void { payrollEntries = newPayrollEntries; }
 export function setAccounts(newAccounts: Account[]): void { accounts = newAccounts; }
 export function setJournalEntries(newJournalEntries: JournalEntry[]): void { journalEntries = newJournalEntries; }
 export function setAccountingSettings(settings: AccountingSettings | null): void { accountingSettings = settings; }
