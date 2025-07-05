@@ -455,6 +455,7 @@ export async function saveLeaveRequests(businessId: string, requests: LeaveReque
 export async function getOvertimeEntries(businessId: string): Promise<Overtime[]> {
     return getBusinessData<Overtime>(businessId, config.BASE_OVERTIME_ENTRIES_STORAGE_KEY, 'overtimeEntries');
 }
+
 export async function saveOvertimeEntries(businessId: string, entries: Overtime[]): Promise<void> {
     return saveBusinessData(businessId, config.BASE_OVERTIME_ENTRIES_STORAGE_KEY, entries);
 }
@@ -463,6 +464,7 @@ export async function saveOvertimeEntries(businessId: string, entries: Overtime[
 export async function getPayrollEntries(businessId: string): Promise<PayrollEntry[]> {
     return getBusinessData<PayrollEntry>(businessId, config.BASE_PAYROLL_ENTRIES_STORAGE_KEY, 'payrollEntries');
 }
+
 export async function savePayrollEntries(businessId: string, entries: PayrollEntry[]): Promise<void> {
     return saveBusinessData(businessId, config.BASE_PAYROLL_ENTRIES_STORAGE_KEY, entries);
 }
@@ -471,6 +473,7 @@ export async function savePayrollEntries(businessId: string, entries: PayrollEnt
 export async function getAccounts(businessId: string): Promise<Account[]> {
     return getBusinessData<Account>(businessId, config.BASE_ACCOUNTS_STORAGE_KEY, 'accounts');
 }
+
 export async function saveAccounts(businessId: string, accounts: Account[]): Promise<void> {
     return saveBusinessData(businessId, config.BASE_ACCOUNTS_STORAGE_KEY, accounts);
 }

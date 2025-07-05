@@ -125,7 +125,10 @@ export async function loadAllBusinessData(businessId: string): Promise<void> {
         state.setTimeLogs(timeLogs);
         state.setLeaveRequests(leaveRequests);
         state.setOvertimeEntries(overtimeEntries);
-        state.setPayrollEntries(payrollEntries); // Vendosja e payrollEntries në state
+    state.setPayrollEntries(payrollEntries);
+    state.setAccounts(accounts);
+    state.setJournalEntries(journalEntries);
+    state.setAccountingSettings(accountingSettings);
 
     } catch (error) {
         console.error(`Failed to load all business data for ${businessId}:`, error);
@@ -168,6 +171,10 @@ export function clearAllBusinessData(): void {
     state.setTimeLogs([]);
     state.setLeaveRequests([]);
     state.setOvertimeEntries([]);
+    state.setPayrollEntries([]);
+    state.setAccounts([]);
+    state.setJournalEntries([]);
+    state.setAccountingSettings(null);
     state.setPayrollEntries([]);
     state.setAccountingSettings(null);
 }
