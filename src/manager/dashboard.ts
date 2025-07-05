@@ -45,7 +45,7 @@ function createDashboardStructure() {
                         <h3>Abonimi</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="subscription-info">
+                        <div class="subscription-info animated-content">
                             <p>Paketa: <span id="dash-sub-package-name">Duke ngarkuar...</span></p>
                             <p>Skadon më: <span id="dash-sub-expiry-date">Duke ngarkuar...</span></p>
                             <p>Statusi: <span id="dash-sub-status" class="status-badge">Duke ngarkuar...</span></p>
@@ -61,8 +61,10 @@ function createDashboardStructure() {
                         <h3>Shitjet e Sotme</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="metric-large" id="dashboard-today-sales-total">0.00 €</div>
-                        <div class="metric-small" id="dashboard-today-sales-count">0 Fatura</div>
+                        <div class="animated-content">
+                            <div class="metric-large" id="dashboard-today-sales-total">0.00 €</div>
+                            <div class="metric-small" id="dashboard-today-sales-count">0 Fatura</div>
+                        </div>
                         <div id="today-sales-chart" class="chart-container small-chart-container"></div>
                     </div>
                 </div>
@@ -75,7 +77,7 @@ function createDashboardStructure() {
                         <h3>Ndërrime Aktive</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="metric-large" id="dash-open-shifts-count">0</div>
+                        <div class="metric-large animated-content" id="dash-open-shifts-count">0</div>
                         <div id="dashboard-open-shifts-summary" class="scrollable-content"></div>
                     </div>
                 </div>
@@ -91,15 +93,17 @@ function createDashboardStructure() {
                         <h3>Produkti më i Shitur</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="top-item-name" id="dash-top-product-name">Duke ngarkuar...</div>
-                        <div class="top-item-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Sasia:</span>
-                                <span class="stat-value" id="dash-top-product-quantity">0</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Vlera:</span>
-                                <span class="stat-value" id="dash-top-product-revenue">0.00 €</span>
+                        <div class="animated-content">
+                            <div class="top-item-name" id="dash-top-product-name">Duke ngarkuar...</div>
+                            <div class="top-item-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Sasia:</span>
+                                    <span class="stat-value" id="dash-top-product-quantity">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Vlera:</span>
+                                    <span class="stat-value" id="dash-top-product-revenue">0.00 €</span>
+                                </div>
                             </div>
                         </div>
                         <div id="top-product-chart" class="chart-container small-chart-container"></div>
@@ -114,11 +118,13 @@ function createDashboardStructure() {
                         <h3>Blerësi më Aktiv</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="top-item-name" id="dash-top-customer-name">Duke ngarkuar...</div>
-                        <div class="top-item-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Shpenzuar:</span>
-                                <span class="stat-value" id="dash-top-customer-spent">0.00 €</span>
+                        <div class="animated-content">
+                            <div class="top-item-name" id="dash-top-customer-name">Duke ngarkuar...</div>
+                            <div class="top-item-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Shpenzuar:</span>
+                                    <span class="stat-value" id="dash-top-customer-spent">0.00 €</span>
+                                </div>
                             </div>
                         </div>
                         <div id="top-customer-chart" class="chart-container small-chart-container"></div>
@@ -133,11 +139,13 @@ function createDashboardStructure() {
                         <h3>Shitësi më i Mirë</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="top-item-name" id="dash-top-seller-name">Duke ngarkuar...</div>
-                        <div class="top-item-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Shitjet:</span>
-                                <span class="stat-value" id="dash-top-seller-sales">0.00 €</span>
+                        <div class="animated-content">
+                            <div class="top-item-name" id="dash-top-seller-name">Duke ngarkuar...</div>
+                            <div class="top-item-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Shitjet:</span>
+                                    <span class="stat-value" id="dash-top-seller-sales">0.00 €</span>
+                                </div>
                             </div>
                         </div>
                         <div id="top-seller-chart" class="chart-container small-chart-container"></div>
@@ -155,14 +163,16 @@ function createDashboardStructure() {
                         <h3>Gjendja e Inventarit</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="inventory-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Produkte Totale:</span>
-                                <span class="stat-value" id="dash-total-products">0</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Produkte me Stok të Ulët:</span>
-                                <span class="stat-value" id="dash-low-stock-products">0</span>
+                        <div class="animated-content">
+                            <div class="inventory-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Produkte Totale:</span>
+                                    <span class="stat-value" id="dash-total-products">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Produkte me Stok të Ulët:</span>
+                                    <span class="stat-value" id="dash-low-stock-products">0</span>
+                                </div>
                             </div>
                         </div>
                         <div id="inventory-chart" class="chart-container"></div>
@@ -177,21 +187,23 @@ function createDashboardStructure() {
                         <h3>Përmbledhje Financiare</h3>
                     </div>
                     <div class="widget-content">
-                        <div class="financial-metrics">
-                            <div class="financial-metric-item">
-                                <div class="metric-title">Shitjet Totale</div>
-                                <div class="metric-value" id="dashboard-overall-sales-total">0.00 €</div>
-                                <div class="metric-subtitle" id="dashboard-overall-sales-count">0 Fatura</div>
-                            </div>
-                            <div class="financial-metric-item">
-                                <div class="metric-title">Blerjet Totale</div>
-                                <div class="metric-value" id="dashboard-overall-purchases-total">0.00 €</div>
-                                <div class="metric-subtitle" id="dashboard-overall-purchases-count">0 Fatura</div>
-                            </div>
-                            <div class="financial-metric-item">
-                                <div class="metric-title">Bilanci</div>
-                                <div class="metric-value" id="dashboard-balance">0.00 €</div>
-                                <div class="metric-subtitle">Diferenca Shitje-Blerje</div>
+                        <div class="animated-content">
+                            <div class="financial-metrics">
+                                <div class="financial-metric-item">
+                                    <div class="metric-title">Shitjet Totale</div>
+                                    <div class="metric-value" id="dashboard-overall-sales-total">0.00 €</div>
+                                    <div class="metric-subtitle" id="dashboard-overall-sales-count">0 Fatura</div>
+                                </div>
+                                <div class="financial-metric-item">
+                                    <div class="metric-title">Blerjet Totale</div>
+                                    <div class="metric-value" id="dashboard-overall-purchases-total">0.00 €</div>
+                                    <div class="metric-subtitle" id="dashboard-overall-purchases-count">0 Fatura</div>
+                                </div>
+                                <div class="financial-metric-item">
+                                    <div class="metric-title">Bilanci</div>
+                                    <div class="metric-value" id="dashboard-balance">0.00 €</div>
+                                    <div class="metric-subtitle">Diferenca Shitje-Blerje</div>
+                                </div>
                             </div>
                         </div>
                         <div id="financial-chart" class="chart-container"></div>
@@ -469,7 +481,7 @@ function updateTodaySalesChart(todaysSales: SaleRecord[]) {
     // In a real implementation, you would update the chart with this data
     // For now, we'll just show a placeholder with some sample data
     chartContainer.innerHTML = `
-        <div class="chart-placeholder">
+        <div class="chart-placeholder animated-chart">
             <div class="chart-placeholder-icon">📈</div>
             <div class="chart-placeholder-text">Shitjet sipas orëve: ${Object.keys(salesByHour).length} periudha</div>
         </div>
@@ -482,7 +494,7 @@ function updateTopSellerChart(topSellers: {name: string, salesValue: number}[]) 
     
     // In a real implementation, you would update the chart with this data
     chartContainer.innerHTML = `
-        <div class="chart-placeholder">
+        <div class="chart-placeholder animated-chart">
             <div class="chart-placeholder-icon">🥇</div>
             <div class="chart-placeholder-text">Performanca e shitësve top</div>
         </div>
@@ -509,7 +521,7 @@ function updateInventoryChart(products: any[]) {
     
     // In a real implementation, you would update the chart with this data
     chartContainer.innerHTML = `
-        <div class="chart-placeholder">
+        <div class="chart-placeholder animated-chart">
             <div class="chart-placeholder-icon">📊</div>
             <div class="chart-placeholder-text">Produktet sipas kategorive: ${Object.keys(productsByCategory).length} kategori</div>
         </div>
@@ -522,7 +534,7 @@ function updateFinancialChart(sales: any[], purchases: any[]) {
     
     // In a real implementation, you would update the chart with sales and purchases data
     chartContainer.innerHTML = `
-        <div class="chart-placeholder">
+        <div class="chart-placeholder animated-chart">
             <div class="chart-placeholder-icon">💹</div>
             <div class="chart-placeholder-text">Krahasimi i shitjeve dhe blerjeve</div>
         </div>
