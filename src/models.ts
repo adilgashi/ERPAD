@@ -696,6 +696,21 @@ export interface ProductionRouting {
     stages: ProductionRoutingStage[];
 }
 
+export interface StockAdjustment {
+    id: string;
+    businessId: string;
+    productId: string;
+    productName: string;
+    productCode: string;
+    oldQuantity: number;
+    newQuantity: number;
+    adjustmentType: 'Inventarizim Fizik' | 'Dëmtim' | 'Skadencë' | 'Hyrje Manuale' | 'Dalje Manuale' | 'Tjetër';
+    notes: string;
+    recordedByUserId: string;
+    recordedByUsername: string;
+    timestamp: number;
+}
+
 // --- Enums ---
 export enum ReportTypeEnum {
     // Sales Reports

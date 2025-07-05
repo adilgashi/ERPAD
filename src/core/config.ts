@@ -54,6 +54,7 @@ export const BASE_PRODUCTION_STAGES_STORAGE_KEY = 'posProductionStages_v1';
 export const BASE_PRODUCTION_ROUTINGS_STORAGE_KEY = 'posProductionRoutings_v1';
 export const BASE_PURCHASE_ORDERS_STORAGE_KEY = 'posPurchaseOrders_v1';
 export const BASE_SALES_ORDERS_STORAGE_KEY = 'posSalesOrders_v1';
+export const BASE_STOCK_ADJUSTMENTS_STORAGE_KEY = 'posStockAdjustments_v1';
 
 // --- Default Package Permissions (Fallback) ---
 const defaultAllowedViews: string[] = [

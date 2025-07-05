@@ -419,6 +419,15 @@ export async function saveProductionRoutings(businessId: string, routings: Produ
     return saveBusinessData(businessId, config.BASE_PRODUCTION_ROUTINGS_STORAGE_KEY, routings);
 }
 
+// Stock Adjustments
+export async function getStockAdjustments(businessId: string): Promise<StockAdjustment[]> {
+    return getBusinessData<StockAdjustment>(businessId, config.BASE_STOCK_ADJUSTMENTS_STORAGE_KEY, 'stockAdjustments');
+}
+
+export async function saveStockAdjustments(businessId: string, adjustments: StockAdjustment[]): Promise<void> {
+    return saveBusinessData(businessId, config.BASE_STOCK_ADJUSTMENTS_STORAGE_KEY, adjustments);
+}
+
 // Clear Sale PIN
 export async function getClearSalePinHash(businessId: string): Promise<string> {
     return getBusinessString(businessId, config.BASE_CLEAR_SALE_PIN_HASH_STORAGE_KEY, 'clearSalePinHash', simpleHash(config.DEFAULT_CLEAR_SALE_PIN));
