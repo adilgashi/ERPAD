@@ -39,7 +39,6 @@ import { initDebitNotesView, initDebitNotesEventListeners } from './debitNotes';
 import * as productionManager from './production';
 import * as hrManagement from './hrManagement';
 import * as payrollManagement from './payrollManagement';
-import * as payrollManagement from './payrollManagement';
 import * as groupManager from './groupManagement';
 import * as accountingManager from './accounting';
 import * as accountLedger from './accountLedger';
@@ -92,7 +91,6 @@ export const viewInitializationFunctions: Record<string, (viewNameOrReportType: 
     'hr_time_tracking': hrManagement.showTimeTrackingView,
     'hr_leave_overtime': hrManagement.showLeaveOvertimeView,
     'hr_holidays': hrManagement.showHolidaysView,
-    'payroll_management': payrollManagement.initPayrollManagementView,
     'payroll_management': payrollManagement.initPayrollManagementView,
     'stock_overview': stockManager.renderStockOverview,
     'item_ledger': itemLedgerManager.initItemLedgerView,
@@ -541,7 +539,6 @@ export function initManagerView(): void {
     customerManager.initCustomerManagementEventListeners();
     supplierManager.initSupplierManagementEventListeners();
     hrManagement.initEmployeeManagementEventListeners();
-    payrollManagement.initPayrollManagementEventListeners();
     payrollManagement.initPayrollManagementEventListeners();
     stockManager.initStockManagementEventListeners();
     localPurchaseManager.initLocalPurchasesEventListeners();

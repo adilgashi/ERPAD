@@ -169,7 +169,6 @@ export function clearAllBusinessData(): void {
     state.setLeaveRequests([]);
     state.setOvertimeEntries([]);
     state.setPayrollEntries([]);
-    state.setPayrollEntries([]);
     state.setAccountingSettings(null);
 }
 
