@@ -45,6 +45,7 @@ import * as accountLedger from './accountLedger';
 import * as periodClosing from './periodClosing';
 import * as localSalesManager from './localSales';
 import * as stockAdjustments from './stockAdjustments';
+import * as stockAdjustments from './stockAdjustments';
 import { ReportType } from './reports';
 import { ReportTypeEnum } from '../models';
 import { showCashFlowStatementPanel } from './accounting';
@@ -126,6 +127,13 @@ export const viewInitializationFunctions: Record<string, (viewNameOrReportType: 
     'accounting_settings': accountingManager.showAccountingSettingsPanel,
     'period_closing': periodClosing.initPeriodClosingView,
     'sales_reports': (viewName, targetContainer) => {
+    },
+    'stock_adjustments': stockAdjustments.initStockAdjustmentsView,
+    'stock_adjustments_view': stockAdjustments.initStockAdjustmentsView,
+    'stock_adjustments_management': stockAdjustments.initStockAdjustmentsView,
+    'stockAdjustments': stockAdjustments.initStockAdjustmentsView,
+    'stockAdjustmentsView': stockAdjustments.initStockAdjustmentsView,
+    'stockAdjustmentsManagement': stockAdjustments.initStockAdjustmentsView
         reportManager.renderReportCategoryTiles('sales_reports', targetContainer, setActiveManagerView);
     },
     'purchases_reports': (viewName, targetContainer) => {
