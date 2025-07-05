@@ -85,7 +85,7 @@ export async function loadAllBusinessData(businessId: string): Promise<void> {
             api.getTimeLogs(businessId),
             api.getLeaveRequests(businessId),
             api.getOvertimeEntries(businessId),
-            api.getPayrollEntries(businessId),
+            api.getPayrollEntries(businessId), // Thirrja e funksionit për marrjen e payrollEntries
             api.getAccounts(businessId),
             api.getJournalEntries(businessId),
             api.getAccountingSettings(businessId),
@@ -125,7 +125,7 @@ export async function loadAllBusinessData(businessId: string): Promise<void> {
         state.setTimeLogs(timeLogs);
         state.setLeaveRequests(leaveRequests);
         state.setOvertimeEntries(overtimeEntries);
-        state.setPayrollEntries(payrollEntries);
+        state.setPayrollEntries(payrollEntries); // Vendosja e payrollEntries në state
 
     } catch (error) {
         console.error(`Failed to load all business data for ${businessId}:`, error);

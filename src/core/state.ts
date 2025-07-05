@@ -42,7 +42,7 @@ export let productionRoutings: ProductionRouting[] = [];
 export let timeLogs: TimeLog[] = [];
 export let leaveRequests: LeaveRequest[] = [];
 export let overtimeEntries: Overtime[] = [];
-
+export let payrollEntries: PayrollEntry[] = []; // Deklarimi i payrollEntries
 
 export let businesses: Business[] = []; 
 export let currentUser: User | null = null; 
@@ -116,7 +116,7 @@ export function setEmployees(newEmployees: Employee[]): void { employees = newEm
 export function setTimeLogs(newTimeLogs: TimeLog[]): void { timeLogs = newTimeLogs; }
 export function setLeaveRequests(newLeaveRequests: LeaveRequest[]): void { leaveRequests = newLeaveRequests; }
 export function setOvertimeEntries(newOvertimeEntries: Overtime[]): void { overtimeEntries = newOvertimeEntries; }
-export function setAccounts(newAccounts: Account[]): void { accounts = newAccounts; }
+export function setPayrollEntries(newPayrollEntries: PayrollEntry[]): void { payrollEntries = newPayrollEntries; } // Funksioni për vendosjen e payrollEntries
 export function setJournalEntries(newJournalEntries: JournalEntry[]): void { journalEntries = newJournalEntries; }
 export function setAccountingSettings(settings: AccountingSettings | null): void { accountingSettings = settings; }
 export function setPreselectedAccountIdForLedger(id: string | null): void { preselectedAccountIdForLedger = id; }
