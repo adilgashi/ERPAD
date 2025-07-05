@@ -8,7 +8,7 @@
 
 import * as state from './state';
 import * as api from './api';
-import { MenuCategoryConfig, TimeLog, LeaveRequest, Overtime, JournalEntry } from '../models';
+import { MenuCategoryConfig, TimeLog, LeaveRequest, Overtime, JournalEntry, StockAdjustment } from '../models';
 
 export * from './api';
 
@@ -51,7 +51,7 @@ export async function loadAllBusinessData(businessId: string): Promise<void> {
             purchaseInvoices, returnPurchaseInvoices, outgoingPayments,
             incomingPayments, localSalesInvoices, salesReturnInvoices,
             creditNotes, debitNotes, recipes, productionOrders,
-            productionStages, productionRoutings, employees,
+            productionStages, productionRoutings, stockAdjustments, employees,
             timeLogs, leaveRequests, overtimeEntries, payrollEntries, accounts, journalEntries, accountingSettings
         ] = await Promise.all([
             api.getUsers(businessId),
@@ -81,6 +81,7 @@ export async function loadAllBusinessData(businessId: string): Promise<void> {
             api.getProductionOrders(businessId),
             api.getProductionStages(businessId),
             api.getProductionRoutings(businessId),
+            api.getStockAdjustments(businessId),
             api.getEmployees(businessId),
             api.getTimeLogs(businessId),
             api.getLeaveRequests(businessId),
@@ -122,6 +123,7 @@ export async function loadAllBusinessData(businessId: string): Promise<void> {
         state.setProductionOrders(productionOrders);
         state.setProductionStages(productionStages);
         state.setProductionRoutings(productionRoutings);
+        state.setStockAdjustments(stockAdjustments);
         state.setTimeLogs(timeLogs);
         state.setLeaveRequests(leaveRequests);
         state.setOvertimeEntries(overtimeEntries);
@@ -168,6 +170,7 @@ export function clearAllBusinessData(): void {
     state.setProductionOrders([]);
     state.setProductionStages([]);
     state.setProductionRoutings([]);
+    state.setStockAdjustments([]);
     state.setTimeLogs([]);
     state.setLeaveRequests([]);
     state.setOvertimeEntries([]);
