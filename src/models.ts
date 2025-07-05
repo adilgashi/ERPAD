@@ -241,6 +241,23 @@ export interface PayrollEntry {
     runAt: number;
     status: 'Draft' | 'Finalized';
 }
+export interface PayrollEntry {
+    id: string;
+    businessId: string;
+    employeeId: string;
+    employeeName: string;
+    periodMonth: number;
+    periodYear: number;
+    baseSalary: number;
+    additions: { description: string, amount: number }[];
+    deductions: { description: string, amount: number }[];
+    grossSalary: number;
+    totalDeductions: number;
+    netSalary: number; // Simplified: Gross - Deductions
+    notes?: string;
+    runAt: number;
+    status: 'Draft' | 'Finalized';
+}
 
 
 export interface TimeLog {

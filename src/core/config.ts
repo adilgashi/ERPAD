@@ -25,6 +25,7 @@ export const BASE_TIME_LOGS_STORAGE_KEY = 'posTimeLogs_hr';
 export const BASE_LEAVE_REQUESTS_STORAGE_KEY = 'posLeaveRequests_hr';
 export const BASE_OVERTIME_ENTRIES_STORAGE_KEY = 'posOvertimeEntries_hr';
 export const BASE_PAYROLL_ENTRIES_STORAGE_KEY = 'posPayrollEntries_v1';
+export const BASE_PAYROLL_ENTRIES_STORAGE_KEY = 'posPayrollEntries_v1';
 export const BASE_PETTY_CASH_LOG_KEY = 'posPettyCashLog_v1';
 export const BASE_PRODUCTS_STORAGE_KEY = 'posProducts';
 export const BASE_DAILY_CASH_LOG_KEY = 'posDailyCashLog';
