@@ -6,6 +6,7 @@
  */
 
 import { Product, User, DailyCashEntry, SaleRecord, BusinessDetails, Business, SaleItem, DailyCashEntry as DailyCashEntryType, ClearedSaleLogEntry, Deal, Customer, Category, ItemType, SuperAdminAppSettings, Supplier, PurchaseInvoice, ReturnPurchaseInvoice, OutgoingPayment, SubscriptionPackage, MenuCategoryConfig, LocalSaleInvoice, IncomingPayment, SalesReturnInvoice, CreditNote, DebitNote, Recipe, ProductionOrder, ProductionStage, ProductionRouting, Employee, TimeLog, LeaveRequest, Overtime, PayrollEntry, Group, Privilege, GroupPrivilege, Account, JournalEntry, AccountingSettings, PettyCashEntry } from '../models'; 
+import { StockAdjustment } from '../models';
 
 // --- Application State ---
 export let products: Product[] = [];
